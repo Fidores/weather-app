@@ -1,0 +1,58 @@
+@import '../../../sass/utils/functions';
+@import '../../../sass/utils/variables';
+
+.side-menu {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: rem(300px);
+    background-color: $light-bg-color;
+    color: $text-on-light-bg;
+    height: 100vh;
+    z-index: 999;
+
+    &__header {
+        background: linear-gradient(90deg, $accent-color-success, $primary-color);
+        height: rem(250px);
+        color: $primary-text-color;
+        box-shadow: rem(-5px) rem(5px) rem(34px) rem(-16px) rgba(0,0,0,0.75);
+    }
+
+    &__author {
+        display: grid;
+        grid-template: 
+            'author-avatar author-name'
+            'author-avatar author-email'
+        ;
+        margin-top: rem($spacing-big);
+    }
+
+    &__author-avatar {
+        width: rem(50px);
+        grid-area: author-avatar;
+        justify-self: center;
+    }
+
+    &__author-name {
+        grid-area: author-name;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    &__author-email {
+        grid-area: author-email;
+        font-size: 0.9rem;
+    }
+
+    &__heading {
+        height: rem(64px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px rem($spacing-medium);
+    }
+    
+    &__heading-text {
+        font-size: 1.3rem;
+    }
+}

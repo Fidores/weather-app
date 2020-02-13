@@ -1,0 +1,11 @@
+<div class="container">
+    
+    <swiper [config]="sliderConfig" @slideInEntranceParent *ngIf="!isLoading">
+
+        <weather-card [routerLink]="['weather-details', weather.city.id]" @slideInEntranceChild *ngFor="let weather of cities" [weather]="weather"></weather-card>
+
+        <add-city-card routerLink="/add-city" @slideInEntranceChild></add-city-card>
+    
+    </swiper>
+    
+</div>

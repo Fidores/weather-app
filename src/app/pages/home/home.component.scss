@@ -1,0 +1,10 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/functions';
+
+.swiper-slide {
+    width: rem(300px) !important;
+}
+
+.container {
+    margin-top: rem($spacing-big);
+}

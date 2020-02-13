@@ -1,0 +1,57 @@
+<div class="weather-details" *ngIf="forecast">
+
+    <div class="weather-details__header">
+
+        <div class="weather-details__bg-wrapper"></div>
+
+        <div class="weather-details__content-wrapper">
+
+            <div class="weather-details__icon">
+    
+                <img src="../../../assets/icons/sun.svg" alt="słońce">
+        
+            </div>
+        
+            <div class="weather-details__stats">
+    
+                <div class="weather-details__temp">15&deg;</div>
+                
+                <div class="weather-details__description">
+                    ZACHMÓRZENIE CZĘŚCIOWE
+                </div>
+    
+            </div>
+            
+            <div class="weather-details__city-name">
+                {{ forecast.city.name }}
+            </div>
+    
+        </div>
+
+    </div>
+
+    <div class="weather-details__body">
+
+        <div class="weather-details__hourly-forecast" *ngFor="let day of forecast.days | keyvalue">
+
+            <h2 class="weather-details__day">{{ day.key | date:'EEEE':'':'pl' }}</h2>
+
+            <swiper [config]="sliderConfig" @slideInEntranceParent>
+
+                <small-weather-card @slideInEntranceChild *ngFor="let period of day.value" [period]="period"></small-weather-card>
+    
+            </swiper>
+
+        </div>
+
+    </div>
+
+    <div class="weather-details__footer">
+
+        <div class="weather-details__hum">
+            Średnia wilgotność: <span class="weather-details__value">78%</span>
+        </div>
+
+    </div>
+
+</div>

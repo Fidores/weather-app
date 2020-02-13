@@ -1,0 +1,46 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/functions';
+
+.add-city {
+    background-color: $light-bg-color;
+    color: $text-on-light-bg;
+    width: 30vw;
+    margin: rem(30px) auto 0px auto;
+    border-radius: rem(6px);
+    padding: rem(30px);
+
+    &__search-box {
+        border: rem(2px) $primary-text-color-darker solid;
+        display: block;
+        margin: 0px auto;
+        border-radius: rem(3px);
+        padding: rem(10px);
+        width: 98%;
+        font-size: 1.2rem;
+    }
+
+    &__city {
+        border: rem(1px) solid $primary-text-color-darker;
+        padding: rem(10px);
+        border-radius: rem(3px);
+        cursor: pointer;
+        transition: transform .1s ease-out;
+        margin-top: rem(10px);
+        transform: scale(0.98);
+
+        &:hover {
+            transform: scale(1);
+        }
+    }
+
+    &__name {
+        font-size: 1.5rem;
+        color: $accent-color;
+        font-weight: 700;
+    }
+
+    &__country {
+        color: $primary-text-color-darker;
+        font-weight: 500;
+    }
+}

@@ -1,0 +1,27 @@
+$primary-color: #003EFF;
+
+$accent-color: #ED2D7A;
+$accent-color-success: #00FF9B;
+$accent-color-danger: #FF0000;
+
+$secondary-color: #432C85;
+$secondary-color-light: #B290FF; 
+$secondary-color-dark: #2B244D;
+
+$main-bg-color: linear-gradient(180deg, $secondary-color-light, $secondary-color-dark);
+$card-bg-color: linear-gradient(180deg, #00057A, #721C87);
+$light-bg-color: #FFF;
+$text-on-light-bg: #000;
+
+$primary-text-color: #FFF;
+$primary-text-color-darker: #707070;
+
+// * This variables defines default margin and padding values;
+$spacing-small: 15px;
+$spacing-medium: 30px;
+$spacing-big: 50px;
+
+// * This variables defines default border-radius values;
+$radius-small: 3px;
+$radius-medium: 12px;
+$radius-big: 20px;

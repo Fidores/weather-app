@@ -1,0 +1,11 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/functions';
+@import '../../../sass/components/card';
+
+:host {
+    height: auto !important;
+}
+
+.add-city-card {
+    @include card;
+}

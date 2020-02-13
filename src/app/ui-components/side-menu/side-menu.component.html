@@ -1,0 +1,31 @@
+<div class="side-menu" [@sideMenuAnimation]="isOpened ? 'opened' : 'closed'">
+
+    <div class="side-menu__header">
+
+        <div class="side-menu__heading">
+
+            <button class="btn side-menu__close-menu" (click)="closeMenu()"><fa-icon [icon]="faBars" size="2x"></fa-icon></button>
+
+            <h2 class="side-menu__heading-text">Witaj, ponownie !</h2>
+
+        </div>
+
+        <div class="side-menu__author">
+
+            <div class="side-menu__author-avatar">
+                <img src="../../../assets/images/user_avatar.svg" alt="avatar użytkownika">
+            </div>
+
+            <div class="side-menu__author-name">
+                Jan Kowalski
+            </div>
+
+            <div class="side-menu__author-email">
+                <a href="mailto:jan.kowalski@gmail.com">jan.kowalski@gmail.com</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

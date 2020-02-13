@@ -1,0 +1,49 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/functions';
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    background-color: $secondary-color-dark;
+    height: rem(64px);
+    padding: 0px rem($spacing-medium);
+    font-weight: 700;
+    top: 0px;
+    position: sticky;
+    z-index: 50;
+
+    &__item {
+        margin-right: rem($spacing-medium);
+    }
+
+    &__logo {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    &__logo-text {
+        font-size: rem(30px);
+        margin-left: rem($spacing-small);
+        letter-spacing: rem(3px);
+    }
+
+    &__menu {
+        display: flex;
+        align-items: center;
+    }
+
+    &__section {
+        display: flex;
+        justify-items: center;
+    }
+
+    &__section:nth-child(3) {
+        justify-self: end;
+    }
+
+    &__logo-image {
+        height: rem(40px);
+        width: auto;
+    }
+}

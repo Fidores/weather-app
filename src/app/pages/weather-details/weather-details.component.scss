@@ -1,0 +1,112 @@
+@import '../../../sass/utils/functions';
+@import '../../../sass/utils/variables';
+
+.weather-details {
+    width: 60vw;
+    margin: rem($spacing-big) auto 0px auto;
+
+    &__icon {
+        width: rem(150px);
+    }
+
+    &__header {
+        position: relative;
+        height: rem(350px);
+        overflow: hidden;
+        border-radius: rem($radius-big) rem($radius-big) 0px 0px;
+    }
+
+    &__content-wrapper {
+        position: absolute;
+        display: grid; 
+        grid-template-columns: 1fr 2fr 2fr;
+        padding: rem($spacing-medium);
+        height: 100%;
+        width: 100%;
+        align-items: center;        
+    }
+
+    &__bg-wrapper {
+        position: absolute;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../../../assets/images/snow-landscape.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 100%;
+        animation: pulse ease-out 20s infinite;
+    }
+
+    &__city-name {
+        position: relative;
+        justify-self: end;
+        align-self: stretch;
+        font-weight: 600;
+        font-size: 1.5rem;
+        letter-spacing: rem(3px);
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            height: rem(3px);
+            width: 50%;
+            background-color: $accent-color;
+            margin: rem($spacing-small) auto 0px auto;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+    
+    &__body {
+        background-color: $light-bg-color;
+        color: $text-on-light-bg;
+        padding: rem($spacing-medium) 0px;
+    }
+
+    &__hourly-forecast {
+        &:not(:first-child) {
+            margin-top: rem($spacing-medium);
+        }
+    }
+
+    &__day {
+        margin: 0px 0px rem($spacing-medium) rem($spacing-medium);
+        color: $accent-color;
+
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    }
+
+    &__footer {
+        background-color: $light-bg-color;
+        border-radius: 0px 0px rem($radius-big) rem($radius-big);
+        padding: rem($spacing-medium);
+        color: $secondary-color;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    &__temp {
+        font-size: 4.0rem;
+    }
+
+    &__value {
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+}
+
+.swiper-slide {
+    width: rem(200px) !important;
+
+    &:first-child {
+        margin-left: $spacing-medium;
+    }
+}
+
+swiper {
+    width: 100%;
+}
