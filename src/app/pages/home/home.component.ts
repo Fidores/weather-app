@@ -1,3 +1,4 @@
+import { CitiesService } from './../../services/cities/cities.service';
 import { WeatherService } from './../../services/weather/weather.service';
 import { slideInEntrance } from './../../animations';
 import { MainHeaderService } from './../../services/main-header/main-header.service';
@@ -5,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { CurrentWeather } from 'src/app/models/CurrentWeather';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   templateUrl: './home.component.html',
@@ -13,7 +15,11 @@ import { CurrentWeather } from 'src/app/models/CurrentWeather';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private readonly header: MainHeaderService, private readonly weather: WeatherService) { }
+  constructor(
+    private readonly header: MainHeaderService,
+    private readonly weather: WeatherService,
+    private readonly _cities: CitiesService
+  ) { }
 
   faSortUp = faSortUp;
   faSortDown = faSortDown;
@@ -30,11 +36,16 @@ export class HomeComponent implements OnInit {
     
     this.header.setTitle(new Date().toLocaleDateString('pl-PL', { month: 'long', day: 'numeric', year: 'numeric'}).toUpperCase());
 
-    this.weather.currentWeather('769250,4736286').subscribe(cities => {
+    this._cities.getCities().pipe(switchMap(cities => this.weather.currentWeather(cities.join(',')))).subscribe(cities => {
       this.cities = cities;
       this.isLoading = false;
     });
 
+  }
+
+  removeCity(id: number) {
+    const cityIndex = this.cities.findIndex(item => item.city.id === id);
+    this.cities.splice(cityIndex, 1);
   }
 
 }

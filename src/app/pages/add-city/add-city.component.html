@@ -1,93 +1,24 @@
 <div class="add-city">
 
-    <input type="text" placeholder="Wyszukaj miasto" class="add-city__search-box">
+    <input type="text" placeholder="Wyszukaj miasto" class="add-city__search-box" #searchBox>
 
     <div class="add-city__cities">
 
         <ng-scrollbar style="max-height: 60vh;">
-            <div class="add-city__city">
+
+            <div class="add-city__city" *ngFor="let city of queriedCities" (click)="addCity(city.id)">
 
                 <div class="add-city__name">
-                    Kielce
+                    {{ city.name }}
                 </div>
     
                 <div class="add-city__country">
-                    Polska
-                </div>
-    
-            </div>
-    
-            <div class="add-city__city">
-    
-                <div class="add-city__name">
-                    London
-                </div>
-    
-                <div class="add-city__country">
-                    United Kingdom
+                    {{ city.country }}
                 </div>
     
             </div>
 
-            <div class="add-city__city">
-    
-                <div class="add-city__name">
-                    London
-                </div>
-    
-                <div class="add-city__country">
-                    United Kingdom
-                </div>
-    
-            </div>
 
-            <div class="add-city__city">
-    
-                <div class="add-city__name">
-                    London
-                </div>
-    
-                <div class="add-city__country">
-                    United Kingdom
-                </div>
-    
-            </div>
-
-            <div class="add-city__city">
-    
-                <div class="add-city__name">
-                    London
-                </div>
-    
-                <div class="add-city__country">
-                    United Kingdom
-                </div>
-    
-            </div>
-
-            <div class="add-city__city">
-    
-                <div class="add-city__name">
-                    London
-                </div>
-    
-                <div class="add-city__country">
-                    United Kingdom
-                </div>
-    
-            </div>
-
-            <div class="add-city__city">
-    
-                <div class="add-city__name">
-                    London
-                </div>
-    
-                <div class="add-city__country">
-                    United Kingdom
-                </div>
-    
-            </div>
         </ng-scrollbar>
 
     </div>

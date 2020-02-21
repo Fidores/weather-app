@@ -1,6 +1,7 @@
 @import '../../../sass/utils/variables';
 @import '../../../sass/utils/functions';
 @import '../../../sass/components/card';
+@import '../../../sass/utils/variables';
 
 .weather-card {
     @include card;
@@ -16,6 +17,12 @@
         &::first-letter {
             text-transform: uppercase;
         }
+    }
+
+    &__actions {
+        margin-top: $spacing-small;
+        font-size: 2rem;
+        text-align: right;
     }
 
     &__total-temperatures {

@@ -8,16 +8,16 @@
 
             <div class="weather-details__icon">
     
-                <img src="../../../assets/icons/sun.svg" alt="słońce">
+                <img src="../../../assets/icons/weather-icons/{{ formatIconName(currentWeather.weather.icon) }}" alt="słońce">
         
             </div>
         
             <div class="weather-details__stats">
     
-                <div class="weather-details__temp">15&deg;</div>
+                <div class="weather-details__temp">{{ currentWeather.main.temp }}&deg;</div>
                 
                 <div class="weather-details__description">
-                    ZACHMÓRZENIE CZĘŚCIOWE
+                    {{ currentWeather.weather.description }}
                 </div>
     
             </div>
@@ -42,14 +42,6 @@
     
             </swiper>
 
-        </div>
-
-    </div>
-
-    <div class="weather-details__footer">
-
-        <div class="weather-details__hum">
-            Średnia wilgotność: <span class="weather-details__value">78%</span>
         </div>
 
     </div>

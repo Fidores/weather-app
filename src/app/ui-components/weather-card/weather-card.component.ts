@@ -1,7 +1,8 @@
-import { formatIconName } from './../../../helpers/formatIconName';
+import { formatIconName } from '../../helpers/formatIconName';
 import { CurrentWeather } from '../../models/CurrentWeather';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'weather-card',
@@ -13,12 +14,14 @@ export class WeatherCardComponent implements OnInit {
   constructor() { }
 
   @Input('weather') weather: CurrentWeather;
+  @Output('onDelete') onDelete = new EventEmitter();
 
   faSortUp = faSortUp;
   faSortDown = faSortDown;
   formatIconName = formatIconName;
 
   ngOnInit() {
+
   }
 
 }

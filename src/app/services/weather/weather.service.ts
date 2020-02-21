@@ -1,3 +1,4 @@
+import { City } from './../../models/City';
 import { Forecast } from '../../models/Forecast';
 import { environment } from './../../../environments/environment';
 import { CurrentWeather } from '../../models/CurrentWeather';
@@ -12,7 +13,9 @@ export class WeatherService {
 
   constructor(
     private readonly http: HttpClient
-  ) { }
+  ) { 
+    
+  }
 
   /**
    * Gets current weather in a city.
@@ -28,7 +31,7 @@ export class WeatherService {
    * @param id id of a city.
   */
 
-  fiveDayForecast(id: string) {
+  fiveDayForecast(id: string): Observable<Forecast> {
     return this.http.get<Forecast>(`${ environment.weatherAPI.origin }forecast/5-days/${ id }`);
   }
 

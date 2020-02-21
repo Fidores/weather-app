@@ -19,6 +19,7 @@
     &__content-wrapper {
         position: absolute;
         display: grid; 
+        column-gap: 20px;
         grid-template-columns: 1fr 2fr 2fr;
         padding: rem($spacing-medium);
         height: 100%;
@@ -62,6 +63,7 @@
         background-color: $light-bg-color;
         color: $text-on-light-bg;
         padding: rem($spacing-medium) 0px;
+        border-radius: 0px 0px rem($radius-big) rem($radius-big);
     }
 
     &__hourly-forecast {
@@ -79,16 +81,6 @@
         }
     }
 
-    &__footer {
-        background-color: $light-bg-color;
-        border-radius: 0px 0px rem($radius-big) rem($radius-big);
-        padding: rem($spacing-medium);
-        color: $secondary-color;
-        font-weight: 600;
-        display: flex;
-        justify-content: space-around;
-    }
-
     &__temp {
         font-size: 4.0rem;
     }
@@ -96,6 +88,12 @@
     &__value {
         font-size: 1.4rem;
         font-weight: 400;
+    }
+
+    &__description {
+        &::first-letter {
+            text-transform: uppercase;
+        }
     }
 }
 

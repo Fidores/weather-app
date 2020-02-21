@@ -1,4 +1,4 @@
-import { formatIconName } from './../../../helpers/formatIconName';
+import { formatIconName } from '../../helpers/formatIconName';
 import { Period } from '../../models/Forecast';
 import { Component, OnInit, Input } from '@angular/core';
 

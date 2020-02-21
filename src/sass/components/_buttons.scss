@@ -4,4 +4,19 @@
     outline: none;
     cursor: pointer;
     color: #FFF;
+    border-radius: $radius-small;
+
+    &--accent {
+        background-color: $accent-color;
+        padding: 5px;
+
+        &:hover {
+            background-color: darken($accent-color, 15%);
+        }
+    }
+
+    &--block {
+        display: block;
+        width: 100%;
+    }
 }
