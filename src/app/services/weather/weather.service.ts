@@ -1,10 +1,9 @@
-import { City } from './../../models/City';
 import { Forecast } from '../../models/Forecast';
 import { environment } from './../../../environments/environment';
 import { CurrentWeather } from '../../models/CurrentWeather';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +22,7 @@ export class WeatherService {
   */
  
   currentWeather(id: string): Observable<CurrentWeather[]> {
+    if(!id) return of([]);
     return this.http.get<CurrentWeather[]>(`${ environment.weatherAPI.origin }forecast/current/${ id }`)
   }
 
@@ -32,6 +32,8 @@ export class WeatherService {
   */
 
   fiveDayForecast(id: string): Observable<Forecast> {
+    if(!id) throw new Error('No id passed !');
+
     return this.http.get<Forecast>(`${ environment.weatherAPI.origin }forecast/5-days/${ id }`);
   }
 

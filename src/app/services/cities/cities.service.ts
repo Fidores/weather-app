@@ -40,7 +40,8 @@ export class CitiesService {
   }
 
   getCities(): Observable<number[]> {
-    return of(JSON.parse(localStorage.getItem('cities'))) || of([]);
+    const cities = JSON.parse(localStorage.getItem('cities'));
+    return cities ? of(cities) : of([]);
   }
   
 }
