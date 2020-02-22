@@ -10,6 +10,7 @@
     }
 
     &__header {
+        mask-image: radial-gradient(white, black);
         position: relative;
         height: rem(350px);
         overflow: hidden;
@@ -24,7 +25,7 @@
         padding: rem($spacing-medium);
         height: 100%;
         width: 100%;
-        align-items: center;        
+        align-items: center;  
     }
 
     &__bg-wrapper {
@@ -107,4 +108,26 @@
 
 swiper {
     width: 100%;
+}
+
+@media only screen and (max-width: 1024px) {
+    .weather-details {
+        width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .weather-details {
+        width: 100vw;
+        margin: 0px;
+
+        &__header {
+            border-radius: 0px;
+            height: rem(250px);
+        }
+
+        &__body {
+            border-radius: 0px;
+        }
+    }
 }

@@ -20,7 +20,11 @@ export class CitiesService {
 
   saveCity(id: number): Observable<number[]> {
     const cities: number[] = JSON.parse(localStorage.getItem('cities')) || [];
-    if(cities.includes(id) || cities.length === 20) return of(cities);
+    if(cities.includes(id)) return of(cities);
+    if(cities.length === 20) {
+      alert('Nie można dodać więcej niż 20 miast.');
+      return of(cities);
+    }
     
     cities.push(id);
     localStorage.setItem('cities', JSON.stringify(cities));

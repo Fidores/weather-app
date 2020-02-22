@@ -1,6 +1,6 @@
 export const environment = {
-  production: false,
+  production: true,
   weatherAPI: {
-    origin: 'http://localhost:3000/'
+    origin: 'http://192.168.1.11:3000/'
   }
 };

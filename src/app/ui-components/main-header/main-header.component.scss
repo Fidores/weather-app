@@ -47,3 +47,11 @@
         width: auto;
     }
 }
+
+@media (max-width: 425px) {
+    .header {
+        &__logo {
+            display: none;
+        }
+    }
+}

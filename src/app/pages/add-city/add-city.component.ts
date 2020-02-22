@@ -1,5 +1,5 @@
 import { CitiesService } from './../../services/cities/cities.service';
-import { throttleTime } from 'rxjs/operators';
+import { throttleTime, debounceTime } from 'rxjs/operators';
 import { City } from './../../models/City';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
@@ -22,16 +22,17 @@ export class AddCityComponent implements OnInit, OnDestroy {
   @ViewChild('searchBox', { static: true }) searchBox: ElementRef<HTMLInputElement>;
 
   ngOnInit() {
-    this.queryCitiesSubscription = fromEvent(this.searchBox.nativeElement, 'input').pipe(throttleTime(300)).subscribe(this.searchForCity.bind(this));
+    this.queryCitiesSubscription = fromEvent(this.searchBox.nativeElement, 'input')
+      .pipe(debounceTime(400))
+      .subscribe(($event: Event) => this.searchForCity($event.target['value']));
   }
 
   ngOnDestroy() {
     this.queryCitiesSubscription.unsubscribe();
   }
 
-  searchForCity($event: Event) {
-    const input = $event.target as HTMLInputElement;
-    this.cities.queryCities(input.value).subscribe(cities => this.queriedCities = cities);
+  searchForCity(name: string) {
+    this.cities.queryCities(name).subscribe(cities => this.queriedCities = cities);
   }
 
   addCity(id: number) {

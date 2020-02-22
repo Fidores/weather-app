@@ -4,7 +4,7 @@
 .add-city {
     background-color: $light-bg-color;
     color: $text-on-light-bg;
-    width: 30vw;
+    width: 50vw;
     margin: rem($spacing-medium) auto 0px auto;
     border-radius: rem(6px);
     padding: rem($spacing-medium);
@@ -42,5 +42,19 @@
     &__country {
         color: $primary-text-color-darker;
         font-weight: 500;
+    }
+}
+
+@media (max-width: 1024px) {
+    .add-city {
+        width: 70vw;
+    }
+}
+
+@media (max-width: 425px) {
+    .add-city {
+        border-radius: 0px;
+        margin-top: 0px;
+        width: 100vw;
     }
 }

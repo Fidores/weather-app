@@ -12,9 +12,7 @@ export class WeatherService {
 
   constructor(
     private readonly http: HttpClient
-  ) { 
-    
-  }
+  ) {}
 
   /**
    * Gets current weather in a city.

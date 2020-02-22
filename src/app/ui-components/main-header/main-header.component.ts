@@ -19,7 +19,7 @@ export class MainHeaderComponent implements OnInit {
   ) { }
 
   @ViewChild('title', { static: true }) title: ElementRef<HTMLElement>;
-  
+
   broadcastersSubscriptions: Subscription = new Subscription();
   faBars = faBars;
 
