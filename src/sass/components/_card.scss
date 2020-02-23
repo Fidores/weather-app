@@ -3,7 +3,6 @@
     border-radius: rem($radius-big);
     padding: rem($spacing-medium);
     text-align: center;
-    transform: scale(0.9);
     transition: transform .1s linear;
     cursor: pointer;
     display: block;
@@ -11,10 +10,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    &:hover {
-        transform: scale(1);
-    }
 
     &:active {
         transform: scale(0.9);
@@ -29,4 +24,13 @@
         width: 85%;
         margin: 0px auto;
     }
+
+    @media (hover: hover) {
+        transform: scale(0.9);
+    
+        &:hover {
+            transform: scale(1);
+        }
+    }
 }
+
