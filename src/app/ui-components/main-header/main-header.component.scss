@@ -1,6 +1,16 @@
 @import '../../../sass/utils/variables';
 @import '../../../sass/utils/functions';
 
+:host {
+    display: block;
+    top: 0px;
+    left: 0px;
+    z-index: 50;
+    position: relative;
+    position: fixed;
+    width: 100%;
+}
+
 .header {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -9,9 +19,6 @@
     height: rem(64px);
     padding: 0px rem($spacing-medium);
     font-weight: 700;
-    top: 0px;
-    position: sticky;
-    z-index: 50;
 
     &__item {
         margin-right: rem($spacing-medium);
