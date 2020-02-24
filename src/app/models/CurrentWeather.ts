@@ -1,7 +1,8 @@
 export interface CurrentWeather {
     weather: Weather;
-    main: Temperatures;
+    main: Main;
     city: City;
+    wind: Wind;
 }
 
 interface Weather {
@@ -11,13 +12,20 @@ interface Weather {
     icon: string;
 }
 
-interface Temperatures {
+interface Main {
     temp: number;
     tempMin: number;
     tempMax: number;
+    feels_like: number;
+    pressure: number;
+    humidity: number;
 }
 
 interface City {
     id: number;
     name: string;
+}
+
+interface Wind {
+    speed: number;
 }

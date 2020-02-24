@@ -1,4 +1,4 @@
-<div class="weather-details" *ngIf="forecast ">
+<div class="weather-details" *ngIf="forecast">
 
     <div class="weather-details__header" *ngIf="currentWeather">
 
@@ -6,25 +6,65 @@
 
         <div class="weather-details__content-wrapper">
 
-            <div class="weather-details__icon">
-    
-                <img src="../../../assets/icons/weather-icons/{{ formatIconName(currentWeather.weather.icon) }}" alt="słońce">
-        
+            <div class="weather-details__icon-container">   
+                <img class="weather-details__icon" src="../../../assets/icons/weather-icons/{{ formatIconName(currentWeather.weather.icon) }}" alt="ikona pogody">
             </div>
         
-            <div class="weather-details__stats">
-    
-                <div class="weather-details__temp">{{ currentWeather.main.temp }}&deg;</div>
-                
-                <div class="weather-details__description">
-                    {{ currentWeather.weather.description }}
-                </div>
-    
-            </div>
+            <div class="weather-details__temp">{{ currentWeather.main.temp }}&deg;</div>
             
+            <div class="weather-details__description">
+                {{ currentWeather.weather.description }}
+            </div>
+    
             <div class="weather-details__city-name">
                 {{ forecast.city.name }}
             </div>
+
+            <table class="weather-details__temp-details weather-details__details">
+
+                <tbody>
+
+                    <tr class="weather-details__detail">
+                        <td class="weather-details__detail-name">Temperatura maksymalna</td>
+                        <td class="weather-details__detail-value">{{ currentWeather.main.tempMax }}&deg;</td>
+                    </tr>
+
+                    <tr class="weather-details__detail">
+                        <td class="weather-details__detail-name">Temperatura minimalna</td>
+                        <td class="weather-details__detail-value">{{ currentWeather.main.tempMin }}&deg;</td>
+                    </tr>
+
+                    <tr class="weather-details__detail">
+                        <td class="weather-details__detail-name">Temperatura odczuwalna</td>
+                        <td class="weather-details__detail-value">{{ currentWeather.main.feels_like }}&deg;</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <table class="weather-details__day-details weather-details__details">
+
+                <tbody>
+
+                    <tr class="weather-details__detail">
+                        <td class="weather-details__detail-name">Ciśnienie</td>
+                        <td class="weather-details__detail-value">{{ currentWeather.main.pressure }} hPa</td>
+                    </tr>
+
+                    <tr class="weather-details__detail">
+                        <td class="weather-details__detail-name">Wilgotność</td>
+                        <td class="weather-details__detail-value">{{ currentWeather.main.humidity }}%</td>
+                    </tr>
+
+                    <tr class="weather-details__detail">
+                        <td class="weather-details__detail-name">Szybkość wiatru</td>
+                        <td class="weather-details__detail-value">{{ currentWeather.wind.speed }} m/s</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
     
         </div>
 

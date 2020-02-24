@@ -5,27 +5,62 @@
     width: 60vw;
     margin: rem($spacing-big) auto 0px auto;
 
-    &__icon {
-        width: rem(150px);
+    &__icon-container {
+        grid-area: icon;
+        place-self: center;
+        
+        & img {
+            height: 100%;
+            max-width: 150px;
+            max-height: 150px;
+        }
     }
 
     &__header {
         mask-image: radial-gradient(white, black);
         position: relative;
         height: rem(350px);
+        width: 100%;
         overflow: hidden;
         border-radius: rem($radius-big) rem($radius-big) 0px 0px;
     }
 
     &__content-wrapper {
         position: absolute;
-        display: grid; 
-        column-gap: 20px;
-        grid-template-columns: 1fr 2fr 2fr;
         padding: rem($spacing-medium);
         height: 100%;
         width: 100%;
-        align-items: center;  
+        display: grid;
+        grid-template-areas: 
+            'icon temperature temperature city'
+            'icon description description city'
+            'temp-details temp-details day-details day-details'
+        ;
+        grid-template-rows: 1fr 1fr 4fr;
+        gap: 10px 30px;
+    }
+
+    &__detail {
+        vertical-align: middle;
+    }
+
+    &__detail-name {
+        font-size: 1.1rem;
+    }
+
+    &__detail-value {
+        font-size: 1.6rem;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    &__temp-details {
+        grid-area: temp-details;
+    }
+    
+    &__day-details {
+        grid-area: day-details;
+        width: 100%;
     }
 
     &__bg-wrapper {
@@ -40,9 +75,9 @@
     }
 
     &__city-name {
-        position: relative;
+        grid-area: city;
         justify-self: end;
-        align-self: stretch;
+        position: relative;
         font-weight: 600;
         font-size: 1.5rem;
         letter-spacing: rem(3px);
@@ -83,6 +118,7 @@
     }
 
     &__temp {
+        grid-area: temperature;
         font-size: 4.0rem;
     }
 
@@ -92,6 +128,9 @@
     }
 
     &__description {
+        grid-area: description;
+        font-size: 1.1rem;
+
         &::first-letter {
             text-transform: uppercase;
         }
@@ -110,20 +149,13 @@ swiper {
     width: 100%;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-device-width: 1024px) {
     .weather-details {
-        width: 80vw;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .weather-details {
-        width: 100vw;
+        width: 100%;
         margin: 0px;
 
         &__header {
             border-radius: 0px;
-            height: rem(250px);
         }
 
         &__body {
