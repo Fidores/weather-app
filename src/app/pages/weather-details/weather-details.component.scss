@@ -44,6 +44,10 @@
         vertical-align: middle;
     }
 
+    &__details {
+        width: 100%;
+    }
+
     &__detail-name {
         font-size: 1.1rem;
     }
@@ -60,7 +64,6 @@
     
     &__day-details {
         grid-area: day-details;
-        width: 100%;
     }
 
     &__bg-wrapper {
@@ -77,6 +80,7 @@
     &__city-name {
         grid-area: city;
         justify-self: end;
+
         position: relative;
         font-weight: 600;
         font-size: 1.5rem;
@@ -161,5 +165,51 @@ swiper {
         &__body {
             border-radius: 0px;
         }
+    }
+}
+
+@media only screen and (max-device-width: 425px) {
+    .weather-details {
+
+        &__icon-container {
+            display: none;
+        }
+
+        &__content-wrapper {
+            padding: 10px;
+            grid-template-areas: 
+                'temperature . city'
+                'description description description'
+                'temp-details temp-details temp-details'
+                'day-details day-details day-details'
+            ;
+            grid-template-rows: 1fr 1fr 2fr 2fr;
+            gap: $spacing-small;
+            align-items: center
+            ;
+        }
+
+        &__detail-value {
+            font-size: 1.2rem;
+            text-align: right;
+        }
+
+        &__detail-name {
+            font-size: 1rem;
+        }
+
+        &__city-name {
+            place-self: center;
+        }
+
+        &__temp {
+            place-self: center;
+        }
+
+        &__description {
+            text-align: center;
+            font-weight: 600;
+        }
+
     }
 }
