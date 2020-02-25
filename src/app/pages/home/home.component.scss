@@ -9,3 +9,22 @@
 .container {
     margin-top: rem($spacing-big);
 }
+
+@media only screen and (max-device-width: 1024px) {
+
+    .swiper-slide {
+        
+        &:first-child {
+            margin-left: rem($spacing-medium);
+        }
+    }
+
+}
+
+@media only screen and (max-device-width: 1024px) {
+
+    .container {
+        margin-top: rem($spacing-small);
+    }
+
+}

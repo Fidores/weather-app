@@ -11,8 +11,8 @@
         
         & img {
             height: 100%;
-            max-width: 150px;
-            max-height: 150px;
+            max-width: rem(150px);
+            max-height: rem(150px);
         }
     }
 
@@ -37,7 +37,7 @@
             'temp-details temp-details day-details day-details'
         ;
         grid-template-rows: 1fr 1fr 4fr;
-        gap: 10px 30px;
+        gap: rem($spacing-small) rem($spacing-medium);
     }
 
     &__detail {
@@ -176,7 +176,7 @@ swiper {
         }
 
         &__content-wrapper {
-            padding: 10px;
+            padding: 0px $spacing-small;
             grid-template-areas: 
                 'temperature . city'
                 'description description description'
@@ -185,8 +185,8 @@ swiper {
             ;
             grid-template-rows: 1fr 1fr 2fr 2fr;
             gap: $spacing-small;
-            align-items: center
-            ;
+            align-items: center;
+            gap: 0px;
         }
 
         &__detail-value {
