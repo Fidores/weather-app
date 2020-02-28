@@ -1,5 +1,5 @@
 /**
- * It removes n and d from icon name.
+ * It removes n and d from weather icon name.
  * It also adds icon extension (svg).
  * For example when passed '01d' it returnees '01.svg'
 */

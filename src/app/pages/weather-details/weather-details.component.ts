@@ -1,3 +1,4 @@
+import { formatIllustrationName } from './../../helpers/formatIllustationName';
 import { formatIconName } from '../../helpers/formatIconName';
 import { CurrentWeather } from './../../models/CurrentWeather';
 import { Subscription } from 'rxjs';
@@ -32,6 +33,7 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
   forecast: Forecast;
   currentWeather: CurrentWeather;
   formatIconName = formatIconName;
+  formatIllustrationName = formatIllustrationName;
 
   ngOnInit() {
     this.header.setTitle(new Date().toLocaleDateString('pl-PL', { month: 'long', day: 'numeric', year: 'numeric'}).toUpperCase());
