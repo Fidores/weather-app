@@ -19,6 +19,10 @@
         font-size: 1.2rem;
     }
 
+    &__loader {
+        margin-top: rem($spacing-medium);
+    }
+
     &__city {
         border: rem(1px) solid $primary-text-color-darker;
         padding: rem(10px);

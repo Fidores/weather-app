@@ -18,7 +18,7 @@ export class AddCityComponent implements OnInit, OnDestroy {
 
   queriedCities: City[];
   queryCitiesSubscription: Subscription;
-  isLoading: boolean;
+  isLoading: boolean = false;
 
   @ViewChild('searchBox', { static: true }) searchBox: ElementRef<HTMLInputElement>;
 
