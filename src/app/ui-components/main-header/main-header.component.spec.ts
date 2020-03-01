@@ -52,7 +52,7 @@ describe('MainHeaderComponent', () => {
       const sideMenuService: SideMenuService = fixture.debugElement.injector.get(SideMenuService);
       const spy = spyOn(sideMenuService, 'toggleMenu');
 
-      component.toggleMenu();
+      component.openMenu();
 
       expect(spy).toHaveBeenCalled();
       done();
@@ -62,7 +62,7 @@ describe('MainHeaderComponent', () => {
       const overlayService: OverlayService = fixture.debugElement.injector.get(OverlayService);
       const spy = spyOn(overlayService, 'openOverlay');
 
-      component.toggleMenu();
+      component.openMenu();
 
       expect(spy).toHaveBeenCalled();
       done();

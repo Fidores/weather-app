@@ -27,8 +27,8 @@ export class MainHeaderComponent implements OnInit {
     this.broadcastersSubscriptions.add(this.header.changeTitleBroadcaster.subscribe(newTitle => this.title.nativeElement.innerText = newTitle));
   }
 
-  toggleMenu() {
-    this.sideMenu.toggleMenu();
+  openMenu() {
+    this.sideMenu.openMenu();
     this.overlay.openOverlay();
   }
 
