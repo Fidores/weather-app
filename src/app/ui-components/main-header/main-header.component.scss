@@ -1,5 +1,6 @@
 @import '../../../sass/utils/variables';
 @import '../../../sass/utils/functions';
+@import '../../../sass/components/logo';
 
 :host {
     display: block;
@@ -26,14 +27,15 @@
     }
 
     &__logo {
-        display: flex;
-        flex-wrap: nowrap;
+        @include logo-container;
+    }
+
+    &__logo-image {
+        @include logo-image;
     }
 
     &__logo-text {
-        font-size: rem(30px);
-        margin-left: rem($spacing-small);
-        letter-spacing: rem(3px);
+        @include logo-text;
     }
 
     &__menu {
@@ -48,11 +50,6 @@
 
     &__section:nth-child(3) {
         justify-self: end;
-    }
-
-    &__logo-image {
-        height: rem(40px);
-        width: auto;
     }
 }
 

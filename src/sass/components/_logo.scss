@@ -1,0 +1,15 @@
+@mixin logo-container {
+    display: flex;
+}
+
+@mixin logo-image {
+    height: rem(40px);
+    width: auto;
+}
+
+@mixin logo-text {
+    font-size: rem(30px);
+    margin-left: rem($spacing-small);
+    letter-spacing: rem(3px);
+    font-weight: 700;
+}

@@ -1,5 +1,6 @@
 @import '../../../sass/utils/functions';
 @import '../../../sass/utils/variables';
+@import '../../../sass/components/logo';
 
 .side-menu {
     position: fixed;
@@ -10,6 +11,18 @@
     color: $text-on-light-bg;
     height: 100vh;
     z-index: 999;
+
+    &__logo {
+        @include logo-container;
+    }
+
+    &__logo-image {
+        @include logo-image;
+    }
+
+    &__logo-text {
+        @include logo-text;
+    }
 
     &__header {
         background: linear-gradient(90deg, $accent-color-success, $primary-color);
