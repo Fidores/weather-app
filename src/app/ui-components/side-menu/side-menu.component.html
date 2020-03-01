@@ -4,9 +4,9 @@
 
         <div class="side-menu__heading">
 
-            <button class="btn side-menu__close-menu" (click)="closeMenu()"><fa-icon [icon]="faBars" size="2x"></fa-icon></button>
+            <button class="btn side-menu__close-menu"><fa-icon [icon]="faBars" size="2x"></fa-icon></button>
 
-            <a class="side-menu__logo" [routerLink]="['/']" (click)="closeMenu()">
+            <a class="side-menu__logo" [routerLink]="['/']">
             
                 <img src="../../../assets/logo.png" alt="logo" class="side-menu__logo-image">
     
@@ -31,6 +31,24 @@
             </div>
 
         </div>
+
+    </div>
+
+    <div class="side-menu__body">
+
+        <a class="side-menu__item" [routerLink]="['/']">
+
+            <div class="side-menu__icon"><fa-icon [icon]="faHome" size="lg"></fa-icon></div>
+            <div class="side-menu__text">Strona główna</div>
+
+        </a>
+
+        <a class="side-menu__item" [routerLink]="['/add-city']">
+
+            <div class="side-menu__icon"><fa-icon [icon]="faPlusSquare" size="lg"></fa-icon></div>
+            <div class="side-menu__text">Dodaj miasto</div>
+
+        </a>
 
     </div>
 

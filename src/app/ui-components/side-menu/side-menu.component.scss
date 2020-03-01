@@ -68,4 +68,28 @@
     &__heading-text {
         font-size: 1.3rem;
     }
+    
+    &__item {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        align-items: center;
+        padding: $spacing-small;
+        cursor: pointer;
+        color: $primary-text-color-darker;
+        column-gap: 10px;
+        transition: background-color .2s ease-in-out;
+
+        &:hover {
+            background-color: darken($light-bg-color, 15%);
+        }
+    }
+
+    &__icon {
+        justify-self: center;
+    }
+
+    &__text {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
 }

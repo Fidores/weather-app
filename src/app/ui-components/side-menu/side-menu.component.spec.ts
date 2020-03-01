@@ -145,7 +145,7 @@ describe('SideMenuComponent', () => {
   describe('ngOnDestroy', () => {
 
     it('should unsubscribe from all broadcasters subscriptions', done => {
-      const spy = spyOn(component.broadcastersSubscription, 'unsubscribe');
+      const spy = spyOn(component.subscriptions, 'unsubscribe');
 
       component.ngOnDestroy();
 
