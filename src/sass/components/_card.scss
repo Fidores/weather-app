@@ -32,5 +32,12 @@
             transform: scale(1);
         }
     }
-}
 
+    @media only screen and (max-device-width: 425px) {
+
+        &__icon {
+            width: 70%;
+        }
+
+    }
+}

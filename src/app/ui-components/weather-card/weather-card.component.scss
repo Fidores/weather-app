@@ -19,12 +19,6 @@
         }
     }
 
-    &__actions {
-        margin-top: $spacing-small;
-        font-size: 2rem;
-        text-align: right;
-    }
-
     &__total-temperatures {
         display: flex;
         justify-content: space-between;
@@ -42,4 +36,24 @@
     &__min-temp {
         color: $accent-color-danger;
     }
+}
+
+@media only screen and (max-device-width: 425px) {
+
+    .weather-card {
+
+        &__current-temp {
+            font-size: 4rem;
+        }
+
+        &__subtitle {
+            margin: rem($spacing-small) 0px;
+        }
+
+        &__temp {
+            font-size: 1.5rem;
+        }
+
+    }
+
 }
