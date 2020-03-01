@@ -79,13 +79,9 @@
         column-gap: 10px;
         transition: background-color .2s ease-in-out;
 
-        @media (hover: hover) {
-
-            &:hover {
-                background-color: darken($light-bg-color, 15%);
-            }
+        &:hover {
+            background-color: darken($light-bg-color, 15%);
         }
-        
     }
 
     &__icon {
