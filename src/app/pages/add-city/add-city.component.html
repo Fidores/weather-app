@@ -2,7 +2,7 @@
 
     <input type="text" placeholder="Wyszukaj miasto" class="add-city__search-box" #searchBox>
 
-    <div class="add-city__cities">
+    <div class="add-city__cities" *ngIf="!isLoading">
 
         <ng-scrollbar style="max-height: 60vh;">
 
@@ -18,9 +18,10 @@
     
             </div>
 
-
         </ng-scrollbar>
 
     </div>
+
+    <loader *ngIf="isLoading"></loader>
 
 </div>

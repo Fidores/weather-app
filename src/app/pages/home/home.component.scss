@@ -10,6 +10,11 @@
     margin-top: rem($spacing-big);
 }
 
+.loader-container {
+    width: 100vw;
+    height: calc(100vh - #{$header-height + $spacing-big});
+}
+
 @media only screen and (max-device-width: 1024px) {
 
     .swiper-slide {
