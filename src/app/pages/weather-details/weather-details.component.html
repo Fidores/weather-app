@@ -1,6 +1,6 @@
-<div class="weather-details" *ngIf="forecast">
+<div class="weather-details">
 
-    <div class="weather-details__header" *ngIf="currentWeather">
+    <div class="weather-details__header" *ngIf="currentWeather; else headerLoader">
 
         <div class="weather-details__bg-wrapper" 
         [ngStyle]="{ 
@@ -20,7 +20,7 @@
             </div>
     
             <div class="weather-details__city-name">
-                {{ forecast.city.name }}
+                {{ currentWeather.city.name }}
             </div>
 
             <table class="weather-details__temp-details weather-details__details">
@@ -73,7 +73,15 @@
 
     </div>
 
-    <div class="weather-details__body">
+    <ng-template #headerLoader>
+
+        <div class="weather-details__header">
+            <loader></loader>
+        </div>
+
+    </ng-template>
+
+    <div class="weather-details__body" *ngIf="forecast; else bodyLoader">
 
         <div class="weather-details__hourly-forecast" *ngFor="let day of forecast.days | keyvalue">
 
@@ -88,5 +96,13 @@
         </div>
 
     </div>
+
+    <ng-template #bodyLoader>
+
+        <div class="weather-details__body">
+            <loader></loader>
+        </div>
+
+    </ng-template>
 
 </div>

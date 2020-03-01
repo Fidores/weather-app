@@ -29,23 +29,14 @@ export class HomeComponent implements OnInit {
     spaceBetween: 30,
     slidesPerView: 'auto'
   }
-  isLoading = true;
   cities: CurrentWeather[];
 
   ngOnInit() {
     
     this.header.setTitle(new Date().toLocaleDateString('pl-PL', { month: 'long', day: 'numeric', year: 'numeric'}).toUpperCase());
 
-    this._cities.getCities().pipe(switchMap(cities => this.weather.currentWeather(cities.join(',')))).subscribe(cities => {
-      this.cities = cities;
-      this.isLoading = false;
-    });
+    this._cities.getCities().pipe(switchMap(cities => this.weather.currentWeather(cities.join(',')))).subscribe(cities => this.cities = cities);
 
-  }
-
-  removeCity(id: number) {
-    const cityIndex = this.cities.findIndex(item => item.city.id === id);
-    this.cities.splice(cityIndex, 1);
   }
 
 }

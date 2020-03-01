@@ -17,6 +17,7 @@ import { OverlayComponent } from './ui-components/overlay/overlay.component';
 import { SideMenuComponent } from './ui-components/side-menu/side-menu.component';
 import { SmallWeatherCardComponent } from './ui-components/small-weather-card/small-weather-card.component';
 import { WeatherCardComponent } from './ui-components/weather-card/weather-card.component';
+import { LoaderComponent } from './ui-components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { WeatherCardComponent } from './ui-components/weather-card/weather-card.
     OverlayComponent,
     AddCityCardComponent,
     SmallWeatherCardComponent,
-    AddCityComponent
+    AddCityComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
