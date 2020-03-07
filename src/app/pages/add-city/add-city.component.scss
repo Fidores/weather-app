@@ -10,12 +10,8 @@
     padding: rem($spacing-medium);
 
     &__search-box {
-        border: rem(2px) $primary-text-color-darker solid;
-        display: block;
+        transform: scale(0.98);
         margin: 0px auto;
-        border-radius: rem($radius-small);
-        padding: rem(10px);
-        width: 98%;
         font-size: 1.2rem;
     }
 

@@ -3,7 +3,7 @@ import { OverlayService } from './../../services/overlay/overlay.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SideMenuService } from 'src/app/services/side-menu/side-menu.service';
 import { Subscription } from 'rxjs';
-import { faBars, faHome, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faHome, faPlusSquare, faCog } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
 @Component({
@@ -34,6 +34,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   faBars = faBars;
   faHome = faHome;
   faPlusSquare = faPlusSquare;
+  faCog = faCog;
 
   ngOnInit() {
     this.subscriptions.add(this.sideMenu.closeMenuBroadcaster.subscribe(() => this.isOpened = false));

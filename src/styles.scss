@@ -1,7 +1,10 @@
 @import './sass/utils/variables';
+@import './sass/utils/functions';
+@import './sass/utils/mixins';
 
 @import './sass/components/buttons';
 @import './sass/components/card';
+@import './sass/components/inputs';
 @import './sass/base/reset';
 @import './sass/base/animations.scss';
 @import './sass/base/typography';

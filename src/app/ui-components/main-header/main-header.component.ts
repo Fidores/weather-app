@@ -2,7 +2,7 @@ import { Subscription } from 'rxjs';
 import { MainHeaderService } from './../../services/main-header/main-header.service';
 import { OverlayService } from './../../services/overlay/overlay.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCog } from '@fortawesome/free-solid-svg-icons';
 import { SideMenuService } from 'src/app/services/side-menu/side-menu.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class MainHeaderComponent implements OnInit {
 
   broadcastersSubscriptions: Subscription = new Subscription();
   faBars = faBars;
+  faCog = faCog;
 
   ngOnInit() {
     this.broadcastersSubscriptions.add(this.header.changeTitleBroadcaster.subscribe(newTitle => this.title.nativeElement.innerText = newTitle));

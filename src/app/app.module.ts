@@ -18,6 +18,8 @@ import { SideMenuComponent } from './ui-components/side-menu/side-menu.component
 import { SmallWeatherCardComponent } from './ui-components/small-weather-card/small-weather-card.component';
 import { WeatherCardComponent } from './ui-components/weather-card/weather-card.component';
 import { LoaderComponent } from './ui-components/loader/loader.component';
+import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
+import { AppSettingsComponent } from './pages/app-settings/app-settings.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { LoaderComponent } from './ui-components/loader/loader.component';
     AddCityCardComponent,
     SmallWeatherCardComponent,
     AddCityComponent,
-    LoaderComponent
+    LoaderComponent,
+    UserSettingsComponent,
+    AppSettingsComponent
   ],
   imports: [
     BrowserModule,

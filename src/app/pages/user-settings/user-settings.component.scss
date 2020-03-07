@@ -1,0 +1,47 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/functions';
+
+.settings {
+    background-color: $light-bg-color;
+    color: $text-on-light-bg;
+    width: 80vw;
+    margin: $spacing-big auto 0px auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    border-radius: $radius-big;
+    mask-image: radial-gradient(white, black);
+    min-height: rem(600px);
+
+    &__group {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        align-items: center;
+        padding: $spacing-small 0px;
+        color: $primary-text-color-darker;
+        transition: background-color .2s ease-in-out;
+
+        @media (hover: hover) {
+            &:hover {
+                background-color: darken($light-bg-color, 15%);
+            }
+        }
+    }
+
+    &__icon {
+        justify-self: center;
+    }
+
+    &__name {
+        font-weight: 500;
+    }
+
+}
+
+@media only screen and (max-device-width: 1024px) {
+    .settings {
+        margin: 0px;
+        width: 100%;
+        border-radius: 0px;
+        grid-template-columns: 1fr 2fr;
+    }
+}

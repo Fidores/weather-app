@@ -1,0 +1,11 @@
+.input {
+    border-radius: rem($radius-small);
+    padding: rem(10px);
+    border: rem(2px) $primary-text-color-darker solid;
+
+    &--block {
+        display: block;
+        width: 100%;
+    }
+}
+
