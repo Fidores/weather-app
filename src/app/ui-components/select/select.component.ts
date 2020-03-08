@@ -1,3 +1,4 @@
+import { OverlayService } from './../../services/overlay/overlay.service';
 import { fade, fadeInAnimation, fadeOutAnimation } from './../../animations';
 import { Component, OnInit, HostListener, ElementRef, ViewChild, Renderer2, AfterViewInit } from '@angular/core';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +19,8 @@ export class SelectComponent implements OnInit, AfterViewInit {
 
   constructor(
     private readonly hostRef: ElementRef<HTMLElement>,
-    private readonly renderer: Renderer2
+    private readonly renderer: Renderer2,
+    private readonly overlay: OverlayService
   ) { }
 
   @HostListener('document:click', ['$event']) onOutsideClick($event: MouseEvent) { 

@@ -10,7 +10,7 @@
     background-color: $light-bg-color;
     color: $text-on-light-bg;
     height: 100vh;
-    z-index: 999;
+    z-index: 1000;
 
     &__logo {
         @include logo-container;
