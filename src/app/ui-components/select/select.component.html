@@ -1,0 +1,30 @@
+<div class="select">
+
+    <select #select style="transform: scale(0);"></select>
+
+    <div 
+        class="select__option select__option--current" 
+        (click)="toggleSelect()" 
+        [ngClass]="{'select__option--expanded': isExpanded}">
+
+        <span>{{ options[currentOption].name }}</span>
+
+        <span class="select__arrow" [ngClass]="{'select__arrow--expanded': isExpanded}">
+            <fa-icon [icon]="faArrowDown"></fa-icon>
+        </span>
+
+    </div>
+
+    <div 
+        class="select__options" 
+        *ngIf="isExpanded"
+        @expand>
+
+        <div 
+            class="select__option" 
+            *ngFor="let option of options; let i = index" 
+            (click)="selectOption(i)">{{ option.name }}</div>
+
+    </div>
+
+</div>

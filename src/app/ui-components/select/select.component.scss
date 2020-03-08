@@ -1,0 +1,53 @@
+@import '../../../sass/utils/functions';
+@import '../../../sass/utils/variables';
+
+.select {
+    display: inline-block;
+    min-width: rem(200px);
+    position: relative;
+
+    &__option {
+        padding: rem(10px);
+        cursor: pointer;
+        border-radius: rem(3px);
+        transition: 
+            background-color .2s ease-in-out,
+            box-shadow .2s ease-in-out;
+
+        &:hover {
+            background-color: darken($light-bg-color, 15%);
+        }
+
+        &--current {
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0px 0px 0px rem(1px) $accent-color;
+            margin-bottom: rem(2px);
+            user-select: none;
+        }
+
+        &--expanded {
+            box-shadow: 0px 0px 0px rem(2px) $accent-color;
+            border-radius: rem(3px) rem(3px) 0px 0px;
+        }
+    }
+
+    &__arrow {
+        margin-left: rem(10px);
+        color: $accent-color;
+        transition: transform .2s ease-in-out;
+
+        &--expanded {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__options {
+        background-color: $light-bg-color;
+        position: absolute;
+        min-width: inherit;
+        border-radius: 0px 0px rem(3px) rem(3px);
+        box-shadow: 0px 0px 0px rem(2px) $accent-color;
+    }
+}

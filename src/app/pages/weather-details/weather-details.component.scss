@@ -104,6 +104,7 @@
         color: $text-on-light-bg;
         padding: rem($spacing-medium) 0px;
         border-radius: 0px 0px rem($radius-big) rem($radius-big);
+        min-height: rem(500px);
     }
 
     &__hourly-forecast {

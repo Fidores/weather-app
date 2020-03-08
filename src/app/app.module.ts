@@ -20,6 +20,7 @@ import { WeatherCardComponent } from './ui-components/weather-card/weather-card.
 import { LoaderComponent } from './ui-components/loader/loader.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { AppSettingsComponent } from './pages/app-settings/app-settings.component';
+import { SelectComponent } from './ui-components/select/select.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AppSettingsComponent } from './pages/app-settings/app-settings.componen
     AddCityComponent,
     LoaderComponent,
     UserSettingsComponent,
-    AppSettingsComponent
+    AppSettingsComponent,
+    SelectComponent
   ],
   imports: [
     BrowserModule,
