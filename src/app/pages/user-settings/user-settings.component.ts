@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCogs, faUsersCog } from '@fortawesome/free-solid-svg-icons';
+import { faCogs, faUsersCog, faCity } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   templateUrl: './user-settings.component.html',
@@ -11,6 +11,7 @@ export class UserSettingsComponent implements OnInit {
 
   faCogs = faCogs;
   faUsersCog = faUsersCog;
+  faCity = faCity;
 
   ngOnInit() {
   }

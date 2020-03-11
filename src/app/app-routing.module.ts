@@ -1,3 +1,5 @@
+import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
+import { SavedCitiesComponent } from './pages/saved-cities/saved-cities.component';
 import { AppSettingsComponent } from './pages/app-settings/app-settings.component';
 import { AddCityComponent } from './pages/add-city/add-city.component';
 import { WeatherDetailsComponent } from './pages/weather-details/weather-details.component';
@@ -8,7 +10,9 @@ import { UserSettingsComponent } from './pages/user-settings/user-settings.compo
 
 const settings: Routes = [
   { path: '', redirectTo: 'app', pathMatch: 'full' },
-  { path: 'app', component: AppSettingsComponent }
+  { path: 'app', component: AppSettingsComponent },
+  { path: 'saved-cities', component: SavedCitiesComponent },
+  { path: 'account', component: AccountSettingsComponent }
 ]
 
 const routes: Routes = [

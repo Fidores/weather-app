@@ -5,14 +5,10 @@
     cursor: pointer;
     color: #FFF;
     border-radius: $radius-small;
+    padding: 5px 10px;
 
     &--accent {
-        background-color: $accent-color;
-        padding: 5px;
-
-        &:hover {
-            background-color: darken($accent-color, 15%);
-        }
+        @include btn-accent-theme($accent-color);
     }
 
     &--block {

@@ -21,6 +21,8 @@ import { UserSettingsComponent } from './pages/user-settings/user-settings.compo
 import { AppSettingsComponent } from './pages/app-settings/app-settings.component';
 import { SelectComponent } from './ui-components/select/select.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SavedCitiesComponent } from './pages/saved-cities/saved-cities.component';
+import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoaderComponent,
     UserSettingsComponent,
     AppSettingsComponent,
-    SelectComponent
+    SelectComponent,
+    SavedCitiesComponent,
+    AccountSettingsComponent
   ],
   imports: [
     BrowserModule,
