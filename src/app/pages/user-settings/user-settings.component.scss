@@ -35,6 +35,10 @@
         font-weight: 500;
     }
 
+    &__properties {
+        padding: rem($spacing-small);
+    }
+
 }
 
 @media only screen and (max-device-width: 1024px) {

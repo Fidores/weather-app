@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SwiperModule } from 'ngx-swiper-wrapper';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddCityComponent } from './pages/add-city/add-city.component';
@@ -21,6 +20,7 @@ import { LoaderComponent } from './ui-components/loader/loader.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { AppSettingsComponent } from './pages/app-settings/app-settings.component';
 import { SelectComponent } from './ui-components/select/select.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,8 @@ import { SelectComponent } from './ui-components/select/select.component';
     SwiperModule,
     NgScrollbarModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

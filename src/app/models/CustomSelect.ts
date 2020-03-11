@@ -1,4 +1,4 @@
-interface Option {
+interface SelectOption {
     value: string;
     name: string;
 }

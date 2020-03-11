@@ -4,10 +4,10 @@
 
     <div 
         class="select__option select__option--current" 
+        *ngIf="options.length > 0; else noOptions"
         (click)="toggleSelect()" 
         [ngClass]="{'select__option--expanded': isExpanded}">
-
-        <span>{{ options[currentOption].name }}</span>
+        <span>{{ options[currentOptionIndex].name }}</span>
 
         <span class="select__arrow" [ngClass]="{'select__arrow--expanded': isExpanded}">
             <fa-icon [icon]="faArrowDown"></fa-icon>
@@ -15,15 +15,21 @@
 
     </div>
 
+    <ng-template #noOptions>
+        <div class="select__option select__option--current select__option--placeholder">Brak opcji</div>
+    </ng-template>
+
     <div 
         class="select__options" 
         *ngIf="isExpanded"
         @expand>
 
-        <div 
-            class="select__option" 
-            *ngFor="let option of options; let i = index" 
-            (click)="selectOption(i)">{{ option.name }}</div>
+        <ng-scrollbar class="select__scrollbar">
+            <div 
+                class="select__option" 
+                *ngFor="let option of options"
+                (click)="broadcastChange(option.value)">{{ option.name }}</div>
+        </ng-scrollbar>
 
     </div>
 
