@@ -24,11 +24,17 @@
             &:hover {
                 background-color: darken($light-bg-color, 15%);
             }
+
+            &:hover .settings__icon {
+                color: $accent-color;
+            }
         }
     }
 
     &__icon {
         justify-self: center;
+        transition: color .2s ease-in-out;
+        
     }
 
     &__name {
