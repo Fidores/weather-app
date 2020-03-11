@@ -1,3 +1,4 @@
+import { SelectOption } from './../../models/CustomSelect';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, ElementRef, forwardRef, HostListener, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';

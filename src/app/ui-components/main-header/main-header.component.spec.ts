@@ -46,11 +46,11 @@ describe('MainHeaderComponent', () => {
 
   });
 
-  describe('toggleMenu', () => {
+  describe('openMenu', () => {
 
-    it('should toggle menu', done => {
+    it('should open the side menu', done => {
       const sideMenuService: SideMenuService = fixture.debugElement.injector.get(SideMenuService);
-      const spy = spyOn(sideMenuService, 'toggleMenu');
+      const spy = spyOn(sideMenuService, 'openMenu');
 
       component.openMenu();
 
@@ -58,7 +58,7 @@ describe('MainHeaderComponent', () => {
       done();
     });
 
-    it('should toggle menu', done => {
+    it('should open the overlay', done => {
       const overlayService: OverlayService = fixture.debugElement.injector.get(OverlayService);
       const spy = spyOn(overlayService, 'openOverlay');
 

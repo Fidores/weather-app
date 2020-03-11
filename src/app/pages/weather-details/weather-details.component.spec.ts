@@ -1,3 +1,6 @@
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { LoaderComponent } from './../../ui-components/loader/loader.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SmallWeatherCardComponent } from './../../ui-components/small-weather-card/small-weather-card.component';
 import { SwiperModule } from 'ngx-swiper-wrapper';
@@ -11,10 +14,16 @@ describe('WeatherDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WeatherDetailsComponent, SmallWeatherCardComponent ],
+      declarations: [ 
+        WeatherDetailsComponent, 
+        SmallWeatherCardComponent,
+        LoaderComponent
+      ],
       imports: [
         SwiperModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        HttpClientModule,
+        RouterModule.forRoot([])
       ]
     })
     .compileComponents();

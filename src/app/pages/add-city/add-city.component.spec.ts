@@ -1,3 +1,6 @@
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { LoaderComponent } from './../../ui-components/loader/loader.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -9,9 +12,14 @@ describe('AddCityComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddCityComponent ],
+      declarations: [ 
+        AddCityComponent,
+        LoaderComponent 
+      ],
       imports: [
-        NgScrollbarModule
+        NgScrollbarModule,
+        HttpClientModule,
+        RouterModule.forRoot([])
       ]
     })
     .compileComponents();

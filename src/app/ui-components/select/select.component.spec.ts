@@ -1,3 +1,5 @@
+import { NgScrollbarModule } from 'ngx-scrollbar';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SelectComponent } from './select.component';
@@ -8,7 +10,11 @@ describe('SelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectComponent ]
+      declarations: [ SelectComponent ],
+      imports: [
+        FontAwesomeModule,
+        NgScrollbarModule
+      ]
     })
     .compileComponents();
   }));

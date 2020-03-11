@@ -1,3 +1,5 @@
+import { HttpClientModule } from '@angular/common/http';
+import { LoaderComponent } from './../../ui-components/loader/loader.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddCityCardComponent } from './../../ui-components/add-city-card/add-city-card.component';
@@ -17,13 +19,15 @@ describe('HomeComponent', () => {
       declarations: [ 
         HomeComponent,
         WeatherCardComponent,
-        AddCityCardComponent
+        AddCityCardComponent,
+        LoaderComponent
       ],
       imports: [
         SwiperModule,
         RouterModule.forRoot([]),
         FontAwesomeModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        HttpClientModule
       ]
     })
     .compileComponents();

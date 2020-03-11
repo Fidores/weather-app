@@ -30,7 +30,7 @@ export class WeatherService {
   */
 
   fiveDayForecast(id: string): Observable<Forecast> {
-    if(!id) throw new Error('No id passed !');
+    if(!id) return of({} as Forecast);
 
     return this.http.get<Forecast>(`${ environment.weatherAPI.origin }forecast/5-days/${ id }`);
   }

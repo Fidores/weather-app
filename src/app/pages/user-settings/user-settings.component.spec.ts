@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserSettingsComponent } from './user-settings.component';
@@ -8,7 +10,13 @@ describe('UserSettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserSettingsComponent ]
+      declarations: [ 
+        UserSettingsComponent 
+      ],
+      imports: [
+        FontAwesomeModule,
+        RouterModule.forRoot([])
+      ]
     })
     .compileComponents();
   }));
