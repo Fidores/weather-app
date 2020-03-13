@@ -23,8 +23,7 @@ import { fadeInAnimation, fadeOutAnimation } from './../../animations';
 export class SelectComponent implements OnInit, ControlValueAccessor {
 
   constructor(
-    private readonly hostRef: ElementRef<HTMLElement>,
-    private readonly renderer: Renderer2
+    private readonly hostRef: ElementRef<HTMLElement>
   ) { }
 
   private _currentOptionIndex: number = 0;
@@ -42,17 +41,13 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     if(!this.hostRef.nativeElement.contains($event.target as Node)) this.closeSelect();
   };
 
-  writeValue(value: any): void {
-    this.selectOption(value);
-  }
+  writeValue(value: any): void { this.selectOption(value); }
 
   registerOnChange(fn: any): void { this.onChange = fn; }
 
   registerOnTouched(fn: any): void { this.onTouched = fn; }
 
-  ngOnInit() { 
-    for (const option of this.options) this.addOptionToPlaceholder(option);
-  }
+  ngOnInit() {}
 
   /**
    * Function used for focusing options in select.
@@ -63,7 +58,6 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     const index = this.findIndexOf(value);
     if(index < 0) return;
     this._currentOptionIndex = index;
-    this.selectOptionOfPlaceholder(value);
     this.closeSelect();
   }
 
@@ -109,32 +103,6 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
 
   get isExpanded(): boolean {
     return this._isExpanded;
-  }
-
-  // Those are function that reflect changes made on custom made select to hidden select.
-  // The hidden select is used to help screen readers understand custom made select.
-
-  /**
-   * It`s used for adding options from options array to hidden select.
-   * @param option option to add to the list
-   */
-
-  private addOptionToPlaceholder(option: SelectOption): void {
-    const item = this.renderer.createElement('option');
-    const text = this.renderer.createText(option.name);
-
-    this.renderer.setAttribute(item, 'value', option.value);
-    this.renderer.appendChild(item, text);
-    this.select.nativeElement.add(item);
-  }
-
-  /**
-   * It focuses an option in hidden select. 
-   * @param value index of the option
-   */
-
-  private selectOptionOfPlaceholder(value: string): void {
-    this.select.nativeElement.value = value;
   }
 
 }
