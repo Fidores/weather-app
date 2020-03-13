@@ -28,8 +28,8 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
 
   private _currentOptionIndex: number = 0;
   private _isExpanded: boolean = false;
-  private onChange: Function;
-  private onTouched: Function;
+  private onChange: Function = () => {};
+  private onTouched: Function = () => {};
 
   faArrowDown = faArrowDown;
 

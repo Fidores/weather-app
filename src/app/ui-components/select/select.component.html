@@ -1,8 +1,14 @@
 <div class="select">
 
     <!-- This select is for better accessibility -->
-    <select style="transform: scale(0);" #select [value]="options[currentOptionIndex].value" (input)="selectOption($event.target.value)">
-        <option *ngFor="let option of options" [value]="option.value">{{ option.name }}</option>
+    <select 
+        class="select__placeholder" 
+        style="transform: scale(0);" 
+        #select 
+        [value]="options[currentOptionIndex]?.value" 
+        (input)="selectOption($event.target.value)">
+        
+        <option *ngFor="let option of options" [value]="option?.value">{{ option?.name }}</option>
     </select>
 
     <div 
