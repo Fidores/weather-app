@@ -13,7 +13,7 @@ export class CitiesService {
     private readonly http: HttpClient
   ) { }
 
-  queryCities(name: string): Observable<City[]> {
+  findCity(name: string): Observable<City[]> {
     if(!name) return of([]);
     return this.http.get<City[]>(`${ environment.weatherAPI.origin }cities?cityName=${ name }`);
   }

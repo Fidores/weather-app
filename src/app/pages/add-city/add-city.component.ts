@@ -38,7 +38,7 @@ export class AddCityComponent implements OnInit, OnDestroy {
   }
 
   searchForCity(name: string) {
-    this.cities.queryCities(name).subscribe(cities => {
+    this.cities.findCity(name).subscribe(cities => {
 
       this.queriedCities = cities;
       this.isLoading = false;
