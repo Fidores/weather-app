@@ -1,14 +1,12 @@
 @import '../../../sass/utils/variables';
 @import '../../../sass/utils/functions';
+@import '../../../sass/components/light-bg';
 
 .settings {
-    background-color: $light-bg-color;
-    color: $text-on-light-bg;
+    @include light-bg;
     width: 80vw;
-    margin: $spacing-big auto 0px auto;
     display: grid;
     grid-template-columns: 1fr 3fr;
-    border-radius: $radius-big;
     mask-image: radial-gradient(white, black);
     min-height: rem(600px);
 
@@ -34,7 +32,6 @@
     &__icon {
         justify-self: center;
         transition: color .2s ease-in-out;
-        
     }
 
     &__name {

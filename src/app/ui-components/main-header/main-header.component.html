@@ -23,8 +23,12 @@
     </div>
 
     <div class="header__section">
+
+        <a class="header__item" routerLink="/login" *ngIf="!isLoggedIn">
+            <fa-icon [icon]="faSignInAlt" size="lg"></fa-icon>
+        </a>
         
-        <a class="header-item" routerLink="/user-settings">
+        <a class="header__item" routerLink="/user-settings">
             <fa-icon [icon]="faCog" size="lg"></fa-icon>
         </a>
 

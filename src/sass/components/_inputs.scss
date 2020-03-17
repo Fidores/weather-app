@@ -1,11 +1,24 @@
+
+
 .input {
+    @include input-state-theme;
     border-radius: rem($radius-small);
     padding: rem(10px);
-    border: rem(2px) $primary-text-color-darker solid;
+    font-size: 1.2rem;
+    width: 100%;
+    border: none;
+    outline: none;
+
+    &.ng-invalid.ng-touched {
+        @include input-state-theme($accent-color-danger);
+    }
+
+    &.ng-valid {
+        @include input-state-theme($accent-color-success);
+    }
 
     &--block {
         display: block;
         width: 100%;
     }
 }
-

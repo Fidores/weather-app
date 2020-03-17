@@ -23,7 +23,10 @@
     width: 100%;
 
     &__item {
-        margin-right: rem($spacing-medium);
+
+        &:not(:last-child) {
+            margin-right: rem($spacing-medium);
+        }
     }
 
     &__logo {

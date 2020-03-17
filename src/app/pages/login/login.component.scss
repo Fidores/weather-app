@@ -1,0 +1,25 @@
+@import '../../../sass/utils/functions';
+@import '../../../sass/utils/variables';
+@import '../../../sass/components/light-bg';
+
+.login {
+    @include light-bg;
+    width: 700px;
+    padding: $spacing-small;
+
+    &__form {
+        
+    }
+
+    &__heading {
+        text-align: center;
+        margin-bottom: $spacing-medium;
+    }
+
+    &__action {
+        
+        &:not(:last-child) {
+            margin-right: $spacing-small;
+        }
+    }
+}

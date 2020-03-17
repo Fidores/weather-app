@@ -6,4 +6,19 @@
             background-color: darken($color, 15%);
         }
     }
+
+    &:disabled {
+        &:hover {
+            background-color: $color;
+        }
+    }
+}
+
+@mixin input-state-theme($color: $accent-color) {
+    transition: box-shadow .2s ease-in-out;
+    box-shadow: 0px 0px 0px rem(2px) $color;
+
+    &:focus {
+        box-shadow: 0px 0px 0px rem(4px) $color;
+    }
 }

@@ -20,9 +20,10 @@ import { LoaderComponent } from './ui-components/loader/loader.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { AppSettingsComponent } from './pages/app-settings/app-settings.component';
 import { SelectComponent } from './ui-components/select/select.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SavedCitiesComponent } from './pages/saved-cities/saved-cities.component';
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AccountSettingsComponent } from './pages/account-settings/account-setti
     AppSettingsComponent,
     SelectComponent,
     SavedCitiesComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { AccountSettingsComponent } from './pages/account-settings/account-setti
     NgScrollbarModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

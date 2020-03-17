@@ -5,14 +5,23 @@
     cursor: pointer;
     color: #FFF;
     border-radius: $radius-small;
-    padding: 5px 10px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
 
     &--accent {
         @include btn-accent-theme($accent-color);
+    }
+    
+    &--danger {
+        @include btn-accent-theme($accent-color-danger);
     }
 
     &--block {
         display: block;
         width: 100%;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
     }
 }

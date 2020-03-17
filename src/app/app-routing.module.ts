@@ -1,3 +1,4 @@
+import { LoginComponent } from './pages/login/login.component';
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
 import { SavedCitiesComponent } from './pages/saved-cities/saved-cities.component';
 import { AppSettingsComponent } from './pages/app-settings/app-settings.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'weather-details/:id', component: WeatherDetailsComponent },
   { path: 'add-city', component: AddCityComponent },
-  { path: 'user-settings', component: UserSettingsComponent, children: settings }
+  { path: 'user-settings', component: UserSettingsComponent, children: settings },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

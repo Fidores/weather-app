@@ -1,0 +1,6 @@
+@mixin light-bg {
+    background-color: $light-bg-color;
+    color: $text-on-light-bg;
+    margin: $spacing-big auto 0px auto;
+    border-radius: $radius-small;
+}
