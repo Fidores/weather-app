@@ -8,8 +8,9 @@
     }
 
     &:disabled {
+        background-color: lighten($color, 20%);
         &:hover {
-            background-color: $color;
+            background-color: lighten($color, 20%);
         }
     }
 }

@@ -1,3 +1,4 @@
+import { User } from './../../models/User';
 import { environment } from './../../../environments/environment';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -14,11 +15,11 @@ export class AccountService {
   ) { }
 
   private readonly env = environment;
-  private readonly _user = new BehaviorSubject(null);
+  private readonly _user: BehaviorSubject<User | null> = new BehaviorSubject(null);
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.env.weatherAPI.origin}auth/`, { email, password }, { observe: 'response' })
-      .pipe(tap((res: HttpResponse<any>) => this.performLogin(res)))
+  login(email: string, password: string): Observable<User> {
+    return this.http.post<User>(`${this.env.weatherAPI.origin}auth/`, { email, password }, { observe: 'response' })
+      .pipe(tap(res => this.performLogin(res)))
       .pipe(map(res => res.body));
   }
 
@@ -26,13 +27,13 @@ export class AccountService {
     localStorage.removeItem('X-AUTH-TOKEN');
   }
 
-  private performLogin(res: HttpResponse<any>) {
+  private performLogin(res: HttpResponse<User>): void {
     const token: string = res.headers.get('X-AUTH-TOKEN');
     this.saveToken(token);
-    this.user.next(res.body);
+    this._user.next(res.body);
   }
 
-  private saveToken(token: string) {
+  private saveToken(token: string): void {
     localStorage.setItem('X-AUTH-TOKEN', token);
   }
   
@@ -40,11 +41,11 @@ export class AccountService {
     return !!localStorage.getItem('X-AUTH-TOKEN');
   }
 
-  get userSnapshot() {
+  get userSnapshot(): User {
     return this._user.value;
   }
 
-  get user() {
+  get user(): Observable<User> {
     return this._user;
   }
 

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MainHeaderService } from './../../services/main-header/main-header.service';
 import { OverlayService } from './../../services/overlay/overlay.service';
@@ -17,7 +18,8 @@ export class MainHeaderComponent implements OnInit {
     private readonly sideMenu: SideMenuService, 
     private readonly overlay: OverlayService,
     private readonly header: MainHeaderService,
-    private readonly account: AccountService
+    private readonly account: AccountService,
+    private readonly router: Router
   ) { }
 
   @ViewChild('title', { static: true }) title: ElementRef<HTMLElement>;
@@ -34,6 +36,7 @@ export class MainHeaderComponent implements OnInit {
 
   logout() {
     this.account.logout();
+    this.router.navigate(['/']);
   }
 
   openMenu() {

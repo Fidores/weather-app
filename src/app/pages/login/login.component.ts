@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account/account.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -9,7 +10,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private readonly account: AccountService
+    private readonly account: AccountService,
+    private readonly router: Router
   ) { }
 
   user = {
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
   private onSuccessfulLogin(user) {
     console.log(user);
     this.error = false;
+    this.router.navigate(['/']);
   }
 
   private onUnsuccessfulLogin(err: HttpErrorResponse) {

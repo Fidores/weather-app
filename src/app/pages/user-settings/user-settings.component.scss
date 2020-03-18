@@ -18,6 +18,10 @@
         color: $primary-text-color-darker;
         transition: background-color .2s ease-in-out;
 
+        &--active {
+            color: $accent-color;
+        }
+
         @media (hover: hover) {
             &:hover {
                 background-color: darken($light-bg-color, 15%);
@@ -27,6 +31,7 @@
                 color: $accent-color;
             }
         }
+        
     }
 
     &__icon {
