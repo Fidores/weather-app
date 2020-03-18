@@ -4,7 +4,7 @@
 
         <div class="header__item header__menu">
 
-            <button class="btn" (click)="openMenu()"><fa-icon [icon]="faBars" size="2x"></fa-icon></button>
+            <button class="btn btn--icon" (click)="openMenu()"><fa-icon [icon]="faBars" size="2x"></fa-icon></button>
 
         </div>
 
@@ -27,6 +27,10 @@
         <a class="header__item" routerLink="/login" *ngIf="!isLoggedIn">
             <fa-icon [icon]="faSignInAlt" size="lg"></fa-icon>
         </a>
+
+        <button class="btn btn--icon header__item" *ngIf="isLoggedIn" (click)="logout()">
+            <fa-icon [icon]="faSignOutAlt" size="lg"></fa-icon>
+        </button>
         
         <a class="header__item" routerLink="/user-settings">
             <fa-icon [icon]="faCog" size="lg"></fa-icon>

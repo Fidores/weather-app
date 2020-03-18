@@ -17,9 +17,13 @@ export class AccountService {
   private readonly _user = new BehaviorSubject(null);
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.env.weatherAPI.origin}auth/`, { email, password }, {observe: 'response'})
+    return this.http.post(`${this.env.weatherAPI.origin}auth/`, { email, password }, { observe: 'response' })
       .pipe(tap((res: HttpResponse<any>) => this.performLogin(res)))
       .pipe(map(res => res.body));
+  }
+
+  logout(): void {
+    localStorage.removeItem('X-AUTH-TOKEN');
   }
 
   private performLogin(res: HttpResponse<any>) {
@@ -33,7 +37,7 @@ export class AccountService {
   }
   
   get isLoggedIn(): boolean {
-    return !!this._user.value;
+    return !!localStorage.getItem('X-AUTH-TOKEN');
   }
 
   get userSnapshot() {

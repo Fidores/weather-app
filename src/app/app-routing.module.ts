@@ -1,3 +1,5 @@
+import { UnAuthGuard } from './guards/un-auth/un-auth.guard';
+import { AuthGuard } from './guards/auth/auth.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
 import { SavedCitiesComponent } from './pages/saved-cities/saved-cities.component';
@@ -13,7 +15,7 @@ const settings: Routes = [
   { path: '', redirectTo: 'app', pathMatch: 'full' },
   { path: 'app', component: AppSettingsComponent },
   { path: 'saved-cities', component: SavedCitiesComponent },
-  { path: 'account', component: AccountSettingsComponent }
+  { path: 'account', component: AccountSettingsComponent, canActivate: [UnAuthGuard] }
 ]
 
 const routes: Routes = [
@@ -21,7 +23,7 @@ const routes: Routes = [
   { path: 'weather-details/:id', component: WeatherDetailsComponent },
   { path: 'add-city', component: AddCityComponent },
   { path: 'user-settings', component: UserSettingsComponent, children: settings },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

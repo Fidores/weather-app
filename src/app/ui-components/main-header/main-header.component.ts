@@ -2,7 +2,7 @@ import { Subscription } from 'rxjs';
 import { MainHeaderService } from './../../services/main-header/main-header.service';
 import { OverlayService } from './../../services/overlay/overlay.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { faBars, faCog, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCog, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { SideMenuService } from 'src/app/services/side-menu/side-menu.service';
 import { AccountService } from 'src/app/services/account/account.service';
 
@@ -26,18 +26,22 @@ export class MainHeaderComponent implements OnInit {
   faBars = faBars;
   faCog = faCog;
   faSignInAlt = faSignInAlt;
+  faSignOutAlt = faSignOutAlt;
 
   ngOnInit() {
     this.broadcastersSubscriptions.add(this.header.changeTitleBroadcaster.subscribe(newTitle => this.title.nativeElement.innerText = newTitle));
   }
 
-  get isLoggedIn(): boolean {
-    return this.account.isLoggedIn;
+  logout() {
+    this.account.logout();
   }
 
   openMenu() {
     this.sideMenu.openMenu();
     this.overlay.openOverlay();
   }
-
+  
+  get isLoggedIn(): boolean {
+    return this.account.isLoggedIn;
+  }
 }
