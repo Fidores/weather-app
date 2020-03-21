@@ -13,7 +13,7 @@
         @include input-state-theme($accent-color-danger);
     }
 
-    &.ng-valid {
+    &.ng-valid.ng-touched {
         @include input-state-theme($accent-color-success);
     }
 

@@ -1,9 +1,10 @@
-import { User } from './../../models/User';
-import { environment } from './../../../environments/environment';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, of, Observable } from 'rxjs';
-import { tap, mapTo, catchError, map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+
+import { environment } from './../../../environments/environment';
+import { User } from './../../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,19 @@ export class AccountService {
     localStorage.removeItem('X-AUTH-TOKEN');
   }
 
+  /**
+   * Loads user data and informs app about it. This is only for initialization of the app.
+   */
+
+  loadUser(): Observable<User> {
+    return this.http.get<User>(`${ this.env.weatherAPI.origin }users/me`)
+      .pipe(tap(user => this._user.next(user)));
+  }
+
+  getAuthToken(): string {
+    return localStorage.getItem('X-AUTH-TOKEN');
+  }
+
   private performLogin(res: HttpResponse<User>): void {
     const token: string = res.headers.get('X-AUTH-TOKEN');
     this.saveToken(token);
@@ -46,7 +60,7 @@ export class AccountService {
   }
 
   get user(): Observable<User> {
-    return this._user;
+    return this._user.pipe(map(user => { return { ...user } }));
   }
 
 }
