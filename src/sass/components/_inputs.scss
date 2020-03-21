@@ -1,5 +1,3 @@
-
-
 .input {
     @include input-state-theme;
     border-radius: rem($radius-small);
@@ -8,6 +6,7 @@
     width: 100%;
     border: none;
     outline: none;
+    appearance: none;
 
     &.ng-invalid.ng-touched {
         @include input-state-theme($accent-color-danger);
