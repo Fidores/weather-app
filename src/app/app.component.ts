@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     registerLocaleData(localePl);
 
     // Initialize user
-    this.account.loadUser().subscribe();
+    if(this.account.isLoggedIn) this.account.loadUser().subscribe();
   }  
 
 }

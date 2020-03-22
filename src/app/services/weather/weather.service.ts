@@ -21,7 +21,7 @@ export class WeatherService {
  
   currentWeather(id: string): Observable<CurrentWeather[]> {
     if(!id) return of([]);
-    return this.http.get<CurrentWeather[]>(`${ environment.weatherAPI.origin }forecast/current/${ id }`)
+    return this.http.get<CurrentWeather[]>(`${ environment.API.origin }forecast/current/${ id }`)
   }
 
   /**
@@ -32,7 +32,7 @@ export class WeatherService {
   fiveDayForecast(id: string): Observable<Forecast> {
     if(!id) return of({} as Forecast);
 
-    return this.http.get<Forecast>(`${ environment.weatherAPI.origin }forecast/5-days/${ id }`);
+    return this.http.get<Forecast>(`${ environment.API.origin }forecast/5-days/${ id }`);
   }
 
 }

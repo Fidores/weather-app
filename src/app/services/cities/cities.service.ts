@@ -1,3 +1,4 @@
+import { map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { City } from 'src/app/models/City';
@@ -8,44 +9,36 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CitiesService {
-
+  
+  
   constructor(
     private readonly http: HttpClient
-  ) { }
+    ) { }
+    
+  env = environment;
 
   findCity(name: string): Observable<City[]> {
     if(!name) return of([]);
-    return this.http.get<City[]>(`${ environment.weatherAPI.origin }cities?cityName=${ name }`);
+    return this.http.get<City[]>(`${ environment.API.origin }cities?cityName=${ name }`);
   }
 
   saveCity(id: number): Observable<number[]> {
-    const cities: number[] = JSON.parse(localStorage.getItem('cities')) || [];
-    if(cities.includes(id)) return of(cities);
-    if(cities.length === 20) {
-      alert('Nie można dodać więcej niż 20 miast.');
-      return of(cities);
-    }
-    
-    cities.push(id);
-    localStorage.setItem('cities', JSON.stringify(cities));
-
-    return of(cities);
+    return this.http.post<City[]>(`${ this.env.API.origin }users/me/saved-cities/`, { id })
+      .pipe(map(cities => cities.map(city => city.id)));
   }
 
   deleteCity(id: number): Observable<number[]> {
-    const cities: number[] = JSON.parse(localStorage.getItem('cities')) || [];
-    if(!cities.includes(id)) return of(cities);
-
-    const cityIndex = cities.indexOf(id);
-    cities.splice(cityIndex, 1);
-    localStorage.setItem('cities', JSON.stringify(cities));
-
-    return of(cities);
+    return this.http.delete<City[]>(`${ this.env.API.origin }users/me/saved-cities/${ id }`)
+      .pipe(map(cities => cities.map(city => city.id)));
   }
 
-  getCities(): Observable<number[]> {
-    const cities = JSON.parse(localStorage.getItem('cities'));
-    return cities ? of(cities) : of([]);
+  getCitiesIds(): Observable<number[]> {
+    return this.http.get<City[]>(`${ this.env.API.origin }users/me/saved-cities/`)
+      .pipe(map(cities => cities.map(city => city.id)));
+  }
+
+  getCities(): Observable<City[]> {
+    return this.http.get<City[]>(`${ this.env.API.origin }users/me/saved-cities/`);
   }
   
 }

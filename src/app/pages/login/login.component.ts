@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
   }
 
   private onSuccessfulLogin(user) {
-    console.log(user);
+    const redirectRoute = localStorage.getItem('redirectTo') ? [localStorage.getItem('redirectTo')] : ['/'];
     this.error = false;
-    this.router.navigate(['/']);
+    this.router.navigate(redirectRoute).then(() => localStorage.removeItem('redirectTo'));
   }
 
   private onUnsuccessfulLogin(err: HttpErrorResponse) {

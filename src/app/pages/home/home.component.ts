@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     
     this.header.setTitle(new Date().toLocaleDateString('pl-PL', { month: 'long', day: 'numeric', year: 'numeric'}).toUpperCase());
 
-    this._cities.getCities().pipe(switchMap(cities => this.weather.currentWeather(cities.join(',')))).subscribe(cities => this.cities = cities);
+    this._cities.getCitiesIds().pipe(switchMap(cities => this.weather.currentWeather(cities.join(',')))).subscribe(cities => this.cities = cities);
 
   }
 

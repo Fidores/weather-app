@@ -1,6 +1,7 @@
 export const environment = {
-  production: true,
-  weatherAPI: {
-    origin: 'http://192.168.1.11:3000/'
+  production: false,
+  API: {
+    origin: 'http://127.0.0.1:3000/',
+    authTokenHeaderName: 'X-AUTH-TOKEN'
   }
 };
