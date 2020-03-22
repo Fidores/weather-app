@@ -1,7 +1,7 @@
 export const environment = {
-  production: false,
+  production: true,
   API: {
-    origin: 'http://127.0.0.1:3000/',
+    origin: 'http://192.168.1.11:3000/',
     authTokenHeaderName: 'X-AUTH-TOKEN'
   }
 };
