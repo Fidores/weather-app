@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { OverlayService } from './../../services/overlay/overlay.service';
 import { SideMenuService } from './../../services/side-menu/side-menu.service';
 import { MainHeaderService } from './../../services/main-header/main-header.service';
@@ -16,7 +17,8 @@ describe('MainHeaderComponent', () => {
       declarations: [ MainHeaderComponent ],
       imports: [
         FontAwesomeModule,
-        RouterModule.forRoot([])
+        RouterModule.forRoot([]),
+        HttpClientModule
       ]
     })
     .compileComponents();

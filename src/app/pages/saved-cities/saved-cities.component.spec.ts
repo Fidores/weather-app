@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SavedCitiesComponent } from './saved-cities.component';
@@ -8,7 +9,10 @@ describe('SavedCitiesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SavedCitiesComponent ]
+      declarations: [ SavedCitiesComponent ],
+      imports: [
+        HttpClientModule
+      ]
     })
     .compileComponents();
   }));

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SideMenuComponent } from './ui-components/side-menu/side-menu.component';
 import { OverlayComponent } from './ui-components/overlay/overlay.component';
@@ -13,7 +14,8 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         FontAwesomeModule,
-        RouterModule.forRoot([])
+        RouterModule.forRoot([]),
+        HttpClientModule
       ],
       declarations: [
         AppComponent,
