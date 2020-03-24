@@ -66,11 +66,11 @@ describe('SelectComponent', () => {
       const el: HTMLDivElement = de.nativeElement;
 
       component['_currentOptionIndex'] = 0;
-      expect(el.innerText).toBe('a');
+      expect(el.innerText).toMatch('a');
 
       component['_currentOptionIndex'] = 1;
       fixture.detectChanges();
-      expect(el.innerText).toBe('b');
+      expect(el.innerText).toMatch('b');
       
       done();
     });

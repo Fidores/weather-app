@@ -1,3 +1,4 @@
+import { of } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SideMenuComponent } from './ui-components/side-menu/side-menu.component';
@@ -7,6 +8,11 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { CitiesService } from './services/cities/cities.service';
+
+class MockCitiesService implements Partial<CitiesService> {
+  getCities = () => of([]);
+}
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -22,6 +28,9 @@ describe('AppComponent', () => {
         MainHeaderComponent,
         OverlayComponent,
         SideMenuComponent
+      ],
+      providers: [
+        { provide: CitiesService, useClass: MockCitiesService }
       ],
     }).compileComponents();
   }));

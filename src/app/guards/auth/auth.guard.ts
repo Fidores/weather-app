@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
-/** Prevents authenticated users to access the route. */
+/** Prevents authenticated users from accesing the route. */
 
 @Injectable({
   providedIn: 'root'

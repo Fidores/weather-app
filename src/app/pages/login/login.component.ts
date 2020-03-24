@@ -1,3 +1,4 @@
+import { User } from './../../models/User';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account/account.service';
@@ -27,10 +28,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  private onSuccessfulLogin(user) {
-    const redirectRoute = localStorage.getItem('redirectTo') ? [localStorage.getItem('redirectTo')] : ['/'];
+  private onSuccessfulLogin(user: User) {
+    const redirectRoute = sessionStorage.getItem('redirectTo') ? [sessionStorage.getItem('redirectTo')] : ['/'];
     this.error = false;
-    this.router.navigate(redirectRoute).then(() => localStorage.removeItem('redirectTo'));
+    this.router.navigate(redirectRoute).then(() => sessionStorage.removeItem('redirectTo'));
   }
 
   private onUnsuccessfulLogin(err: HttpErrorResponse) {
