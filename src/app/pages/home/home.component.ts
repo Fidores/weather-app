@@ -27,7 +27,8 @@ export class HomeComponent implements OnInit {
   sliderConfig: SwiperConfigInterface = {
     freeMode: true,
     spaceBetween: 30,
-    slidesPerView: 'auto'
+    slidesPerView: 'auto',
+    mousewheel: true
   }
   cities: CurrentWeather[];
 

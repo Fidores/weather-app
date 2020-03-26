@@ -1,7 +1,7 @@
-import { City } from './../../models/City';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { City } from 'src/app/models/City';
 import { CitiesService } from 'src/app/services/cities/cities.service';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   templateUrl: './saved-cities.component.html',
@@ -10,17 +10,22 @@ import { CitiesService } from 'src/app/services/cities/cities.service';
 export class SavedCitiesComponent implements OnInit {
 
   constructor(
-    private readonly cities: CitiesService
+    private readonly _cities: CitiesService
   ) { }
 
-  cities$: Observable<City[]>;
+  faTrashAlt = faTrashAlt;
+
+  cities: City[];
 
   ngOnInit() {
-    this.cities$ = this.cities.getCities();
+    this._cities.getCities().subscribe(cities => this.cities = cities);
   }
 
   deleteCity(id: number) {
-    this.cities.deleteCity(id).subscribe();
+    const cityIndex = this.cities.findIndex(city => city.id === id);
+    this.cities.splice(cityIndex, 1);
+
+    this._cities.deleteCity(id).subscribe();
   }
 
 }

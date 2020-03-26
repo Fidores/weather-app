@@ -1,0 +1,33 @@
+@import "../../../sass/utils/variables";
+@import "../../../sass/utils/functions";
+
+.city {
+    display: grid;
+    grid-template-areas:
+        'name remove'
+        'country remove';
+    grid-template-columns: 11fr 1fr;
+
+    &:not(:first-child) {
+        margin-top: rem($spacing-small);
+    }
+
+    &__name {
+        grid-area: name;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    &__country {
+        grid-area: country;
+    }
+
+    &__remove {
+        grid-area: remove;
+        place-self: center;
+
+        &:hover {
+            color: $accent-color-danger;
+        }
+    }
+}

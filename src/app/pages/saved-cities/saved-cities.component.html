@@ -1,3 +1,15 @@
-<ul>
-    <li *ngFor="let city of cities$ | async" (click)="deleteCity(city.id)">{{ city.name }}</li>
-</ul>
+<div class="city" *ngFor="let city of cities">
+
+    <div class="city__name">{{ city.name }}</div>
+
+    <div class="city__country">{{ city.country }}</div>
+
+    <div class="city__remove">
+
+        <button class="btn btn--icon" (click)="deleteCity(city.id)">
+            <fa-icon [icon]="faTrashAlt" size="lg"></fa-icon>
+        </button>
+
+    </div>
+
+</div>
