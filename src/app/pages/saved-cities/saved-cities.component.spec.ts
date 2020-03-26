@@ -1,3 +1,4 @@
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -11,7 +12,8 @@ describe('SavedCitiesComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SavedCitiesComponent ],
       imports: [
-        HttpClientModule
+        HttpClientModule,
+        FontAwesomeModule
       ]
     })
     .compileComponents();
