@@ -8,6 +8,7 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
     mask-image: radial-gradient(white, black);
+    min-height: rem(600px);
 
     &__group {
         display: grid;
