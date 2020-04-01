@@ -4,12 +4,8 @@
 
 .login {
     @include light-bg;
-    width: 700px;
+    width: 70vw;
     padding: $spacing-small;
-
-    &__form {
-        
-    }
 
     &__heading {
         text-align: center;
@@ -22,4 +18,12 @@
             margin-right: $spacing-small;
         }
     }
+}
+
+@media (max-device-width: 425px), (max-width: 425px) {
+
+    .login {
+        width: 100vw;
+    }
+
 }

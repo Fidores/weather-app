@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   user = {
-    email: 'albert@domain.com',
+    email: 'john@gmail.com',
     password: 'mypassword'
   };
   error: boolean = false;
