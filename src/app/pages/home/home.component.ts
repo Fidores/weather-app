@@ -1,12 +1,12 @@
+import { Component, OnInit } from '@angular/core';
+import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { switchMap } from 'rxjs/operators';
+import { CurrentWeather } from 'src/app/models/CurrentWeather';
+
+import { slideInEntrance } from './../../animations';
 import { CitiesService } from './../../services/cities/cities.service';
 import { WeatherService } from './../../services/weather/weather.service';
-import { slideInEntrance } from './../../animations';
-import { MainHeaderService } from './../../services/main-header/main-header.service';
-import { Component, OnInit } from '@angular/core';
-import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { CurrentWeather } from 'src/app/models/CurrentWeather';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   templateUrl: './home.component.html',
@@ -16,7 +16,6 @@ import { switchMap } from 'rxjs/operators';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private readonly header: MainHeaderService,
     private readonly weather: WeatherService,
     private readonly _cities: CitiesService
   ) { }
@@ -34,8 +33,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     
-    this.header.setTitle(new Date().toLocaleDateString('pl-PL', { month: 'long', day: 'numeric', year: 'numeric'}).toUpperCase());
-
     this._cities.getCitiesIds().pipe(switchMap(cities => this.weather.currentWeather(cities.join(',')))).subscribe(cities => this.cities = cities);
 
   }

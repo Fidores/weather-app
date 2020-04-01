@@ -1,11 +1,11 @@
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { MainHeaderService } from './../../services/main-header/main-header.service';
-import { OverlayService } from './../../services/overlay/overlay.service';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { faBars, faCog, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { SideMenuService } from 'src/app/services/side-menu/side-menu.service';
+import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/services/account/account.service';
+import { SideMenuService } from 'src/app/services/side-menu/side-menu.service';
+
+import { OverlayService } from './../../services/overlay/overlay.service';
 
 @Component({
   selector: 'main-header',
@@ -17,12 +17,9 @@ export class MainHeaderComponent implements OnInit {
   constructor(
     private readonly sideMenu: SideMenuService, 
     private readonly overlay: OverlayService,
-    private readonly header: MainHeaderService,
     private readonly account: AccountService,
     private readonly router: Router
   ) { }
-
-  @ViewChild('title', { static: true }) title: ElementRef<HTMLElement>;
 
   broadcastersSubscriptions: Subscription = new Subscription();
   faBars = faBars;
@@ -30,9 +27,7 @@ export class MainHeaderComponent implements OnInit {
   faSignInAlt = faSignInAlt;
   faSignOutAlt = faSignOutAlt;
 
-  ngOnInit() {
-    this.broadcastersSubscriptions.add(this.header.changeTitleBroadcaster.subscribe(newTitle => this.title.nativeElement.innerText = newTitle));
-  }
+  ngOnInit() {}
 
   logout() {
     this.account.logout();
