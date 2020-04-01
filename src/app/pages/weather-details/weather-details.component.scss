@@ -154,7 +154,7 @@ swiper {
     width: 100%;
 }
 
-@media only screen and (max-device-width: 1024px) {
+@media (max-device-width: 1024px), (max-width: 1024px) {
     .weather-details {
         width: 100%;
         margin: 0px;
@@ -169,7 +169,7 @@ swiper {
     }
 }
 
-@media only screen and (max-device-width: 425px) {
+@media (max-device-width: 425px), (max-width: 425px) {
     .weather-details {
 
         &__icon-container {

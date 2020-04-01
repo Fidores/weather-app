@@ -49,11 +49,48 @@
 
 }
 
-@media only screen and (max-device-width: 1024px) {
+@media only screen and (max-device-width: 1024px), (max-width: 1024px) {
     .settings {
         margin: 0px;
         width: 100%;
         border-radius: 0px;
         grid-template-columns: 1fr 2fr;
+    }
+}
+
+@media only screen and (max-device-width: 768px), (max-width: 768px) {
+    .settings {
+        display: block;
+        position: relative;
+        z-index: 2;
+
+        &__side-panel {
+            width: 100%;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            display: flex;
+            align-content: space-around;
+            justify-content: space-around;
+        }
+
+        &__group {
+            display: flex;
+            flex-direction: column;
+            place-items: center;
+        }
+
+        &__name {
+            font-size: 1rem;
+        }
+    }
+}
+
+@media only screen and (max-device-width: 425px), (max-width: 425px) {
+    .settings {
+
+        &__name {
+            display: none;
+        }
     }
 }
