@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { OverlayService } from './../../services/overlay/overlay.service';
 import { SideMenuService } from './../../services/side-menu/side-menu.service';
-import { MainHeaderService } from './../../services/main-header/main-header.service';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -32,20 +31,6 @@ describe('MainHeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('ngOnInit', () => {
-
-    it('should subscribe to change title requests', done => {
-      const service: MainHeaderService = fixture.debugElement.injector.get(MainHeaderService);
-      const spy = spyOn(service.changeTitleBroadcaster, 'subscribe');
-
-      component.ngOnInit();
-
-      expect(spy).toHaveBeenCalled();
-      done();
-    });
-
   });
 
   describe('openMenu', () => {
