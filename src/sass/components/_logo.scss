@@ -8,6 +8,7 @@
 }
 
 @mixin logo-text {
+    color: $primary-text-color;
     font-size: rem(30px);
     margin-left: rem($spacing-small);
     letter-spacing: rem(3px);

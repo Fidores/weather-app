@@ -23,7 +23,7 @@
     width: 100%;
 
     &__item {
-
+        color: $primary-text-color;
         &:not(:last-child) {
             margin-right: rem($spacing-medium);
         }

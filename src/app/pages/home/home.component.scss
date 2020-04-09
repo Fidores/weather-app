@@ -29,3 +29,35 @@
     }
 
 }
+
+.clue {
+    // background-color: red;
+    padding: rem($spacing-small);
+    display: grid;
+    place-content: center;
+
+    &--fixed {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+    }
+
+    &__image {
+        width: rem(250px);
+        margin: 0px auto;
+    }
+
+    &__description {
+        margin-top: rem($spacing-small);
+        text-align: center;
+    }
+}
+
+@media (max-device-width: 768px), (max-width: 768px){
+    .clue {
+        &__image {
+            width: rem(150px);
+        }
+    }
+}

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="isLoggedIn; else loginRequired">
     
     <swiper [config]="sliderConfig" @slideInEntranceParent *ngIf="cities; else loader">
 
@@ -17,3 +17,19 @@
     </ng-template>
     
 </div>
+
+<ng-template #loginRequired>
+
+    <div class="clue clue--fixed">
+
+        <div class="clue__image">
+            <img src="../../../assets/images/login.svg" alt="clue image">
+        </div>
+
+        <div class="clue__description">
+            <a routerLink="/login" class="link">Zaloguj się</a> aby kontynuować ...
+        </div>
+
+    </div>
+
+</ng-template>

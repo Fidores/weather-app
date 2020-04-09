@@ -1,3 +1,4 @@
+import { AccountService } from './../../services/account/account.service';
 import { Component, OnInit } from '@angular/core';
 import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
@@ -17,7 +18,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private readonly weather: WeatherService,
-    private readonly _cities: CitiesService
+    private readonly _cities: CitiesService,
+    private readonly account: AccountService
   ) { }
 
   faSortUp = faSortUp;
@@ -33,8 +35,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     
-    this._cities.getCitiesIds().pipe(switchMap(cities => this.weather.currentWeather(cities.join(',')))).subscribe(cities => this.cities = cities);
+    if(this.isLoggedIn) this._cities.getCitiesIds().pipe(switchMap(cities => this.weather.currentWeather(cities.join(',')))).subscribe(cities => this.cities = cities);
 
+  }
+
+  get isLoggedIn(): boolean {
+    return this.account.isLoggedIn;
   }
 
 }
