@@ -1,3 +1,4 @@
+import { SettingsService } from './services/app-settings/settings.service';
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,10 @@ import { AccountService } from './services/account/account.service';
 })
 export class AppComponent implements OnInit {
   
-  constructor(private readonly account: AccountService){}
+  constructor(
+    private readonly account: AccountService,
+    private readonly settings: SettingsService
+  ){}
 
   ngOnInit() {
 
@@ -19,7 +23,10 @@ export class AppComponent implements OnInit {
     registerLocaleData(localePl);
 
     // Initialize user
-    if(this.account.isLoggedIn) this.account.loadUser().subscribe(null);
+    if(this.account.isLoggedIn) this.account.loadUser().subscribe();
+
+    // Initialize settings
+    if(this.account.isLoggedIn) this.settings.init().subscribe();
   }  
 
 }

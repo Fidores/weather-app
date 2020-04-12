@@ -1,14 +1,20 @@
+import { Subscription } from 'rxjs';
+import { SettingsService } from './../../services/app-settings/settings.service';
 import { SelectOption } from './../../models/CustomSelect';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   templateUrl: './app-settings.component.html',
   styleUrls: ['./app-settings.component.scss']
 })
-export class AppSettingsComponent implements OnInit {
+export class AppSettingsComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(
+    private readonly settings: SettingsService
+  ) { }
+
+  subscriptions: Subscription = new Subscription();
 
   units: SelectOption[] = [
     { value: 'imperal', name: 'Fahrenheit' },
@@ -21,6 +27,15 @@ export class AppSettingsComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.subscriptions.add(this.settings.settings.subscribe(appSettings => this.settingsForm.patchValue(appSettings, { emitEvent: false })));
+    this.subscriptions.add(this.settingsForm.valueChanges.subscribe(() => this.changeSettings()));
+  }
+
+  ngOnDestroy(){ this.subscriptions.unsubscribe() }
+
+  changeSettings() {
+    console.log('change')
+    this.settings.changeSettings(this.settingsForm.value).subscribe();
   }
 
 }

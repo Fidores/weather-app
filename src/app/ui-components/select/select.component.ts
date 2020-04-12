@@ -59,6 +59,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     if(index < 0) return;
     this._currentOptionIndex = index;
     this.closeSelect();
+    this.hostRef.nativeElement.dispatchEvent(new Event('input', { bubbles: true }));
   }
 
   /**
