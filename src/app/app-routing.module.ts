@@ -15,14 +15,14 @@ const settings: Routes = [
   { path: '', redirectTo: 'app', pathMatch: 'full' },
   { path: 'app', component: AppSettingsComponent },
   { path: 'saved-cities', component: SavedCitiesComponent },
-  { path: 'account', component: AccountSettingsComponent, canActivate: [UnAuthGuard] }
+  { path: 'account', component: AccountSettingsComponent }
 ]
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'weather-details/:id', component: WeatherDetailsComponent },
   { path: 'add-city', component: AddCityComponent },
-  { path: 'user-settings', component: UserSettingsComponent, children: settings },
+  { path: 'user-settings', component: UserSettingsComponent, children: settings, canActivate: [UnAuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] }
 ];
 

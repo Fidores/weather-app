@@ -32,7 +32,7 @@
             <fa-icon [icon]="faSignOutAlt" size="lg"></fa-icon>
         </button>
         
-        <a class="header__item" routerLink="/user-settings">
+        <a class="header__item" routerLink="/user-settings" *ngIf="isLoggedIn">
             <fa-icon [icon]="faCog" size="lg"></fa-icon>
         </a>
 
