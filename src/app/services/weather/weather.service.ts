@@ -1,9 +1,11 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+
+import { CurrentWeather } from '../../models/CurrentWeather';
 import { Forecast } from '../../models/Forecast';
 import { environment } from './../../../environments/environment';
-import { CurrentWeather } from '../../models/CurrentWeather';
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { SettingsService } from './../app-settings/settings.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ import { Observable, of } from 'rxjs';
 export class WeatherService {
 
   constructor(
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly settings: SettingsService
   ) {}
 
   /**
@@ -21,7 +24,7 @@ export class WeatherService {
  
   currentWeather(id: string): Observable<CurrentWeather[]> {
     if(!id) return of([]);
-    return this.http.get<CurrentWeather[]>(`${ environment.API.origin }forecast/current/${ id }`)
+    return this.http.get<CurrentWeather[]>(`${ environment.API.origin }forecast/current/${ id }`, { params: this.settings.settings.value as {} })
   }
 
   /**
@@ -32,7 +35,7 @@ export class WeatherService {
   fiveDayForecast(id: string): Observable<Forecast> {
     if(!id) return of({} as Forecast);
 
-    return this.http.get<Forecast>(`${ environment.API.origin }forecast/5-days/${ id }`);
+    return this.http.get<Forecast>(`${ environment.API.origin }forecast/5-days/${ id }`, { params: this.settings.settings.value as {} });
   }
 
 }
