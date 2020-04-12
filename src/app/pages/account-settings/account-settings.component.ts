@@ -5,6 +5,7 @@ import { AccountService } from 'src/app/services/account/account.service';
 
 import { User, UpdateUser } from './../../models/User';
 import { HttpErrorResponse } from '@angular/common/http';
+import { take } from 'rxjs/operators';
 
 @Component({
   templateUrl: './account-settings.component.html',
@@ -27,7 +28,7 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
       email: this.user.email
     }
 
-    this.account.updateUser(user).subscribe(this.onSuccessfulUpdate.bind(this), this.onErrorUpdate.bind(this));
+    this.account.updateUser(user).pipe(take(1)).subscribe(this.onSuccessfulUpdate.bind(this), this.onErrorUpdate.bind(this));
   }
 
   ngOnInit() {

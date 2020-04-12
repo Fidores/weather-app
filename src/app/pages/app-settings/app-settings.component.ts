@@ -34,7 +34,6 @@ export class AppSettingsComponent implements OnInit, OnDestroy {
   ngOnDestroy(){ this.subscriptions.unsubscribe() }
 
   changeSettings() {
-    console.log('change')
     this.settings.changeSettings(this.settingsForm.value).subscribe();
   }
 

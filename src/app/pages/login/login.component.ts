@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/services/account/account.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { take } from 'rxjs/operators';
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   constructor(
     private readonly account: AccountService,
@@ -22,10 +23,7 @@ export class LoginComponent implements OnInit {
   error: boolean = false;
 
   onSubmit() {
-    this.account.login(this.user.email, this.user.password).subscribe(this.onSuccessfulLogin.bind(this), this.onUnsuccessfulLogin.bind(this));
-  }
-
-  ngOnInit() {
+    this.account.login(this.user.email, this.user.password).pipe(take(1)).subscribe(this.onSuccessfulLogin.bind(this), this.onUnsuccessfulLogin.bind(this));
   }
 
   private onSuccessfulLogin(user: User) {

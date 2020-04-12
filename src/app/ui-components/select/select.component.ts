@@ -1,10 +1,10 @@
-import { SelectOption } from './../../models/CustomSelect';
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component, ElementRef, forwardRef, HostListener, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, forwardRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 import { fadeInAnimation, fadeOutAnimation } from './../../animations';
+import { SelectOption } from './../../models/CustomSelect';
 
 @Component({
   selector: 'app-select',
@@ -20,7 +20,7 @@ import { fadeInAnimation, fadeOutAnimation } from './../../animations';
     { provide: NG_VALUE_ACCESSOR, multi: true, useExisting: forwardRef(() => SelectComponent) }
   ]
 })
-export class SelectComponent implements OnInit, ControlValueAccessor {
+export class SelectComponent implements ControlValueAccessor {
 
   constructor(
     private readonly hostRef: ElementRef<HTMLElement>
@@ -46,8 +46,6 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   registerOnChange(fn: any): void { this.onChange = fn; }
 
   registerOnTouched(fn: any): void { this.onTouched = fn; }
-
-  ngOnInit() {}
 
   /**
    * Function used for focusing options in select.

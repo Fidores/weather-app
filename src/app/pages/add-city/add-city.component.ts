@@ -1,5 +1,5 @@
 import { CitiesService } from './../../services/cities/cities.service';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, take } from 'rxjs/operators';
 import { City } from './../../models/City';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
@@ -17,28 +17,30 @@ export class AddCityComponent implements OnInit, OnDestroy {
   ) { }
 
   queriedCities: City[];
-  queryCitiesSubscription: Subscription;
+  subscriptions: Subscription = new Subscription();
   isLoading: boolean = false;
 
   @ViewChild('searchBox', { static: true }) searchBox: ElementRef<HTMLInputElement>;
 
   ngOnInit() {
-    this.queryCitiesSubscription = fromEvent(this.searchBox.nativeElement, 'input')
+    this.subscriptions.add(
+      fromEvent(this.searchBox.nativeElement, 'input')
       .pipe(debounceTime(400))
       .subscribe(($event: Event) => {
 
         this.isLoading = true;
         this.searchForCity($event.target['value']);
 
-      });
+      })
+    );
   }
 
   ngOnDestroy() {
-    this.queryCitiesSubscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
   searchForCity(name: string) {
-    this.cities.findCity(name).subscribe(cities => {
+    this.cities.findCity(name).pipe(take(1)).subscribe(cities => {
 
       this.queriedCities = cities;
       this.isLoading = false;
@@ -47,7 +49,7 @@ export class AddCityComponent implements OnInit, OnDestroy {
   }
 
   addCity(id: number) {
-    this.cities.saveCity(id).subscribe(() => this.router.navigate(['/']));
+    this.cities.saveCity(id).pipe(take(1)).subscribe(() => this.router.navigate(['/']));
   }
 
 }
