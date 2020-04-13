@@ -1,5 +1,6 @@
 @import '../../../sass/utils/variables';
 @import '../../../sass/utils/functions';
+@import '../../../sass/utils/mixins';
 @import '../../../sass/components/logo';
 
 :host {
@@ -54,10 +55,8 @@
     &__section:nth-child(3) {
         justify-self: end;
     }
-}
 
-@media (max-width: 425px), (max-width: 425px) {
-    .header {
+    @include respondTo('mobile-l') {
         &__logo {
             display: none;
         }

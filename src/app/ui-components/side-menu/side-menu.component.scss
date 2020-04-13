@@ -1,5 +1,6 @@
 @import '../../../sass/utils/functions';
 @import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
 @import '../../../sass/components/logo';
 
 .side-menu {
@@ -31,30 +32,33 @@
         box-shadow: rem(-5px) rem(5px) rem(34px) rem(-16px) rgba(0,0,0,0.75);
     }
 
-    &__author {
+    &__user {
         display: grid;
         grid-template: 
-            'author-avatar author-name'
-            'author-avatar author-email'
+            'user-avatar user-name'
+            'user-avatar user-email'
         ;
         margin-top: rem($spacing-big);
+        column-gap: rem(30px);
     }
 
-    &__author-avatar {
+    &__user-avatar {
         width: rem(50px);
-        grid-area: author-avatar;
+        grid-area: user-avatar;
         justify-self: center;
     }
 
-    &__author-name {
-        grid-area: author-name;
+    &__user-name {
+        grid-area: user-name;
         font-weight: 600;
         font-size: 1.2rem;
+        @include text-ellipsis();
     }
 
-    &__author-email {
-        grid-area: author-email;
+    &__user-email {
+        grid-area: user-email;
         font-size: 0.9rem;
+        @include text-ellipsis();
     }
 
     &__heading {

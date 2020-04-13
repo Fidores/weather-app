@@ -16,18 +16,18 @@
 
         </div>
 
-        <div class="side-menu__author">
+        <div class="side-menu__user" *ngIf="user$ | async as user">
 
-            <div class="side-menu__author-avatar">
+            <div class="side-menu__user-avatar">
                 <img src="../../../assets/images/user_avatar.svg" alt="avatar użytkownika">
             </div>
 
-            <div class="side-menu__author-name">
-                Jan Kowalski
+            <div class="side-menu__user-name">
+                {{ user.name }}
             </div>
 
-            <div class="side-menu__author-email">
-                <a href="mailto:jan.kowalski@gmail.com">jan.kowalski@gmail.com</a>
+            <div class="side-menu__user-email">
+                <span>{{ user.email }}</span>
             </div>
 
         </div>

@@ -1,5 +1,6 @@
 @import '../../../sass/utils/functions';
 @import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
 
 .weather-details {
     width: 60vw;
@@ -68,7 +69,6 @@
 
     &__bg-wrapper {
         position: absolute;
-        // background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../../../assets/images/cloudy-landscape.png');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -140,22 +140,8 @@
             text-transform: uppercase;
         }
     }
-}
 
-.swiper-slide {
-    width: rem(200px) !important;
-
-    &:first-child {
-        margin-left: $spacing-medium;
-    }
-}
-
-swiper {
-    width: 100%;
-}
-
-@media (max-device-width: 1024px), (max-width: 1024px) {
-    .weather-details {
+    @include respondTo('laptop') {
         width: 100%;
         margin: 0px;
 
@@ -167,11 +153,8 @@ swiper {
             border-radius: 0px;
         }
     }
-}
 
-@media (max-device-width: 425px), (max-width: 425px) {
-    .weather-details {
-
+    @include respondTo('mobile-l') {
         &__icon-container {
             display: none;
         }
@@ -211,6 +194,17 @@ swiper {
             text-align: center;
             font-weight: 600;
         }
-
     }
+}
+
+.swiper-slide {
+    width: rem(200px) !important;
+
+    &:first-child {
+        margin-left: $spacing-medium;
+    }
+}
+
+swiper {
+    width: 100%;
 }

@@ -1,5 +1,6 @@
 @import '../../../sass/utils/variables';
 @import '../../../sass/utils/functions';
+@import '../../../sass/utils/mixins';
 @import '../../../sass/components/light-bg';
 
 .settings {
@@ -22,7 +23,7 @@
             color: $accent-color;
         }
 
-        @media (hover: hover) {
+        @include noCursor {
             &:hover {
                 background-color: darken($light-bg-color, 15%);
             }
@@ -31,7 +32,6 @@
                 color: $accent-color;
             }
         }
-        
     }
 
     &__icon {
@@ -47,19 +47,14 @@
         padding: rem($spacing-small);
     }
 
-}
-
-@media only screen and (max-device-width: 1024px), (max-width: 1024px) {
-    .settings {
+    @include respondTo('laptop') {
         margin: 0px;
         width: 100%;
         border-radius: 0px;
         grid-template-columns: 1fr 2fr;
     }
-}
 
-@media only screen and (max-device-width: 768px), (max-width: 768px) {
-    .settings {
+    @include respondTo('tablet') {
         display: block;
         z-index: 1;
 
@@ -85,13 +80,11 @@
             font-size: 1rem;
         }
     }
-}
 
-@media only screen and (max-device-width: 425px), (max-width: 425px) {
-    .settings {
-
+    @include respondTo('mobile-l') {
         &__name {
             display: none;
         }
     }
+
 }

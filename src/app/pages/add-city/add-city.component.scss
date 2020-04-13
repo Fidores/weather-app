@@ -1,5 +1,6 @@
 @import '../../../sass/utils/variables';
 @import '../../../sass/utils/functions';
+@import '../../../sass/utils/mixins';
 @import '../../../sass/components/light-bg';
 
 .add-city {
@@ -41,16 +42,12 @@
         color: $primary-text-color-darker;
         font-weight: 500;
     }
-}
 
-@media (max-width: 1024px) {
-    .add-city {
+    @include respondTo('laptop') {   
         width: 70vw;
     }
-}
 
-@media (max-width: 425px) {
-    .add-city {
+    @include respondTo('mobile-l') {
         border-radius: 0px;
         margin-top: 0px;
         width: 100vw;

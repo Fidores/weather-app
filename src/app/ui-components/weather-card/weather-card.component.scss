@@ -36,12 +36,8 @@
     &__min-temp {
         color: $accent-color-danger;
     }
-}
 
-@media only screen and (max-device-width: 425px) {
-
-    .weather-card {
-
+    @include respondTo('mobile-l') {
         &__current-temp {
             font-size: 4rem;
         }
@@ -53,7 +49,5 @@
         &__temp {
             font-size: 1.5rem;
         }
-
     }
-
 }

@@ -23,3 +23,39 @@
         box-shadow: 0px 0px 0px rem(4px) $color;
     }
 }
+
+@mixin text-ellipsis() {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin respondTo($device) {
+
+    $breakpoints: (
+        'mobile-s': 320px,
+        'mobile-m': 375px,
+        'mobile-l': 425px,
+        'tablet': 768px,
+        'laptop': 1024px,
+        'laptop-l': 1440px
+    );
+
+    @if not map-has-key($breakpoints, $device) {
+        @error 'No device with given name';
+    } @else {
+        $selectedBreakpoint: map-get($breakpoints, $device);
+        @media only screen and (max-device-width: $selectedBreakpoint), (max-width: $selectedBreakpoint) { @content; }
+    }
+
+}
+
+// Styles that will be applied when user uses touchscreen (when there is no pointing device).
+
+@mixin noCursor {
+    @media (hover: hover) {
+    
+        @content;
+
+    }
+}

@@ -1,3 +1,5 @@
+@import '../utils/mixins';
+
 @mixin card {
     background: $card-bg-color;
     border-radius: rem($radius-big);
@@ -25,18 +27,17 @@
         margin: 0px auto;
     }
 
-    @media (hover: hover) {
+    @include noCursor() {
         transform: scale(0.9);
-    
+
         &:hover {
             transform: scale(1);
         }
     }
 
-    @media only screen and (max-device-width: 425px) {
+    @include respondTo('mobile-l'){
         &__icon {
             width: 70%;
         }
-
     }
 }

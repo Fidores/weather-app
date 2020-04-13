@@ -1,8 +1,10 @@
+import { User } from './../../models/User';
+import { AccountService } from './../../services/account/account.service';
 import { trigger, transition, state, style, animate } from '@angular/animations';
 import { OverlayService } from './../../services/overlay/overlay.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SideMenuService } from 'src/app/services/side-menu/side-menu.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { faBars, faHome, faPlusSquare, faCog } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
@@ -26,10 +28,13 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   constructor(
     private readonly sideMenu: SideMenuService, 
     private readonly overlay: OverlayService,
-    private readonly router: Router) { }
+    private readonly router: Router,
+    private readonly account: AccountService
+  ) { }
 
   isOpened: boolean = false;
   subscriptions: Subscription = new Subscription();
+  user$: Observable<User> = this.account.user;
 
   faBars = faBars;
   faHome = faHome;

@@ -1,5 +1,6 @@
 @import '../../../sass/utils/functions';
 @import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
 @import '../../../sass/components/light-bg';
 
 .login {
@@ -18,12 +19,8 @@
             margin-right: $spacing-small;
         }
     }
-}
 
-@media (max-device-width: 425px), (max-width: 425px) {
-
-    .login {
+    @include respondTo('mobile-l') {
         width: 100vw;
     }
-
 }

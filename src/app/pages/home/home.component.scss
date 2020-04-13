@@ -1,33 +1,29 @@
 @import '../../../sass/utils/variables';
 @import '../../../sass/utils/functions';
+@import '../../../sass/utils/mixins';
 
 .swiper-slide {
     width: rem(300px) !important;
     height: auto !important;
+
+    @include respondTo('laptop') {
+        &:first-child {
+            margin-left: rem($spacing-medium);
+        }
+    }
 }
 
 .container {
     margin-top: rem($spacing-big);
+
+    @include respondTo('laptop') {
+        margin-top: rem($spacing-small);
+    }
 }
 
 .loader-container {
     width: 100vw;
     height: calc(100vh - #{$header-height + $spacing-big});
-}
-
-@media only screen and (max-device-width: 1024px) {
-
-    .swiper-slide {
-        
-        &:first-child {
-            margin-left: rem($spacing-medium);
-        }
-    }
-
-    .container {
-        margin-top: rem($spacing-small);
-    }
-
 }
 
 .clue {
@@ -52,10 +48,8 @@
         margin-top: rem($spacing-small);
         text-align: center;
     }
-}
 
-@media (max-device-width: 768px), (max-width: 768px){
-    .clue {
+    @include respondTo('tablet') {
         &__image {
             width: rem(150px);
         }
