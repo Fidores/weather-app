@@ -1,11 +1,15 @@
+import { Unauthorized } from './../../common/errors/unauthorized';
+import { AppError } from './../../common/errors/appError';
+import { BadRequest } from './../../common/errors/badRequest';
 import { City } from './../../models/City';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 
 import { environment } from './../../../environments/environment';
 import { User, UpdateUser } from './../../models/User';
+import { handleError } from 'src/app/common/errors/handleError';
 
 @Injectable({
   providedIn: 'root'
@@ -22,16 +26,18 @@ export class AccountService {
   login(email: string, password: string): Observable<User> {
     return this.http.post<User>(`${this.env.API.origin}auth/`, { email, password }, { observe: 'response' })
       .pipe(tap(res => this.performLogin(res)))
-      .pipe(map(res => res.body));
+      .pipe(map(res => res.body))
+      .pipe(catchError(handleError));
   }
 
   logout(): void {
     localStorage.removeItem(this.env.API.authTokenHeaderName);
+    this._user.next(null);
   }
 
   updateUser(user: UpdateUser): Observable<User> {
     return this.http.patch<User>(`${ this.env.API.origin }users/me`, user)
-      .pipe(tap(user => this._user.next(user)));
+      .pipe(tap(user => this._user.next(user)), catchError(handleError));
   }
 
   /**
@@ -40,7 +46,7 @@ export class AccountService {
 
   loadUser(): Observable<User> {
     return this.http.get<User>(`${ this.env.API.origin }users/me`)
-      .pipe(tap(user => this._user.next(user)));
+      .pipe(tap(user => this._user.next(user)), catchError(handleError));
   }
 
   getAuthToken(): string {

@@ -1,10 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { AccountService } from 'src/app/services/account/account.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import { AppSettings } from './../../models/AppSettings';
+import { handleError } from 'src/app/common/errors/handleError';
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +14,27 @@ import { AppSettings } from './../../models/AppSettings';
 export class SettingsService {
 
   constructor(
-    private readonly http: HttpClient
-  ) { }
+    private readonly http: HttpClient,
+    private readonly account: AccountService
+  ) { 
+
+    // After user logs in, update settings.
+    this.account.user.subscribe(user => {
+      if(account.isLoggedIn) this.init().subscribe();
+    });
+
+  }
 
   private readonly _settings: BehaviorSubject<AppSettings> = new BehaviorSubject({} as AppSettings);
 
   /**
-   * It's used to load settings locally. Should be called once at the beginning of app initialization.
+   * It's used to load settings locally.
   */
 
   init(): Observable<AppSettings> {
-    return this.http.get<AppSettings>(`${ environment.API.origin }users/me/settings`).pipe(tap(appSettings => this._settings.next(appSettings)));
+    console.log('Test')
+    return this.http.get<AppSettings>(`${ environment.API.origin }users/me/settings`)
+      .pipe(tap(appSettings => this._settings.next(appSettings)));
   }
 
   /**
@@ -32,7 +44,7 @@ export class SettingsService {
 
   changeSettings(newSettings: AppSettings): Observable<AppSettings> {
     return this.http.patch<AppSettings>(`${ environment.API.origin }users/me/settings`, newSettings)
-      .pipe(tap(appSettings => this._settings.next(appSettings)));
+      .pipe(tap(appSettings => this._settings.next(appSettings)), catchError(handleError));
   }
 
   /**

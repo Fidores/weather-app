@@ -1,3 +1,4 @@
+import { Observable, merge, concat } from 'rxjs';
 import { SettingsService } from './services/app-settings/settings.service';
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
@@ -22,11 +23,12 @@ export class AppComponent implements OnInit {
     // Add polish locale
     registerLocaleData(localePl);
 
-    // Initialize user
-    if(this.account.isLoggedIn) this.account.loadUser().subscribe();
-
-    // Initialize settings
-    if(this.account.isLoggedIn) this.settings.init().subscribe();
+    if(this.account.isLoggedIn) {
+      concat(
+        this.settings.init(),
+        this.account.loadUser()
+      ).subscribe()
+    }
   }  
 
 }

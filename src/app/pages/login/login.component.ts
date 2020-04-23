@@ -1,9 +1,11 @@
-import { User } from './../../models/User';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/services/account/account.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { take } from 'rxjs/operators';
+import { AccountService } from 'src/app/services/account/account.service';
+
+import { AppError } from './../../common/errors/appError';
+import { BadRequest } from './../../common/errors/badRequest';
+import { User } from './../../models/User';
 
 @Component({
   templateUrl: './login.component.html',
@@ -32,8 +34,11 @@ export class LoginComponent {
     this.router.navigate(redirectRoute).then(() => sessionStorage.removeItem('redirectTo'));
   }
 
-  private onUnsuccessfulLogin(err: HttpErrorResponse) {
-    this.error = true;
+  private onUnsuccessfulLogin(err: AppError) {
+    if(err instanceof BadRequest) 
+      this.error = true;
+      
+    else throw err;
   }
 
 }
