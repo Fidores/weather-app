@@ -1,3 +1,4 @@
+import { ErrorInterceptor } from './common/error.interceptor';
 import { ErrorsHandler } from './common/errors.handler';
 import { AuthInterceptor } from './common/auth.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -60,7 +61,8 @@ import { LoginComponent } from './pages/login/login.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: ErrorHandler, useClass: ErrorsHandler }
+    { provide: ErrorHandler, useClass: ErrorsHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

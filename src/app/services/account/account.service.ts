@@ -9,7 +9,6 @@ import { map, tap, catchError } from 'rxjs/operators';
 
 import { environment } from './../../../environments/environment';
 import { User, UpdateUser } from './../../models/User';
-import { handleError } from 'src/app/common/errors/handleError';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +25,7 @@ export class AccountService {
   login(email: string, password: string): Observable<User> {
     return this.http.post<User>(`${this.env.API.origin}auth/`, { email, password }, { observe: 'response' })
       .pipe(tap(res => this.performLogin(res)))
-      .pipe(map(res => res.body))
-      .pipe(catchError(handleError));
+      .pipe(map(res => res.body));
   }
 
   logout(): void {
@@ -37,7 +35,7 @@ export class AccountService {
 
   updateUser(user: UpdateUser): Observable<User> {
     return this.http.patch<User>(`${ this.env.API.origin }users/me`, user)
-      .pipe(tap(user => this._user.next(user)), catchError(handleError));
+      .pipe(tap(user => this._user.next(user)));
   }
 
   /**
@@ -46,7 +44,7 @@ export class AccountService {
 
   loadUser(): Observable<User> {
     return this.http.get<User>(`${ this.env.API.origin }users/me`)
-      .pipe(tap(user => this._user.next(user)), catchError(handleError));
+      .pipe(tap(user => this._user.next(user)));
   }
 
   getAuthToken(): string {

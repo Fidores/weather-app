@@ -6,7 +6,6 @@ import { tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import { AppSettings } from './../../models/AppSettings';
-import { handleError } from 'src/app/common/errors/handleError';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +43,7 @@ export class SettingsService {
 
   changeSettings(newSettings: AppSettings): Observable<AppSettings> {
     return this.http.patch<AppSettings>(`${ environment.API.origin }users/me/settings`, newSettings)
-      .pipe(tap(appSettings => this._settings.next(appSettings)), catchError(handleError));
+      .pipe(tap(appSettings => this._settings.next(appSettings)));
   }
 
   /**
