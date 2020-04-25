@@ -27,7 +27,10 @@ export class AppSettingsComponent implements OnInit, OnDestroy {
   });
 
   ngOnInit() {
-    this.subscriptions.add(this.settings.settings.subscribe(appSettings => this.settingsForm.patchValue(appSettings, { emitEvent: false })));
+    this.subscriptions.add(
+      this.settings.settings
+        .subscribe(appSettings => this.settingsForm.patchValue(appSettings, { emitEvent: false })));
+
     this.subscriptions.add(this.settingsForm.valueChanges.subscribe(() => this.changeSettings()));
   }
 

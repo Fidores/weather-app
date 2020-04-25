@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SideMenuService } from 'src/app/services/side-menu/side-menu.service';
@@ -20,7 +21,8 @@ describe('SideMenuComponent', () => {
       imports: [
         FontAwesomeModule,
         NoopAnimationsModule,
-        RouterModule.forRoot([])
+        RouterModule.forRoot([]),
+        HttpClientModule
       ]
     })
     .compileComponents();
