@@ -1,3 +1,5 @@
+import { BadRequest } from './../../common/errors/badRequest';
+import { Conflict } from './../../common/errors/conflict';
 import { CitiesService } from './../../services/cities/cities.service';
 import { debounceTime, take } from 'rxjs/operators';
 import { City } from './../../models/City';
@@ -49,7 +51,13 @@ export class AddCityComponent implements OnInit, OnDestroy {
   }
 
   addCity(id: number) {
-    this.cities.saveCity(id).pipe(take(1)).subscribe(() => this.router.navigate(['/']));
+    this.cities.saveCity(id).pipe(take(1)).subscribe(() => this.router.navigate(['/']), err => {
+      if(err instanceof Conflict)
+        alert('Miasto jest już zapisane.');
+      else if(err instanceof BadRequest)
+        alert('Wykorzystano limit 20 zapisanych miast.');
+      else throw err;
+    });
   }
 
 }

@@ -1,0 +1,15 @@
+@import '../../../sass/utils/functions';
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+@import '../../../sass/components/light-bg';
+
+.sign-up {
+    @include light-bg;
+    width: 70vw;
+    padding: $spacing-small;
+
+    &__heading {
+        text-align: center;
+        margin: $spacing-small 0px;
+    }
+}

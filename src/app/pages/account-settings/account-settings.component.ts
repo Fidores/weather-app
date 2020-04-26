@@ -28,7 +28,7 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
       email: this.user.email
     }
 
-    this.account.updateUser(user).pipe(take(1)).subscribe(this.onSuccessfulUpdate.bind(this), this.onErrorUpdate.bind(this));
+    this.account.updateUser(user).pipe(take(1)).subscribe(this.onSuccessfulUpdate.bind(this));
   }
 
   ngOnInit() {
@@ -42,10 +42,6 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
   private onSuccessfulUpdate(user: User) {
     this.displaySuccessNotification = true;
     setTimeout(() => this.displaySuccessNotification = false, 2000);
-  }
-
-  private onErrorUpdate(err: HttpErrorResponse) {
-    
   }
 
 }

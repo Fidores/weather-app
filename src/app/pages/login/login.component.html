@@ -1,44 +1,77 @@
 <div class="login">
+  <h1 class="login__heading">Zaloguj się</h1>
 
-    <h1 class="login__heading">Zaloguj się</h1>
+  <form
+    #loginForm="ngForm"
+    class="login__form"
+    (ngSubmit)="onSubmit(); loginForm.reset()"
+  >
+    <div class="form-group">
+      <input
+        name="email"
+        type="email"
+        class="input"
+        placeholder="Podaj email..."
+        #email="ngModel"
+        email
+        [(ngModel)]="user.email"
+        required
+      />
 
-    <form #loginForm="ngForm" class="login__form" (ngSubmit)="onSubmit(); loginForm.reset()">
+      <p
+        class="hint hint--error"
+        *ngIf="email.touched && email.hasError('required')"
+      >
+        To pole nie powinno być puste.
+      </p>
+      <p
+        class="hint hint--error"
+        *ngIf="email.touched && email.hasError('email')"
+      >
+        Podaj prawidłowy adres email.
+      </p>
+    </div>
 
-        <div class="form-group">
-            <input 
-                name="email" 
-                type="email" 
-                class="input" 
-                placeholder="Podaj email..." 
-                #email="ngModel"
-                email
-                [(ngModel)]="user.email" required>
+    <div class="form-group">
+      <input
+        name="password"
+        type="password"
+        class="input"
+        placeholder="Podaj haslo..."
+        #password="ngModel"
+        [(ngModel)]="user.password"
+        required
+      />
+      <p
+        class="hint hint--error"
+        *ngIf="password.touched && password.hasError('required')"
+      >
+        To pole nie powinno być puste.
+      </p>
+    </div>
 
-            <p class="hint hint--error" *ngIf="email.touched && email.hasError('required')">To pole nie powinno być puste.</p>
-            <p class="hint hint--error" *ngIf="email.touched && email.hasError('email')">Podaj prawidłowy adres email.</p>
-        </div>
+    <div class="form-group" *ngIf="error">
+      <div class="hint hint--error">Niepoprawny email lub hasło.</div>
+    </div>
 
-        <div class="form-group">
-            <input 
-                name="password" 
-                type="password" 
-                class="input" 
-                placeholder="Podaj haslo..." 
-                #password="ngModel"
-                [(ngModel)]="user.password" required>
-            <p class="hint hint--error" *ngIf="password.touched && password.hasError('required')">To pole nie powinno być puste.</p>
-        </div>
+    <div class="form-group">
+      <div class="hint">
+        Jeśli nie posiadasz jeszcze konta
+        <a routerLink="/sign-up">zarejestruj sie tutaj.</a>
+      </div>
+    </div>
 
-        <div class="form-group" *ngIf="error">
-            <div class="hint hint--error">Niepoprawny email lub hasło.</div>
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn--accent login__action" [disabled]="loginForm.invalid">Zaloguj się</button>
-            <button type="reset" class="btn btn--danger login__action">Wyczyść</button>
-        </div>
-        
-    </form>
-
-
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn--accent login__action"
+        [disabled]="loginForm.invalid"
+      >
+        Zaloguj się
+      </button>
+      <button type="reset" class="btn btn--danger login__action">
+        Wyczyść
+      </button>
+    </div>
+  </form>
 </div>

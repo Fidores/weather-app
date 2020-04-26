@@ -1,0 +1,62 @@
+<div class="sign-up">
+  <h1 class="sign-up__heading">Zarejestruj się</h1>
+
+  <form class="sign-up__form" [formGroup]="signUpForm" (ngSubmit)="signUp()">
+    <div class="form-group">
+      <input
+        type="text"
+        required
+        minlength="3"
+        maxlength="128"
+        name="name"
+        class="input"
+        placeholder="Nazwa"
+        formControlName="name"
+      />
+    </div>
+
+    <div class="form-group">
+      <input
+        type="email"
+        name="email"
+        class="input"
+        required
+        email
+        placeholder="Email"
+        formControlName="email"
+      />
+    </div>
+
+    <div class="form-group">
+      <input
+        required
+        minlength="5"
+        maxlength="255"
+        type="password"
+        name="password"
+        class="input"
+        placeholder="Hasło"
+        formControlName="password"
+      />
+    </div>
+
+    <div class="form-group">
+      <input
+        required
+        minlength="5"
+        maxlength="255"
+        type="password"
+        name="confirm-password"
+        class="input"
+        placeholder="Powtórz hasło"
+        formControlName="confirmPassword"
+      />
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn--accent">Wyślij</button>
+    </div>
+  </form>
+
+  {{ signUpForm.get('name').errors | json }}
+</div>

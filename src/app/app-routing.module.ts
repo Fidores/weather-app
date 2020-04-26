@@ -1,3 +1,4 @@
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { UnAuthGuard } from './guards/un-auth/un-auth.guard';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { LoginComponent } from './pages/login/login.component';
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'weather-details/:id', component: WeatherDetailsComponent },
   { path: 'add-city', component: AddCityComponent },
   { path: 'user-settings', component: UserSettingsComponent, children: settings, canActivate: [UnAuthGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] }
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

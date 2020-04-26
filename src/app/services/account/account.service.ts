@@ -2,28 +2,36 @@ import { Unauthorized } from './../../common/errors/unauthorized';
 import { AppError } from './../../common/errors/appError';
 import { BadRequest } from './../../common/errors/badRequest';
 import { City } from './../../models/City';
-import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpResponse,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 
 import { environment } from './../../../environments/environment';
-import { User, UpdateUser } from './../../models/User';
+import { User, UpdateUser, UserPayload } from './../../models/User';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AccountService {
-
-  constructor(
-    private readonly http: HttpClient
-  ) { }
+  constructor(private readonly http: HttpClient) {}
 
   private readonly env = environment;
-  private readonly _user: BehaviorSubject<User | null> = new BehaviorSubject(null);
+  private readonly _user: BehaviorSubject<User | null> = new BehaviorSubject(
+    null
+  );
 
   login(email: string, password: string): Observable<User> {
-    return this.http.post<User>(`${this.env.API.origin}auth/`, { email, password }, { observe: 'response' })
+    return this.http
+      .post<User>(
+        `${this.env.API.origin}auth/`,
+        { email, password },
+        { observe: 'response' }
+      )
       .pipe(tap(res => this.performLogin(res)))
       .pipe(map(res => res.body));
   }
@@ -34,8 +42,18 @@ export class AccountService {
   }
 
   updateUser(user: UpdateUser): Observable<User> {
-    return this.http.patch<User>(`${ this.env.API.origin }users/me`, user)
+    return this.http
+      .patch<User>(`${this.env.API.origin}users/me`, user)
       .pipe(tap(user => this._user.next(user)));
+  }
+
+  singUp(user: UserPayload): Observable<User> {
+    return this.http
+      .post<User>(`${this.env.API.origin}users/`, user, { observe: 'response' })
+      .pipe(
+        tap(res => this.performLogin(res)),
+        map(res => res.body)
+      );
   }
 
   /**
@@ -43,7 +61,8 @@ export class AccountService {
    */
 
   loadUser(): Observable<User> {
-    return this.http.get<User>(`${ this.env.API.origin }users/me`)
+    return this.http
+      .get<User>(`${this.env.API.origin}users/me`)
       .pipe(tap(user => this._user.next(user)));
   }
 
@@ -60,7 +79,7 @@ export class AccountService {
   private saveToken(token: string): void {
     localStorage.setItem(this.env.API.authTokenHeaderName, token);
   }
-  
+
   get isLoggedIn(): boolean {
     return !!localStorage.getItem(this.env.API.authTokenHeaderName);
   }
@@ -70,7 +89,10 @@ export class AccountService {
   }
 
   get user(): Observable<User> {
-    return this._user.pipe(map(user => { return { ...user } }));
+    return this._user.pipe(
+      map(user => {
+        return { ...user };
+      })
+    );
   }
-
 }

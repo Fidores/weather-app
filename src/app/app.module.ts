@@ -27,6 +27,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SavedCitiesComponent } from './pages/saved-cities/saved-cities.component';
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { LoginComponent } from './pages/login/login.component';
     SelectComponent,
     SavedCitiesComponent,
     AccountSettingsComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { LoginComponent } from './pages/login/login.component';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
