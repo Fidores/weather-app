@@ -35,9 +35,9 @@ export class SignUpComponent {
     };
 
     this.account.singUp(user).subscribe(user => {
-      const redirectTo = [sessionStorage.getItem('redirectTo')] || ['/'];
+      const redirectTo = sessionStorage.getItem('redirectTo');
       this.router
-        .navigate(redirectTo)
+        .navigate(redirectTo ? [redirectTo] : ['/'])
         .then(() => sessionStorage.removeItem('redirectTo'));
     });
   }
