@@ -3,8 +3,8 @@ export const environment = {
   API: {
     origin: 'http://192.168.1.11:3000/',
     authTokenHeaderName: 'X-AUTH-TOKEN',
-    notifications: {
-      positionClass: 'toast-bottom-right',
-    },
+  },
+  notifications: {
+    positionClass: 'toast-bottom-right',
   },
 };
