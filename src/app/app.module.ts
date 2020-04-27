@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { ErrorInterceptor } from './common/error.interceptor';
 import { ErrorsHandler } from './common/errors.handler';
 import { AuthInterceptor } from './common/auth.interceptor';
@@ -28,6 +29,7 @@ import { SavedCitiesComponent } from './pages/saved-cities/saved-cities.componen
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     SavedCitiesComponent,
     AccountSettingsComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,13 +62,14 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(environment.notifications),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: ErrorHandler, useClass: ErrorsHandler },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

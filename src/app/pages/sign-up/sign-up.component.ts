@@ -5,6 +5,7 @@ import { AccountService } from './../../services/account/account.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { matchFields } from 'src/app/common/validators/matchFields';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: './sign-up.component.html',
@@ -13,7 +14,8 @@ import { matchFields } from 'src/app/common/validators/matchFields';
 export class SignUpComponent {
   constructor(
     private readonly account: AccountService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly notifications: ToastrService
   ) {}
 
   signUpForm = new FormGroup(
@@ -25,7 +27,6 @@ export class SignUpComponent {
     },
     matchFields('password', 'confirmPassword')
   );
-  errorMsg: string;
 
   // TODO: Handle errors.
 
@@ -36,8 +37,6 @@ export class SignUpComponent {
       password: this.signUpForm.get('password').value,
     };
 
-    this.errorMsg = '';
-
     this.account.singUp(user).subscribe(
       user => {
         const redirectTo = sessionStorage.getItem('redirectTo');
@@ -47,7 +46,10 @@ export class SignUpComponent {
       },
       err => {
         if (err instanceof Conflict)
-          this.errorMsg = 'Podany adres email został już wykorzystany';
+          this.notifications.error(
+            'Konto z tym adresem email zostało już zarejestrowane w tym serwisie.',
+            'Email w użyciu'
+          );
         else throw err;
       }
     );
