@@ -1,29 +1,30 @@
 <div class="add-city">
+  <input
+    type="text"
+    placeholder="Wyszukaj miasto"
+    class="input input--block add-city__search-box"
+    #searchBox
+  />
 
-    <input type="text" placeholder="Wyszukaj miasto" class="input input--block add-city__search-box" #searchBox>
+  <div class="add-city__cities" *ngIf="!isLoading">
+    <ng-scrollbar style="max-height: 60vh;">
+      <div
+        class="add-city__city"
+        *ngFor="let city of queriedCities"
+        (click)="addCity(city.id)"
+      >
+        <div class="add-city__name">
+          {{ city.name }}
+        </div>
 
-    <div class="add-city__cities" *ngIf="!isLoading">
+        <div class="add-city__country">
+          {{ city.country }}
+        </div>
+      </div>
+    </ng-scrollbar>
+  </div>
 
-        <ng-scrollbar style="max-height: 60vh;">
-
-            <div class="add-city__city" *ngFor="let city of queriedCities" (click)="addCity(city.id)">
-
-                <div class="add-city__name">
-                    {{ city.name }}
-                </div>
-    
-                <div class="add-city__country">
-                    {{ city.country }}
-                </div>
-    
-            </div>
-
-        </ng-scrollbar>
-
-    </div>
-
-    <div class="add-city__loader" *ngIf="isLoading">
-        <loader></loader>
-    </div>
-
+  <div class="add-city__loader" *ngIf="isLoading">
+    <loader></loader>
+  </div>
 </div>

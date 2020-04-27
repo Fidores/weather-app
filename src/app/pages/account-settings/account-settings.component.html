@@ -1,53 +1,88 @@
 <form #userForm="ngForm" *ngIf="user" (ngSubmit)="updateUser()">
+  <div class="form-group">
+    <input
+      name="email"
+      type="email"
+      class="input"
+      placeholder="Email"
+      #email="ngModel"
+      minlength="5"
+      maxlength="255"
+      required
+      email
+      [(ngModel)]="user.email"
+    />
 
-    <div class="form-group">
+    <p
+      class="hint hint--error"
+      *ngIf="email.touched && email.hasError('required')"
+    >
+      Email jest wymagany.
+    </p>
+    <p
+      class="hint hint--error"
+      *ngIf="email.touched && email.hasError('email')"
+    >
+      Podaj poprawny email.
+    </p>
+    <p
+      class="hint hint--error"
+      *ngIf="email.touched && email.hasError('minlength')"
+    >
+      Email nie może być krótszy niż
+      {{ email.getError('minlength').requiredLength }} znaki.
+    </p>
+    <p
+      class="hint hint--error"
+      *ngIf="email.touched && email.hasError('maxlength')"
+    >
+      Email nie może być dłuższy niż
+      {{ email.getError('maxlength').requiredLength }} znaki.
+    </p>
+  </div>
 
-        <input 
-            name="email" 
-            type="email" 
-            class="input" 
-            placeholder="Email" 
-            #email="ngModel"
-            minlength="5"
-            maxlength="255"
-            required
-            email
-            [(ngModel)]="user.email">
+  <div class="form-group">
+    <input
+      name="name"
+      type="text"
+      class="input"
+      placeholder="Nazwa"
+      #name="ngModel"
+      minlength="3"
+      maxlength="128"
+      required
+      [(ngModel)]="user.name"
+    />
 
-        <p class="hint hint--error" *ngIf="email.touched && email.hasError('required')">Email jest wymagany.</p>
-        <p class="hint hint--error" *ngIf="email.touched && email.hasError('email')">Podaj poprawny email.</p>
-        <p class="hint hint--error" *ngIf="email.touched && email.hasError('minlength')">Email nie może być krótszy niż {{ email.getError('minlength').requiredLength }} znaki.</p>
-        <p class="hint hint--error" *ngIf="email.touched && email.hasError('maxlength')">Email nie może być dłuższy niż {{ email.getError('maxlength').requiredLength }} znaki.</p>
+    <p
+      class="hint hint--error"
+      *ngIf="name.touched && name.hasError('required')"
+    >
+      Nazwa jest wymagana.
+    </p>
+    <p
+      class="hint hint--error"
+      *ngIf="name.touched && name.hasError('minlength')"
+    >
+      Nazwa nie może być krótsza niż
+      {{ name.getError('minlength').requiredLength }} znaki.
+    </p>
+    <p
+      class="hint hint--error"
+      *ngIf="name.touched && name.hasError('maxlength')"
+    >
+      Nazwa nie może być dłuższa niż
+      {{ name.getError('maxlength').requiredLength }} znaki.
+    </p>
+  </div>
 
-    </div>
+  <div class="form-group" *ngIf="displaySuccessNotification" @fade>
+    <p class="hint hint--success">Zmieniono dane pomyślnie.</p>
+  </div>
 
-    <div class="form-group">
-
-        <input 
-            name="name" 
-            type="text" 
-            class="input" 
-            placeholder="Nazwa"
-            #name="ngModel"
-            minlength="3"
-            maxlength="128"
-            required
-            [(ngModel)]="user.name">
-
-        <p class="hint hint--error" *ngIf="name.touched && name.hasError('required')">Nazwa jest wymagana.</p>
-        <p class="hint hint--error" *ngIf="name.touched && name.hasError('minlength')">Nazwa nie może być krótsza niż {{ name.getError('minlength').requiredLength }} znaki.</p>
-        <p class="hint hint--error" *ngIf="name.touched && name.hasError('maxlength')">Nazwa nie może być dłuższa niż {{ name.getError('maxlength').requiredLength }} znaki.</p>
-
-    </div>
-
-    <div class="form-group" *ngIf="displaySuccessNotification" @fade>
-        <p class="hint hint--success">Zmieniono dane pomyślnie.</p>
-    </div>
-
-    <div class="form-group">
-
-        <button type="submit" class="btn btn--accent" [disabled]="userForm.invalid">Zapisz</button>
-
-    </div>
-
+  <div class="form-group">
+    <button type="submit" class="btn btn--accent" [disabled]="userForm.invalid">
+      Zapisz
+    </button>
+  </div>
 </form>

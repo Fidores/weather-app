@@ -1,3 +1,4 @@
+import { Conflict } from './../../common/errors/conflict';
 import { Router } from '@angular/router';
 import { User, UserPayload } from './../../models/User';
 import { AccountService } from './../../services/account/account.service';
@@ -24,6 +25,7 @@ export class SignUpComponent {
     },
     matchFields('password', 'confirmPassword')
   );
+  errorMsg: string;
 
   // TODO: Handle errors.
 
@@ -34,11 +36,20 @@ export class SignUpComponent {
       password: this.signUpForm.get('password').value,
     };
 
-    this.account.singUp(user).subscribe(user => {
-      const redirectTo = sessionStorage.getItem('redirectTo');
-      this.router
-        .navigate(redirectTo ? [redirectTo] : ['/'])
-        .then(() => sessionStorage.removeItem('redirectTo'));
-    });
+    this.errorMsg = '';
+
+    this.account.singUp(user).subscribe(
+      user => {
+        const redirectTo = sessionStorage.getItem('redirectTo');
+        this.router
+          .navigate(redirectTo ? [redirectTo] : ['/'])
+          .then(() => sessionStorage.removeItem('redirectTo'));
+      },
+      err => {
+        if (err instanceof Conflict)
+          this.errorMsg = 'Podany adres email został już wykorzystany';
+        else throw err;
+      }
+    );
   }
 }

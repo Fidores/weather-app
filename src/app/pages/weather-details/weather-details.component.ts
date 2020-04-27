@@ -13,20 +13,19 @@ import { WeatherService } from './../../services/weather/weather.service';
 @Component({
   templateUrl: './weather-details.component.html',
   styleUrls: ['./weather-details.component.scss'],
-  animations: [ ...slideInEntrance ]
+  animations: [...slideInEntrance],
 })
 export class WeatherDetailsComponent implements OnInit, OnDestroy {
-
   constructor(
     private readonly weather: WeatherService,
     private readonly route: ActivatedRoute
-  ) { }
+  ) {}
 
   sliderConfig: SwiperConfigInterface = {
     freeMode: true,
     spaceBetween: 30,
-    slidesPerView: 'auto'
-  }
+    slidesPerView: 'auto',
+  };
 
   subscriptions: Subscription = new Subscription();
   forecast: Forecast;
@@ -35,12 +34,19 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
   formatIllustrationName = formatIllustrationName;
 
   ngOnInit() {
-    this.subscriptions.add(this.weather.fiveDayForecast(this.route.snapshot.params.id).subscribe(forecast => this.forecast = forecast));
-    this.subscriptions.add(this.weather.currentWeather(this.route.snapshot.params.id).subscribe(weather => this.currentWeather = weather[0]));
+    this.subscriptions.add(
+      this.weather
+        .fiveDayForecast(this.route.snapshot.params.id)
+        .subscribe(forecast => (this.forecast = forecast))
+    );
+    this.subscriptions.add(
+      this.weather
+        .currentWeather(this.route.snapshot.params.id)
+        .subscribe(weather => (this.currentWeather = weather[0]))
+    );
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
-
 }

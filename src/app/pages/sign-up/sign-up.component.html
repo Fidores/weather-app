@@ -53,10 +53,24 @@
       />
     </div>
 
+    <div class="form-group" *ngIf="errorMsg">
+      <div class="hint hint--error">{{ errorMsg }}</div>
+    </div>
+
     <div class="form-group">
-      <button type="submit" class="btn btn--accent">Wyślij</button>
+      <div class="hint">
+        Jeśli już posiadasz konto <a routerLink="/login">zaloguj się tutaj</a>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button
+        type="submit"
+        class="btn btn--accent"
+        [disabled]="signUpForm.invalid"
+      >
+        Wyślij
+      </button>
     </div>
   </form>
-
-  {{ signUpForm.get('name').errors | json }}
 </div>

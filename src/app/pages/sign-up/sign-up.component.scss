@@ -4,12 +4,16 @@
 @import '../../../sass/components/light-bg';
 
 .sign-up {
-    @include light-bg;
-    width: 70vw;
-    padding: $spacing-small;
+  @include light-bg;
+  width: 70vw;
+  padding: $spacing-small;
 
-    &__heading {
-        text-align: center;
-        margin: $spacing-small 0px;
-    }
+  &__heading {
+    text-align: center;
+    margin: $spacing-small 0px;
+  }
+
+  @include respondTo('mobile-l') {
+    width: 100vw;
+  }
 }
