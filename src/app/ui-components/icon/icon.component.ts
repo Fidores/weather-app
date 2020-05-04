@@ -8,8 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class IconComponent implements OnInit {
   constructor() {}
 
-  @Input('iconId') iconId: string;
-  @Input('spriteOrigin') spriteOrigin: string;
+  @Input('iconId') iconId: string = '';
+  @Input('spriteOrigin') spriteOrigin: string = '';
 
   ngOnInit() {}
 }

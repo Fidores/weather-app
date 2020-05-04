@@ -1,18 +1,10 @@
-import { Unauthorized } from './../../common/errors/unauthorized';
-import { AppError } from './../../common/errors/appError';
-import { BadRequest } from './../../common/errors/badRequest';
-import { City } from './../../models/City';
-import {
-  HttpClient,
-  HttpResponse,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { map, tap, catchError } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 import { environment } from './../../../environments/environment';
-import { User, UpdateUser, UserPayload } from './../../models/User';
+import { UpdateUser, User, UserPayload } from './../../models/User';
 
 @Injectable({
   providedIn: 'root',

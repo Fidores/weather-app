@@ -1,108 +1,113 @@
 <div class="weather-details">
+  <div
+    class="weather-details__header"
+    *ngIf="currentWeather; else headerLoader"
+  >
+    <div
+      class="weather-details__bg-wrapper"
+      [ngStyle]="{
+        'background-image':
+          'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(../assets/images/' +
+          formatIllustrationName(currentWeather.weather.id) +
+          ')'
+      }"
+    ></div>
 
-    <div class="weather-details__header" *ngIf="currentWeather; else headerLoader">
+    <div class="weather-details__content-wrapper">
+      <div class="weather-details__icon-container">
+        <app-icon [iconId]="currentWeather.weather.icon"></app-icon>
+      </div>
 
-        <div class="weather-details__bg-wrapper" 
-        [ngStyle]="{ 
-            'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(../assets/images/'+ formatIllustrationName(currentWeather.weather.id) +')'
-        }"></div>
+      <div class="weather-details__temp">
+        {{ currentWeather.main.temp }}&deg;
+      </div>
 
-        <div class="weather-details__content-wrapper">
+      <div class="weather-details__description">
+        {{ currentWeather.weather.description }}
+      </div>
 
-            <div class="weather-details__icon-container">   
-                <img class="weather-details__icon" src="../../../assets/icons/weather-icons/{{ currentWeather.weather.icon }}.svg" alt="ikona pogody">
-            </div>
-        
-            <div class="weather-details__temp">{{ currentWeather.main.temp }}&deg;</div>
-            
-            <div class="weather-details__description">
-                {{ currentWeather.weather.description }}
-            </div>
-    
-            <div class="weather-details__city-name">
-                {{ currentWeather.city.name }}
-            </div>
+      <div class="weather-details__city-name">
+        {{ currentWeather.city.name }}
+      </div>
 
-            <table class="weather-details__temp-details weather-details__details">
+      <table class="weather-details__temp-details weather-details__details">
+        <tbody>
+          <tr class="weather-details__detail">
+            <td class="weather-details__detail-name">Temperatura maksymalna</td>
+            <td class="weather-details__detail-value">
+              {{ currentWeather.main.tempMax }}&deg;
+            </td>
+          </tr>
 
-                <tbody>
+          <tr class="weather-details__detail">
+            <td class="weather-details__detail-name">Temperatura minimalna</td>
+            <td class="weather-details__detail-value">
+              {{ currentWeather.main.tempMin }}&deg;
+            </td>
+          </tr>
 
-                    <tr class="weather-details__detail">
-                        <td class="weather-details__detail-name">Temperatura maksymalna</td>
-                        <td class="weather-details__detail-value">{{ currentWeather.main.tempMax }}&deg;</td>
-                    </tr>
+          <tr class="weather-details__detail">
+            <td class="weather-details__detail-name">Temperatura odczuwalna</td>
+            <td class="weather-details__detail-value">
+              {{ currentWeather.main.feels_like }}&deg;
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-                    <tr class="weather-details__detail">
-                        <td class="weather-details__detail-name">Temperatura minimalna</td>
-                        <td class="weather-details__detail-value">{{ currentWeather.main.tempMin }}&deg;</td>
-                    </tr>
+      <table class="weather-details__day-details weather-details__details">
+        <tbody>
+          <tr class="weather-details__detail">
+            <td class="weather-details__detail-name">Ciśnienie</td>
+            <td class="weather-details__detail-value">
+              {{ currentWeather.main.pressure }} hPa
+            </td>
+          </tr>
 
-                    <tr class="weather-details__detail">
-                        <td class="weather-details__detail-name">Temperatura odczuwalna</td>
-                        <td class="weather-details__detail-value">{{ currentWeather.main.feels_like }}&deg;</td>
-                    </tr>
+          <tr class="weather-details__detail">
+            <td class="weather-details__detail-name">Wilgotność</td>
+            <td class="weather-details__detail-value">
+              {{ currentWeather.main.humidity }}%
+            </td>
+          </tr>
 
-                </tbody>
-
-            </table>
-
-            <table class="weather-details__day-details weather-details__details">
-
-                <tbody>
-
-                    <tr class="weather-details__detail">
-                        <td class="weather-details__detail-name">Ciśnienie</td>
-                        <td class="weather-details__detail-value">{{ currentWeather.main.pressure }} hPa</td>
-                    </tr>
-
-                    <tr class="weather-details__detail">
-                        <td class="weather-details__detail-name">Wilgotność</td>
-                        <td class="weather-details__detail-value">{{ currentWeather.main.humidity }}%</td>
-                    </tr>
-
-                    <tr class="weather-details__detail">
-                        <td class="weather-details__detail-name">Szybkość wiatru</td>
-                        <td class="weather-details__detail-value">{{ currentWeather.wind.speed }} m/s</td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-    
-        </div>
-
+          <tr class="weather-details__detail">
+            <td class="weather-details__detail-name">Szybkość wiatru</td>
+            <td class="weather-details__detail-value">
+              {{ currentWeather.wind.speed }} m/s
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 
-    <ng-template #headerLoader>
-
-        <div class="weather-details__header">
-            <loader></loader>
-        </div>
-
-    </ng-template>
-
-    <div class="weather-details__body" *ngIf="forecast; else bodyLoader">
-
-        <div class="weather-details__hourly-forecast" *ngFor="let day of forecast.days | keyvalue">
-
-            <h2 class="weather-details__day">{{ day.key | date:'EEEE':'':'pl' }}</h2>
-
-            <swiper [config]="sliderConfig" @slideInEntranceParent>
-
-                <small-weather-card @slideInEntranceChild *ngFor="let period of day.value" [period]="period"></small-weather-card>
-    
-            </swiper>
-
-        </div>
-
+  <ng-template #headerLoader>
+    <div class="weather-details__header">
+      <loader></loader>
     </div>
+  </ng-template>
 
-    <ng-template #bodyLoader>
+  <div class="weather-details__body" *ngIf="forecast; else bodyLoader">
+    <div
+      class="weather-details__hourly-forecast"
+      *ngFor="let day of forecast.days | keyvalue"
+    >
+      <h2 class="weather-details__day">{{ day.key | date: 'EEEE':'':'pl' }}</h2>
 
-        <div class="weather-details__body">
-            <loader></loader>
-        </div>
+      <swiper [config]="sliderConfig" @slideInEntranceParent>
+        <small-weather-card
+          @slideInEntranceChild
+          *ngFor="let period of day.value"
+          [period]="period"
+        ></small-weather-card>
+      </swiper>
+    </div>
+  </div>
 
-    </ng-template>
-
+  <ng-template #bodyLoader>
+    <div class="weather-details__body">
+      <loader></loader>
+    </div>
+  </ng-template>
 </div>

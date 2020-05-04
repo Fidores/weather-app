@@ -3,208 +3,210 @@
 @import '../../../sass/utils/mixins';
 
 .weather-details {
-    width: 60vw;
-    margin: rem($spacing-big) auto 0px auto;
+  width: 60vw;
+  margin: rem($spacing-big) auto 0px auto;
 
-    &__icon-container {
-        grid-area: icon;
-        place-self: center;
-        
-        & img {
-            height: 100%;
-            max-width: rem(150px);
-            max-height: rem(150px);
-        }
+  &__icon-container {
+    grid-area: icon;
+    place-self: center;
+
+    & img {
+      height: 100%;
+      max-width: rem(150px);
+      max-height: rem(150px);
     }
+  }
+
+  &__header {
+    mask-image: radial-gradient(white, black);
+    position: relative;
+    height: rem(350px);
+    width: 100%;
+    overflow: hidden;
+    border-radius: rem($radius-big) rem($radius-big) 0px 0px;
+  }
+
+  &__content-wrapper {
+    position: absolute;
+    padding: rem($spacing-medium);
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+      'icon temperature temperature city'
+      'icon description description city'
+      'temp-details temp-details day-details day-details';
+    grid-template-rows: 1fr 1fr 4fr;
+    gap: rem($spacing-small) rem($spacing-medium);
+  }
+
+  &__detail {
+    vertical-align: middle;
+  }
+
+  &__details {
+    width: 100%;
+  }
+
+  &__detail-name {
+    font-size: 1.1rem;
+  }
+
+  &__detail-value {
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  &__temp-details {
+    grid-area: temp-details;
+  }
+
+  &__day-details {
+    grid-area: day-details;
+  }
+
+  &__bg-wrapper {
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    animation: pulse ease-out 20s infinite;
+  }
+
+  &__city-name {
+    grid-area: city;
+    justify-self: end;
+
+    position: relative;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: rem(3px);
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: rem(3px);
+      width: 50%;
+      background-color: $accent-color;
+      margin: rem($spacing-small) auto 0px auto;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__body {
+    background-color: $light-bg-color;
+    color: $text-on-light-bg;
+    padding: rem($spacing-medium) 0px;
+    border-radius: 0px 0px rem($radius-big) rem($radius-big);
+    min-height: rem(500px);
+  }
+
+  &__hourly-forecast {
+    &:not(:first-child) {
+      margin-top: rem($spacing-medium);
+    }
+  }
+
+  &__day {
+    margin: 0px 0px rem($spacing-medium) rem($spacing-medium);
+    color: $accent-color;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__temp {
+    grid-area: temperature;
+    font-size: 4rem;
+  }
+
+  &__value {
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+  &__description {
+    grid-area: description;
+    font-size: 1.1rem;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__icon-container {
+    width: 150px;
+  }
+
+  @include respondTo('laptop') {
+    width: 100%;
+    margin: 0px;
 
     &__header {
-        mask-image: radial-gradient(white, black);
-        position: relative;
-        height: rem(350px);
-        width: 100%;
-        overflow: hidden;
-        border-radius: rem($radius-big) rem($radius-big) 0px 0px;
+      border-radius: 0px;
+    }
+
+    &__body {
+      border-radius: 0px;
+    }
+  }
+
+  @include respondTo('mobile-l') {
+    &__icon-container {
+      display: none;
     }
 
     &__content-wrapper {
-        position: absolute;
-        padding: rem($spacing-medium);
-        height: 100%;
-        width: 100%;
-        display: grid;
-        grid-template-areas: 
-            'icon temperature temperature city'
-            'icon description description city'
-            'temp-details temp-details day-details day-details'
-        ;
-        grid-template-rows: 1fr 1fr 4fr;
-        gap: rem($spacing-small) rem($spacing-medium);
-    }
-
-    &__detail {
-        vertical-align: middle;
-    }
-
-    &__details {
-        width: 100%;
-    }
-
-    &__detail-name {
-        font-size: 1.1rem;
+      padding: 0px $spacing-small;
+      grid-template-areas:
+        'temperature . city'
+        'description description description'
+        'temp-details temp-details temp-details'
+        'day-details day-details day-details';
+      grid-template-rows: 1fr 1fr 2fr 2fr;
+      gap: $spacing-small;
+      align-items: center;
+      gap: 0px;
     }
 
     &__detail-value {
-        font-size: 1.6rem;
-        text-align: center;
-        font-weight: 600;
+      font-size: 1.2rem;
+      text-align: right;
     }
 
-    &__temp-details {
-        grid-area: temp-details;
-    }
-    
-    &__day-details {
-        grid-area: day-details;
-    }
-
-    &__bg-wrapper {
-        position: absolute;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        width: 100%;
-        height: 100%;
-        animation: pulse ease-out 20s infinite;
+    &__detail-name {
+      font-size: 1rem;
     }
 
     &__city-name {
-        grid-area: city;
-        justify-self: end;
-
-        position: relative;
-        font-weight: 600;
-        font-size: 1.5rem;
-        letter-spacing: rem(3px);
-
-        &::after {
-            content: '';
-            display: block;
-            position: absolute;
-            height: rem(3px);
-            width: 50%;
-            background-color: $accent-color;
-            margin: rem($spacing-small) auto 0px auto;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    }
-    
-    &__body {
-        background-color: $light-bg-color;
-        color: $text-on-light-bg;
-        padding: rem($spacing-medium) 0px;
-        border-radius: 0px 0px rem($radius-big) rem($radius-big);
-        min-height: rem(500px);
-    }
-
-    &__hourly-forecast {
-        &:not(:first-child) {
-            margin-top: rem($spacing-medium);
-        }
-    }
-
-    &__day {
-        margin: 0px 0px rem($spacing-medium) rem($spacing-medium);
-        color: $accent-color;
-
-        &::first-letter {
-            text-transform: uppercase;
-        }
+      place-self: center;
     }
 
     &__temp {
-        grid-area: temperature;
-        font-size: 4.0rem;
-    }
-
-    &__value {
-        font-size: 1.4rem;
-        font-weight: 400;
+      place-self: center;
     }
 
     &__description {
-        grid-area: description;
-        font-size: 1.1rem;
-
-        &::first-letter {
-            text-transform: uppercase;
-        }
+      text-align: center;
+      font-weight: 600;
     }
-
-    @include respondTo('laptop') {
-        width: 100%;
-        margin: 0px;
-
-        &__header {
-            border-radius: 0px;
-        }
-
-        &__body {
-            border-radius: 0px;
-        }
-    }
-
-    @include respondTo('mobile-l') {
-        &__icon-container {
-            display: none;
-        }
-
-        &__content-wrapper {
-            padding: 0px $spacing-small;
-            grid-template-areas: 
-                'temperature . city'
-                'description description description'
-                'temp-details temp-details temp-details'
-                'day-details day-details day-details'
-            ;
-            grid-template-rows: 1fr 1fr 2fr 2fr;
-            gap: $spacing-small;
-            align-items: center;
-            gap: 0px;
-        }
-
-        &__detail-value {
-            font-size: 1.2rem;
-            text-align: right;
-        }
-
-        &__detail-name {
-            font-size: 1rem;
-        }
-
-        &__city-name {
-            place-self: center;
-        }
-
-        &__temp {
-            place-self: center;
-        }
-
-        &__description {
-            text-align: center;
-            font-weight: 600;
-        }
-    }
+  }
 }
 
 .swiper-slide {
-    width: rem(200px) !important;
+  width: rem(200px) !important;
 
-    &:first-child {
-        margin-left: $spacing-medium;
-    }
+  &:first-child {
+    margin-left: $spacing-medium;
+  }
 }
 
 swiper {
-    width: 100%;
+  width: 100%;
 }
