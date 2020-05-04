@@ -7,6 +7,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -14,14 +15,14 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
+      declarations: [LoginComponent],
       imports: [
         FormsModule,
         HttpClientModule,
-        RouterModule.forRoot([])
-      ]
-    })
-    .compileComponents();
+        RouterModule.forRoot([]),
+        ToastrModule.forRoot(),
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -35,13 +36,14 @@ describe('LoginComponent', () => {
   });
 
   describe('onSubmit', () => {
-
     it('should log in the user with password and email', done => {
-      const accountService: AccountService = fixture.debugElement.injector.get(AccountService);
-      const user: any = { 
+      const accountService: AccountService = fixture.debugElement.injector.get(
+        AccountService
+      );
+      const user: any = {
         password: 'password',
-        email: 'email@domain.com'
-      }
+        email: 'email@domain.com',
+      };
       const spy = spyOn(accountService, 'login').and.returnValue(of(user));
 
       component.user = user;
@@ -52,13 +54,15 @@ describe('LoginComponent', () => {
     });
 
     it('should call onSuccessfulLogin method after successful login', done => {
-      const accountService: AccountService = fixture.debugElement.injector.get(AccountService);
-      const user: any = { 
+      const accountService: AccountService = fixture.debugElement.injector.get(
+        AccountService
+      );
+      const user: any = {
         password: 'password',
-        email: 'email@domain.com'
-      }
+        email: 'email@domain.com',
+      };
       spyOn(accountService, 'login').and.returnValue(of(user));
-      const spy = spyOn((component as any), 'onSuccessfulLogin');
+      const spy = spyOn(component as any, 'onSuccessfulLogin');
 
       component.user = user;
       component.onSubmit();
@@ -68,8 +72,10 @@ describe('LoginComponent', () => {
     });
 
     it('should call onUnsuccessfulLogin method after unsuccessful login', done => {
-      const accountService: AccountService = fixture.debugElement.injector.get(AccountService);
-      const spy = spyOn((component as any), 'onUnsuccessfulLogin');
+      const accountService: AccountService = fixture.debugElement.injector.get(
+        AccountService
+      );
+      const spy = spyOn(component as any, 'onUnsuccessfulLogin');
       spyOn(accountService, 'login').and.returnValue(throwError('error'));
 
       component.onSubmit();
@@ -77,23 +83,14 @@ describe('LoginComponent', () => {
       expect(spy).toHaveBeenCalled();
       done();
     });
-
   });
 
   describe('onSuccessfulLogin', () => {
-
-    it('should set error to false', done => {
-      component.error = true;
-
-      component['onSuccessfulLogin']({} as User);
-
-      expect(component.error).toBeFalsy();
-      done();
-    });
-
     it('should navigate to home page if no redirect url is available', done => {
       const router: Router = fixture.debugElement.injector.get(Router);
-      const spy = spyOn(router, 'navigate').and.returnValue(Promise.resolve(true));
+      const spy = spyOn(router, 'navigate').and.returnValue(
+        Promise.resolve(true)
+      );
 
       sessionStorage.removeItem('redirectTo');
       component['onSuccessfulLogin']({} as User);
@@ -104,7 +101,9 @@ describe('LoginComponent', () => {
 
     it('should navigate to redirect url if it is set', done => {
       const router: Router = fixture.debugElement.injector.get(Router);
-      const spy = spyOn(router, 'navigate').and.returnValue(Promise.resolve(true));
+      const spy = spyOn(router, 'navigate').and.returnValue(
+        Promise.resolve(true)
+      );
       const redirectUrl = ['/url'];
 
       sessionStorage.setItem('redirectTo', redirectUrl[0]);
@@ -127,6 +126,5 @@ describe('LoginComponent', () => {
         done();
       });
     });
-
   });
 });

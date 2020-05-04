@@ -1,3 +1,4 @@
+import { IconComponent } from './../../ui-components/icon/icon.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './../../ui-components/loader/loader.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,21 +17,21 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         HomeComponent,
         WeatherCardComponent,
         AddCityCardComponent,
-        LoaderComponent
+        LoaderComponent,
+        IconComponent,
       ],
       imports: [
         SwiperModule,
         RouterModule.forRoot([]),
         FontAwesomeModule,
         BrowserAnimationsModule,
-        HttpClientModule
-      ]
-    })
-    .compileComponents();
+        HttpClientModule,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

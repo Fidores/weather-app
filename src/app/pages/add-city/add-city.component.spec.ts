@@ -5,6 +5,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddCityComponent } from './add-city.component';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('AddCityComponent', () => {
   let component: AddCityComponent;
@@ -12,17 +13,14 @@ describe('AddCityComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        AddCityComponent,
-        LoaderComponent 
-      ],
+      declarations: [AddCityComponent, LoaderComponent],
       imports: [
         NgScrollbarModule,
         HttpClientModule,
-        RouterModule.forRoot([])
-      ]
-    })
-    .compileComponents();
+        RouterModule.forRoot([]),
+        ToastrModule.forRoot(),
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

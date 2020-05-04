@@ -1,3 +1,4 @@
+import { IconComponent } from './../icon/icon.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SmallWeatherCardComponent } from './small-weather-card.component';
@@ -8,9 +9,8 @@ describe('SmallWeatherCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SmallWeatherCardComponent ]
-    })
-    .compileComponents();
+      declarations: [SmallWeatherCardComponent, IconComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

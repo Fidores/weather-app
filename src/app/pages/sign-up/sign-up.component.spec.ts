@@ -1,3 +1,7 @@
+import { ToastrModule } from 'ngx-toastr';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignUpComponent } from './sign-up.component';
@@ -8,9 +12,14 @@ describe('SignUpComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignUpComponent ]
-    })
-    .compileComponents();
+      declarations: [SignUpComponent],
+      imports: [
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterModule.forRoot([]),
+        ToastrModule.forRoot(),
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,3 +1,4 @@
+import { IconComponent } from './../icon/icon.component';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -10,13 +11,9 @@ describe('WeatherCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WeatherCardComponent ],
-      imports: [
-        FontAwesomeModule,
-        SwiperModule
-      ]
-    })
-    .compileComponents();
+      declarations: [WeatherCardComponent, IconComponent],
+      imports: [FontAwesomeModule, SwiperModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

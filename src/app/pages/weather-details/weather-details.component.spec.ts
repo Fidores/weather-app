@@ -1,3 +1,4 @@
+import { IconComponent } from './../../ui-components/icon/icon.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './../../ui-components/loader/loader.component';
@@ -14,19 +15,19 @@ describe('WeatherDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        WeatherDetailsComponent, 
+      declarations: [
+        WeatherDetailsComponent,
         SmallWeatherCardComponent,
-        LoaderComponent
+        LoaderComponent,
+        IconComponent,
       ],
       imports: [
         SwiperModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        RouterModule.forRoot([])
-      ]
-    })
-    .compileComponents();
+        RouterModule.forRoot([]),
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
