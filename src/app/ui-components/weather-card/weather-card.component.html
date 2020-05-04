@@ -4,7 +4,10 @@
   </div>
 
   <div class="weather-card__image-container">
-    <app-icon [iconId]="weather.weather.icon"></app-icon>
+    <app-icon
+      spriteOrigin="../assets/icons/weather-icons/sprite.svg"
+      [iconId]="weather.weather.icon"
+    ></app-icon>
   </div>
 
   <div class="weather-card__current-temp">

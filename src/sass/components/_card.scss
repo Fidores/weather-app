@@ -1,43 +1,43 @@
 @import '../utils/mixins';
 
 @mixin card {
-    background: $card-bg-color;
-    border-radius: rem($radius-big);
-    padding: rem($spacing-medium);
-    text-align: center;
-    transition: transform .1s linear;
-    cursor: pointer;
-    display: block;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background: $card-bg-color;
+  border-radius: rem($radius-big);
+  padding: rem($spacing-medium);
+  text-align: center;
+  transition: transform 0.1s linear;
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    &:active {
-        transform: scale(0.9);
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    margin-bottom: rem($spacing-medium);
+  }
+
+  &__icon {
+    width: 85%;
+    margin: 0px auto;
+  }
+
+  @include noCursor() {
+    transform: scale(0.9);
+
+    &:hover {
+      transform: scale(1);
     }
+  }
 
-    &__title {
-        font-size: 1.2rem;
-        margin-bottom: rem($spacing-medium);
-    }
-
+  @include respondTo('mobile-l') {
     &__icon {
-        width: 85%;
-        margin: 0px auto;
+      width: 70%;
     }
-
-    @include noCursor() {
-        transform: scale(0.9);
-
-        &:hover {
-            transform: scale(1);
-        }
-    }
-
-    @include respondTo('mobile-l'){
-        &__icon {
-            width: 70%;
-        }
-    }
+  }
 }

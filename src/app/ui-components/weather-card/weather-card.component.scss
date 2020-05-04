@@ -4,50 +4,55 @@
 @import '../../../sass/utils/variables';
 
 .weather-card {
-    @include card;
+  @include card;
 
+  &__current-temp {
+    font-size: 5rem;
+  }
+
+  &__subtitle {
+    margin: rem($spacing-medium) 0px;
+    font-size: 1.1rem;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__total-temperatures {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__temp {
+    font-size: 1.8rem;
+    color: $primary-text-color;
+  }
+
+  &__max-temp {
+    color: $accent-color-success;
+  }
+
+  &__min-temp {
+    color: $accent-color-danger;
+  }
+
+  @include respondTo('mobile-l') {
     &__current-temp {
-        font-size: 5rem;
+      font-size: 4rem;
     }
 
     &__subtitle {
-        margin: rem($spacing-medium) 0px;
-        font-size: 1.1rem;
-
-        &::first-letter {
-            text-transform: uppercase;
-        }
-    }
-
-    &__total-temperatures {
-        display: flex;
-        justify-content: space-between;
+      margin: rem($spacing-small) 0px;
     }
 
     &__temp {
-        font-size: 1.8rem;
-        color: $primary-text-color;
+      font-size: 1.5rem;
     }
 
-    &__max-temp {
-        color: $accent-color-success;
+    &__image-container {
+      width: 80%;
+      margin: 0px auto;
     }
-
-    &__min-temp {
-        color: $accent-color-danger;
-    }
-
-    @include respondTo('mobile-l') {
-        &__current-temp {
-            font-size: 4rem;
-        }
-
-        &__subtitle {
-            margin: rem($spacing-small) 0px;
-        }
-
-        &__temp {
-            font-size: 1.5rem;
-        }
-    }
+  }
 }

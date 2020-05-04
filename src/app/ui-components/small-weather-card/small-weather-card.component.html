@@ -2,7 +2,10 @@
   <div class="day-preview__title">{{ period.hour }}</div>
 
   <div class="day-preview__icon">
-    <app-icon [iconId]="period.weather.icon"></app-icon>
+    <app-icon
+      spriteOrigin="../assets/icons/weather-icons/sprite.svg"
+      [iconId]="period.weather.icon"
+    ></app-icon>
   </div>
 
   <div class="day-preview__weather">
