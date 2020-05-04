@@ -1,17 +1,16 @@
 <div class="day-preview" *ngIf="period">
+  <div class="day-preview__title">{{ period.hour }}</div>
 
-    <div class="day-preview__title">{{ period.hour }}</div>
+  <div class="day-preview__icon">
+    <app-icon
+      spriteOrigin="assets/icons/weather-icons/sprite.svg"
+      [iconId]="period.weather.icon"
+    ></app-icon>
+  </div>
 
-    <div class="day-preview__icon">
-        <img src="../../../assets/icons/weather-icons/{{ period.weather.icon }}.svg" alt="ikona pogody">
-    </div>
+  <div class="day-preview__weather">
+    <p class="day-preview__temp">{{ period.main.temp }}&deg;</p>
 
-    <div class="day-preview__weather">
-
-        <p class="day-preview__temp">{{ period.main.temp }}&deg;</p>
-
-        <p class="day-preview__description">{{ period.weather.description }}</p>
-
-    </div>
-
+    <p class="day-preview__description">{{ period.weather.description }}</p>
+  </div>
 </div>

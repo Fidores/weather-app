@@ -30,6 +30,7 @@ import { AccountSettingsComponent } from './pages/account-settings/account-setti
 import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ToastrModule } from 'ngx-toastr';
+import { IconComponent } from './ui-components/icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ToastrModule } from 'ngx-toastr';
     AccountSettingsComponent,
     LoginComponent,
     SignUpComponent,
+    IconComponent,
   ],
   imports: [
     BrowserModule,

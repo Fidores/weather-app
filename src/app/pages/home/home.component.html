@@ -1,35 +1,34 @@
 <div class="container" *ngIf="isLoggedIn; else loginRequired">
-    
-    <swiper [config]="sliderConfig" @slideInEntranceParent *ngIf="cities; else loader">
+  <swiper
+    [config]="sliderConfig"
+    @slideInEntranceParent
+    *ngIf="cities; else loader"
+  >
+    <weather-card
+      [routerLink]="['weather-details', weather.city.id]"
+      @slideInEntranceChild
+      *ngFor="let weather of cities"
+      [weather]="weather"
+    ></weather-card>
 
-        <weather-card [routerLink]="['weather-details', weather.city.id]" @slideInEntranceChild *ngFor="let weather of cities" [weather]="weather"></weather-card>
+    <add-city-card routerLink="/add-city" @slideInEntranceChild></add-city-card>
+  </swiper>
 
-        <add-city-card routerLink="/add-city" @slideInEntranceChild></add-city-card>
-    
-    </swiper>
-
-    <ng-template #loader>
-
-        <div class="loader-container">
-            <loader></loader>
-        </div>
-
-    </ng-template>
-    
+  <ng-template #loader>
+    <div class="loader-container">
+      <loader></loader>
+    </div>
+  </ng-template>
 </div>
 
 <ng-template #loginRequired>
-
-    <div class="clue clue--fixed">
-
-        <div class="clue__image">
-            <img src="../../../assets/images/login.svg" alt="clue image">
-        </div>
-
-        <div class="clue__description">
-            <a routerLink="/login" class="link">Zaloguj się</a> aby kontynuować ...
-        </div>
-
+  <div class="clue clue--fixed">
+    <div class="clue__image">
+      <img src="../../../assets/images/login.svg" alt="clue image" />
     </div>
 
+    <div class="clue__description">
+      <a routerLink="/login" class="link">Zaloguj się</a> aby kontynuować ...
+    </div>
+  </div>
 </ng-template>

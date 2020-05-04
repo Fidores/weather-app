@@ -1,55 +1,50 @@
 <div class="weather-card" *ngIf="weather">
-    
-    <div class="weather-card__title">
-        <h2>{{ weather.city.name }}</h2>
+  <div class="weather-card__title">
+    <h2>{{ weather.city.name }}</h2>
+  </div>
+
+  <div class="weather-card__image-container">
+    <app-icon
+      spriteOrigin="assets/icons/weather-icons/sprite.svg"
+      [iconId]="weather.weather.icon"
+    ></app-icon>
+  </div>
+
+  <div class="weather-card__current-temp">
+    {{ weather.main.temp }}<sup>&deg;</sup>
+  </div>
+
+  <div class="weather-card__subtitle">
+    {{ weather.weather.description }}
+  </div>
+
+  <div class="weather-card__total-temperatures">
+    <div class="weather-card__min-temp weather-card__total-temp">
+      <div>
+        <fa-icon [icon]="faSortDown"></fa-icon>
+      </div>
+
+      <div class="weather-card__temp">
+        {{ weather.main.tempMin }}
+      </div>
+
+      <div class="weather-card__temp-description">
+        Min
+      </div>
     </div>
 
-    <div class="weather-card__image-container">
-        <img src="../../../assets/icons/weather-icons/{{ weather.weather.icon }}.svg" alt="częściowe zachmórzenie" class="weather-card__icon">
+    <div class="weather-card__max-temp weather-card__total-temp">
+      <div>
+        <fa-icon [icon]="faSortUp"></fa-icon>
+      </div>
+
+      <div class="weather-card__temp">
+        {{ weather.main.tempMax }}
+      </div>
+
+      <div class="weather-card__temp-description">
+        Max
+      </div>
     </div>
-
-    <div class="weather-card__current-temp">
-        {{ weather.main.temp }}<sup>&deg;</sup>
-    </div>
-
-    <div class="weather-card__subtitle">
-        {{ weather.weather.description }}
-    </div>
-
-    <div class="weather-card__total-temperatures">
-
-        <div class="weather-card__min-temp weather-card__total-temp">
-
-            <div>
-                <fa-icon [icon]="faSortDown"></fa-icon>
-            </div>
-            
-            <div class="weather-card__temp">
-                {{ weather.main.tempMin }}
-            </div>
-
-            <div class="weather-card__temp-description">
-                Min
-            </div>
-
-        </div>
-
-        <div class="weather-card__max-temp weather-card__total-temp">
-            
-            <div>
-                <fa-icon [icon]="faSortUp"></fa-icon>
-            </div>
-            
-            <div class="weather-card__temp">
-                {{ weather.main.tempMax }}
-            </div>
-
-            <div class="weather-card__temp-description">
-                Max
-            </div>
-
-        </div>
-
-    </div>
-
-</div> 
+  </div>
+</div>
