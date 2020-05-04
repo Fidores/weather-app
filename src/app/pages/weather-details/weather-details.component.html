@@ -15,7 +15,10 @@
 
     <div class="weather-details__content-wrapper">
       <div class="weather-details__icon-container">
-        <app-icon [iconId]="currentWeather.weather.icon"></app-icon>
+        <app-icon
+          [iconId]="currentWeather.weather.icon"
+          spriteOrigin="../assets/icons/weather-icons/sprite.svg"
+        ></app-icon>
       </div>
 
       <div class="weather-details__temp">
