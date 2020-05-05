@@ -39,7 +39,7 @@ export class AccountService {
       .pipe(tap(user => this._user.next(user)));
   }
 
-  singUp(user: UserPayload): Observable<User> {
+  signUp(user: UserPayload): Observable<User> {
     return this.http
       .post<User>(`${this.env.API.origin}users/`, user, { observe: 'response' })
       .pipe(

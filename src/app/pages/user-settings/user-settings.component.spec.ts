@@ -10,15 +10,9 @@ describe('UserSettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        UserSettingsComponent 
-      ],
-      imports: [
-        FontAwesomeModule,
-        RouterModule.forRoot([])
-      ]
-    })
-    .compileComponents();
+      declarations: [UserSettingsComponent],
+      imports: [FontAwesomeModule, RouterModule.forRoot([])],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

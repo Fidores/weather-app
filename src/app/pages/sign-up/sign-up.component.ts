@@ -28,8 +28,6 @@ export class SignUpComponent {
     matchFields('password', 'confirmPassword')
   );
 
-  // TODO: Handle errors.
-
   signUp() {
     const user: UserPayload = {
       name: this.signUpForm.get('name').value,
@@ -37,7 +35,7 @@ export class SignUpComponent {
       password: this.signUpForm.get('password').value,
     };
 
-    this.account.singUp(user).subscribe(
+    this.account.signUp(user).subscribe(
       user => {
         const redirectTo = sessionStorage.getItem('redirectTo');
         this.router

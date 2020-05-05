@@ -8,9 +8,8 @@ describe('AddCityCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddCityCardComponent ]
-    })
-    .compileComponents();
+      declarations: [AddCityCardComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
