@@ -5,17 +5,12 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'small-weather-card',
   templateUrl: './small-weather-card.component.html',
-  styleUrls: ['./small-weather-card.component.scss']
+  styleUrls: ['./small-weather-card.component.scss'],
 })
 export class SmallWeatherCardComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   @Input('period') period: Period;
 
-  formatIconName = formatIconName;
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

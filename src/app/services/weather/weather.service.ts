@@ -39,7 +39,7 @@ export class WeatherService {
    * @param id id of a city.
    */
 
-  fiveDayForecast(id: string): Observable<Forecast> {
+  fiveDaysForecast(id: string): Observable<Forecast> {
     if (!id) return of({} as Forecast);
     return this.settings.settings.pipe(
       switchMap(settings =>

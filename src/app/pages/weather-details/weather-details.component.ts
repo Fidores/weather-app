@@ -36,7 +36,7 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions.add(
       this.weather
-        .fiveDayForecast(this.route.snapshot.params.id)
+        .fiveDaysForecast(this.route.snapshot.params.id)
         .subscribe(forecast => (this.forecast = forecast))
     );
     this.subscriptions.add(

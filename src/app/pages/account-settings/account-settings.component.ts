@@ -1,12 +1,11 @@
-import { ToastrService } from 'ngx-toastr';
-import { fade } from './../../animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { AccountService } from 'src/app/services/account/account.service';
 
-import { User, UpdateUser } from './../../models/User';
-import { HttpErrorResponse } from '@angular/common/http';
-import { take } from 'rxjs/operators';
+import { fade } from './../../animations';
+import { UpdateUser, User } from './../../models/User';
 
 @Component({
   templateUrl: './account-settings.component.html',
