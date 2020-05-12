@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,7 +25,7 @@ describe('UnAuthGuard', () => {
         { provide: AccountService, useClass: MockAccountService },
         { provide: Router, useClass: MockRouter },
       ],
-      imports: [HttpClientTestingModule, RouterModule.forRoot([])],
+      imports: [HttpClientTestingModule, RouterTestingModule],
     });
   });
 

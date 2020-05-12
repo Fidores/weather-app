@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { User } from './../../models/User';
 import { of, throwError } from 'rxjs';
@@ -20,7 +21,7 @@ describe('LoginComponent', () => {
       imports: [
         FormsModule,
         HttpClientTestingModule,
-        RouterModule.forRoot([]),
+        RouterTestingModule,
         ToastrModule.forRoot(),
       ],
     }).compileComponents();
