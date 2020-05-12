@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SmallWeatherCardComponent } from './small-weather-card.component';
 
-describe('SmallWeatherCardComponent', () => {
+describe('*SmallWeatherCardComponent', () => {
   let component: SmallWeatherCardComponent;
   let fixture: ComponentFixture<SmallWeatherCardComponent>;
 

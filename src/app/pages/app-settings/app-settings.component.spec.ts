@@ -1,3 +1,5 @@
+import { User } from './../../models/User';
+import { AppSettings } from './../../models/AppSettings';
 import { SettingsService } from './../../services/app-settings/settings.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgScrollbarModule } from 'ngx-scrollbar';
@@ -7,26 +9,25 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppSettingsComponent } from './app-settings.component';
 import { SelectComponent } from 'src/app/ui-components/select/select.component';
-import { of } from 'rxjs';
+import { of, BehaviorSubject } from 'rxjs';
 
 describe('AppSettingsComponent', () => {
   let component: AppSettingsComponent;
   let fixture: ComponentFixture<AppSettingsComponent>;
+  let settingsServiceMock: SettingsServiceMock;
 
   beforeEach(async(() => {
+    settingsServiceMock = new SettingsServiceMock();
     TestBed.configureTestingModule({
-      declarations: [ 
-        AppSettingsComponent,
-        SelectComponent
-      ],
+      declarations: [AppSettingsComponent, SelectComponent],
       imports: [
         ReactiveFormsModule,
         FontAwesomeModule,
         NgScrollbarModule,
-        HttpClientModule
-      ]
-    })
-    .compileComponents();
+        HttpClientModule,
+      ],
+      providers: [{ provide: SettingsService, useValue: settingsServiceMock }],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -40,21 +41,22 @@ describe('AppSettingsComponent', () => {
   });
 
   describe('changeSettings', () => {
-
     it('should call service to change settings', done => {
-      const settingsService: SettingsService = fixture.debugElement.injector.get(SettingsService);
-      const spy = spyOn(settingsService, 'changeSettings').and.returnValue(of({} as any));
+      const settingsService: SettingsService = fixture.debugElement.injector.get(
+        SettingsService
+      );
+      const spy = spyOn(settingsService, 'changeSettings').and.returnValue(
+        of({} as any)
+      );
 
       component.changeSettings();
 
       expect(spy).toHaveBeenCalled();
       done();
     });
-
   });
 
   describe('ngOnDestroy', () => {
-
     it('should unsubscribe from all subscriptions', done => {
       const spy = spyOn(component.subscriptions, 'unsubscribe');
 
@@ -63,13 +65,13 @@ describe('AppSettingsComponent', () => {
       expect(spy).toHaveBeenCalled();
       done();
     });
-
   });
 
   describe('ngOnInit', () => {
-
     it('should subscribe to settings changes', done => {
-      const settingsService: SettingsService = fixture.debugElement.injector.get(SettingsService);
+      const settingsService: SettingsService = fixture.debugElement.injector.get(
+        SettingsService
+      );
       const spy = spyOn(settingsService.settings, 'subscribe');
 
       component.ngOnInit();
@@ -89,15 +91,40 @@ describe('AppSettingsComponent', () => {
 
     it('should patch form after settings have been changed without emitting events', done => {
       const spy = spyOn(component.settingsForm, 'patchValue');
-      const settingsService: SettingsService = fixture.debugElement.injector.get(SettingsService);
+      const settingsService: SettingsService = fixture.debugElement.injector.get(
+        SettingsService
+      );
 
       component.ngOnInit();
-      settingsService.settings.subscribe((appSettings) => {
+      settingsService.settings.subscribe(appSettings => {
         expect(spy).toHaveBeenCalledWith(appSettings, { emitEvent: false });
         done();
       });
       settingsService.settings.next({} as any);
     });
-
   });
 });
+
+class SettingsServiceMock implements Partial<SettingsService> {
+  _settings: BehaviorSubject<AppSettings> = new BehaviorSubject({
+    lang: 'pl',
+  } as AppSettings);
+
+  init(): import('rxjs').Observable<
+    import('../../models/AppSettings').AppSettings
+  > {
+    return of({ lang: 'pl' } as any);
+  }
+
+  changeSettings(
+    newSettings: import('../../models/AppSettings').AppSettings
+  ): import('rxjs').Observable<import('../../models/AppSettings').AppSettings> {
+    return of(newSettings);
+  }
+
+  get settings(): import('rxjs').BehaviorSubject<
+    import('../../models/AppSettings').AppSettings
+  > {
+    return this._settings;
+  }
+}

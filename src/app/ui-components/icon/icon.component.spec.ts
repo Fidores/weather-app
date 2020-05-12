@@ -2,15 +2,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IconComponent } from './icon.component';
 
-describe('IconComponent', () => {
+describe('*IconComponent', () => {
   let component: IconComponent;
   let fixture: ComponentFixture<IconComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IconComponent ]
-    })
-    .compileComponents();
+      declarations: [IconComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

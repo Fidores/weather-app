@@ -7,11 +7,10 @@ import { EventEmitter } from 'events';
 @Component({
   selector: 'weather-card',
   templateUrl: './weather-card.component.html',
-  styleUrls: ['./weather-card.component.scss']
+  styleUrls: ['./weather-card.component.scss'],
 })
 export class WeatherCardComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   @Input('weather') weather: CurrentWeather;
   @Output('onDelete') onDelete = new EventEmitter();
@@ -20,8 +19,5 @@ export class WeatherCardComponent implements OnInit {
   faSortDown = faSortDown;
   formatIconName = formatIconName;
 
-  ngOnInit() {
-
-  }
-
+  ngOnInit() {}
 }

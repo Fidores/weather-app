@@ -1,19 +1,15 @@
-import { User } from './../../models/User';
-import { of } from 'rxjs';
-import { AccountService } from './../../services/account/account.service';
 import { HttpClientModule } from '@angular/common/http';
-import {
-  async,
-  ComponentFixture,
-  TestBed,
-  inject,
-} from '@angular/core/testing';
-
-import { AccountSettingsComponent } from './account-settings.component';
-import { FormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
 import { Injector } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
+
+import { User } from './../../models/User';
+import { AccountService } from './../../services/account/account.service';
+import { AccountSettingsComponent } from './account-settings.component';
 
 describe('AccountSettingsComponent', () => {
   let component: AccountSettingsComponent;
@@ -22,7 +18,12 @@ describe('AccountSettingsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AccountSettingsComponent],
-      imports: [FormsModule, HttpClientModule, ToastrModule.forRoot()],
+      imports: [
+        FormsModule,
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        BrowserAnimationsModule,
+      ],
     }).compileComponents();
   }));
 
@@ -48,6 +49,41 @@ describe('AccountSettingsComponent', () => {
       expect(spy).toHaveBeenCalled();
       done();
     });
+
+    it('should call service to update user data on the server', done => {
+      const accountService: AccountService = injector.get(AccountService);
+      const spy = spyOn(accountService, 'updateUser').and.returnValue(
+        of({} as User)
+      );
+
+      component.updateUser();
+
+      expect(spy).toHaveBeenCalled();
+      done();
+    });
+
+    it('should call callback method after successful update', done => {
+      const user: User = { name: 'name' } as User;
+      const spy = spyOn(component as any, 'onSuccessfulUpdate');
+      const accountService: AccountService = injector.get(AccountService);
+      spyOn(accountService, 'updateUser').and.returnValue(of(user));
+
+      component.updateUser();
+
+      expect(spy).toHaveBeenCalledWith(user);
+      done();
+    });
+  });
+
+  describe('ngOnDestroy', () => {
+    it('should unsubscribe from all subscriptions', done => {
+      const spy = spyOn(component.subscriptions, 'unsubscribe');
+
+      component.ngOnDestroy();
+
+      expect(spy).toHaveBeenCalled();
+      done();
+    });
   });
 
   describe('ngOnInit', () => {
@@ -61,6 +97,18 @@ describe('AccountSettingsComponent', () => {
         expect(component.user.name).toEqual(user.name);
         done();
       });
+    });
+  });
+
+  describe('onSuccessfulUpdate', () => {
+    it('should display a notification about successfully update', done => {
+      const toastrService: ToastrService = injector.get(ToastrService);
+      const spy = spyOn(toastrService, 'success');
+
+      component['onSuccessfulUpdate'](null);
+
+      expect(spy).toHaveBeenCalled();
+      done();
     });
   });
 });

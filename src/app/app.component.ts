@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     // Add polish locale
     registerLocaleData(localePl);
 
+    // Initialize user and settings if user already logged in
     if (this.account.isLoggedIn) {
       concat(this.settings.init(), this.account.loadUser()).subscribe();
     }

@@ -1,8 +1,8 @@
-import { AccountService } from 'src/app/services/account/account.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+import { AccountService } from 'src/app/services/account/account.service';
 import { environment } from 'src/environments/environment';
 
 import { AppSettings } from './../../models/AppSettings';
