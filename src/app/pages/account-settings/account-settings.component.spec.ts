@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -20,7 +21,7 @@ describe('AccountSettingsComponent', () => {
       declarations: [AccountSettingsComponent],
       imports: [
         FormsModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         ToastrModule.forRoot(),
         BrowserAnimationsModule,
       ],

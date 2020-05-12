@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './../../ui-components/loader/loader.component';
@@ -16,7 +17,7 @@ describe('AddCityComponent', () => {
       declarations: [AddCityComponent, LoaderComponent],
       imports: [
         NgScrollbarModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         RouterModule.forRoot([]),
         ToastrModule.forRoot(),
       ],

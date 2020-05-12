@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AppSettings } from './models/AppSettings';
 import { User } from './models/User';
 import { of, BehaviorSubject } from 'rxjs';
@@ -28,7 +29,7 @@ describe('AppComponent', () => {
         RouterTestingModule,
         FontAwesomeModule,
         RouterModule.forRoot([]),
-        HttpClientModule,
+        HttpClientTestingModule,
         BrowserAnimationsModule,
       ],
       declarations: [

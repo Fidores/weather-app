@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Conflict } from './../../common/errors/conflict';
 import { User, UserPayload } from './../../models/User';
 import { of, Subject, throwError } from 'rxjs';
@@ -19,7 +20,7 @@ describe('SignUpComponent', () => {
       declarations: [SignUpComponent],
       imports: [
         ReactiveFormsModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         RouterModule.forRoot([]),
         ToastrModule.forRoot(),
       ],

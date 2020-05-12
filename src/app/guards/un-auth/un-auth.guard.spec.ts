@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { inject, TestBed } from '@angular/core/testing';
@@ -9,8 +10,10 @@ class MockRouter implements Partial<Router> {
   navigate = path => Promise.resolve(true);
 }
 
-class MockAccountService implements Partial<AccountService> { 
-  get isLoggedIn() { return false }
+class MockAccountService implements Partial<AccountService> {
+  get isLoggedIn() {
+    return false;
+  }
 }
 
 describe('UnAuthGuard', () => {
@@ -19,29 +22,30 @@ describe('UnAuthGuard', () => {
       providers: [
         UnAuthGuard,
         { provide: AccountService, useClass: MockAccountService },
-        { provide: Router, useClass: MockRouter }
+        { provide: Router, useClass: MockRouter },
       ],
-      imports: [
-        HttpClientModule,
-        RouterModule.forRoot([])
-      ]
+      imports: [HttpClientTestingModule, RouterModule.forRoot([])],
     });
   });
 
-  it('should prevent unauthenticated users from accesssing the route', inject([UnAuthGuard],
-  (guard: UnAuthGuard) => {
-    const state: any = { url: '' };
+  it('should prevent unauthenticated users from accesssing the route', inject(
+    [UnAuthGuard],
+    (guard: UnAuthGuard) => {
+      const state: any = { url: '' };
 
-    expect(guard.canActivate(null, state)).toBeFalsy();
-  }));
+      expect(guard.canActivate(null, state)).toBeFalsy();
+    }
+  ));
 
-  it('should redirect user to login component', inject([UnAuthGuard, Router], 
-  (guard: UnAuthGuard, router: Router) => {
-    const spy = spyOn(router, 'navigate'); 
-    const state: any = { url: '' };
+  it('should redirect user to login component', inject(
+    [UnAuthGuard, Router],
+    (guard: UnAuthGuard, router: Router) => {
+      const spy = spyOn(router, 'navigate');
+      const state: any = { url: '' };
 
-    guard.canActivate(null, state);
-  
-    expect(spy).toHaveBeenCalledWith(['/login']);
-  }));
+      guard.canActivate(null, state);
+
+      expect(spy).toHaveBeenCalledWith(['/login']);
+    }
+  ));
 });

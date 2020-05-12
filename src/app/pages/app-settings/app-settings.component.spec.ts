@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { User } from './../../models/User';
 import { AppSettings } from './../../models/AppSettings';
 import { SettingsService } from './../../services/app-settings/settings.service';
@@ -24,7 +25,7 @@ describe('AppSettingsComponent', () => {
         ReactiveFormsModule,
         FontAwesomeModule,
         NgScrollbarModule,
-        HttpClientModule,
+        HttpClientTestingModule,
       ],
       providers: [{ provide: SettingsService, useValue: settingsServiceMock }],
     }).compileComponents();

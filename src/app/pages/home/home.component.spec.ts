@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -36,7 +37,7 @@ describe('HomeComponent', () => {
         RouterModule.forRoot([]),
         FontAwesomeModule,
         BrowserAnimationsModule,
-        HttpClientModule,
+        HttpClientTestingModule,
       ],
     }).compileComponents();
   }));

@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,17 +16,14 @@ describe('SideMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ 
-        SideMenuComponent
-      ],
+      declarations: [SideMenuComponent],
       imports: [
         FontAwesomeModule,
         NoopAnimationsModule,
         RouterModule.forRoot([]),
-        HttpClientModule
-      ]
-    })
-    .compileComponents();
+        HttpClientTestingModule,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -72,10 +70,11 @@ describe('SideMenuComponent', () => {
   });
 
   describe('broadcastersSubscriptions', () => {
-
     it('should set isOpened property to false whenever service requests to close the menu', done => {
-      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(SideMenuService);
-      
+      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(
+        SideMenuService
+      );
+
       component.isOpened = true;
       sideMenuService.closeMenuBroadcaster.subscribe(() => {
         expect(component.isOpened).toBeFalsy();
@@ -86,8 +85,10 @@ describe('SideMenuComponent', () => {
     });
 
     it('should set isOpened property to true whenever service requests to open the menu', done => {
-      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(SideMenuService);
-      
+      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(
+        SideMenuService
+      );
+
       component.isOpened = false;
       sideMenuService.openMenuBroadcaster.subscribe(() => {
         expect(component.isOpened).toBeTruthy();
@@ -98,8 +99,10 @@ describe('SideMenuComponent', () => {
     });
 
     it('should toggle isOpened property whenever service requests to toggle the menu', done => {
-      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(SideMenuService);
-      
+      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(
+        SideMenuService
+      );
+
       component.isOpened = false;
       sideMenuService.toggleMenuBroadcaster.subscribe(() => {
         expect(component.isOpened).toBeTruthy();
@@ -110,7 +113,9 @@ describe('SideMenuComponent', () => {
     });
 
     it('should call closeMenu if user clicked on the overlay', done => {
-      const overlayService: OverlayService = fixture.debugElement.injector.get(OverlayService);
+      const overlayService: OverlayService = fixture.debugElement.injector.get(
+        OverlayService
+      );
       const spy = spyOn(component, 'closeMenu');
 
       overlayService.clickOnOverlayBroadcaster.subscribe(() => {
@@ -120,11 +125,9 @@ describe('SideMenuComponent', () => {
 
       overlayService.clickOnOverlayBroadcaster.next();
     });
-
   });
 
   describe('closeMenu', () => {
-
     it('should set isOpened property to false', done => {
       component.isOpened = true;
 
@@ -135,7 +138,9 @@ describe('SideMenuComponent', () => {
     });
 
     it('should request to close the overlay', done => {
-      const overlayService: OverlayService = fixture.debugElement.injector.get(OverlayService);
+      const overlayService: OverlayService = fixture.debugElement.injector.get(
+        OverlayService
+      );
       const spy = spyOn(overlayService, 'closeOverlay');
 
       component.closeMenu();
@@ -143,11 +148,9 @@ describe('SideMenuComponent', () => {
       expect(spy).toHaveBeenCalled();
       done();
     });
-
   });
 
   describe('ngOnDestroy', () => {
-
     it('should unsubscribe from all broadcasters subscriptions', done => {
       const spy = spyOn(component.subscriptions, 'unsubscribe');
 
@@ -156,13 +159,13 @@ describe('SideMenuComponent', () => {
       expect(spy).toHaveBeenCalled();
       done();
     });
-
   });
 
   describe('ngOnInit', () => {
-
     it('should subscribe to close menu requests', done => {
-      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(SideMenuService);
+      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(
+        SideMenuService
+      );
       const spy = spyOn(sideMenuService.closeMenuBroadcaster, 'subscribe');
 
       component.ngOnInit();
@@ -172,7 +175,9 @@ describe('SideMenuComponent', () => {
     });
 
     it('should subscribe to open menu requests', done => {
-      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(SideMenuService);
+      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(
+        SideMenuService
+      );
       const spy = spyOn(sideMenuService.openMenuBroadcaster, 'subscribe');
 
       component.ngOnInit();
@@ -182,7 +187,9 @@ describe('SideMenuComponent', () => {
     });
 
     it('should subscribe to toggle menu requests', done => {
-      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(SideMenuService);
+      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(
+        SideMenuService
+      );
       const spy = spyOn(sideMenuService.toggleMenuBroadcaster, 'subscribe');
 
       component.ngOnInit();
@@ -192,7 +199,9 @@ describe('SideMenuComponent', () => {
     });
 
     it('should subscribe to clicks on overlay', done => {
-      const overlayService: OverlayService = fixture.debugElement.injector.get(OverlayService);
+      const overlayService: OverlayService = fixture.debugElement.injector.get(
+        OverlayService
+      );
       const spy = spyOn(overlayService.clickOnOverlayBroadcaster, 'subscribe');
 
       component.ngOnInit();
@@ -200,7 +209,5 @@ describe('SideMenuComponent', () => {
       expect(spy).toHaveBeenCalled();
       done();
     });
-
   });
-
 });

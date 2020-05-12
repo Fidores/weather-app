@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { OverlayService } from './../../services/overlay/overlay.service';
 import { SideMenuService } from './../../services/side-menu/side-menu.service';
@@ -13,14 +14,13 @@ describe('MainHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainHeaderComponent ],
+      declarations: [MainHeaderComponent],
       imports: [
         FontAwesomeModule,
         RouterModule.forRoot([]),
-        HttpClientModule
-      ]
-    })
-    .compileComponents();
+        HttpClientTestingModule,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -34,9 +34,10 @@ describe('MainHeaderComponent', () => {
   });
 
   describe('openMenu', () => {
-
     it('should open the side menu', done => {
-      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(SideMenuService);
+      const sideMenuService: SideMenuService = fixture.debugElement.injector.get(
+        SideMenuService
+      );
       const spy = spyOn(sideMenuService, 'openMenu');
 
       component.openMenu();
@@ -46,7 +47,9 @@ describe('MainHeaderComponent', () => {
     });
 
     it('should open the overlay', done => {
-      const overlayService: OverlayService = fixture.debugElement.injector.get(OverlayService);
+      const overlayService: OverlayService = fixture.debugElement.injector.get(
+        OverlayService
+      );
       const spy = spyOn(overlayService, 'openOverlay');
 
       component.openMenu();
@@ -54,6 +57,5 @@ describe('MainHeaderComponent', () => {
       expect(spy).toHaveBeenCalled();
       done();
     });
-
   });
 });

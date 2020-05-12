@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CurrentWeather } from './../../models/CurrentWeather';
 import { Forecast } from './../../models/Forecast';
 import { WeatherService } from './../../services/weather/weather.service';
@@ -35,7 +36,7 @@ describe('WeatherDetailsComponent', () => {
       imports: [
         SwiperModule,
         BrowserAnimationsModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         RouterModule.forRoot([]),
       ],
     }).compileComponents();

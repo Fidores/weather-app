@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { City } from './../../models/City';
 import { CitiesService } from './../../services/cities/cities.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,7 +18,7 @@ describe('SavedCitiesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SavedCitiesComponent],
-      imports: [HttpClientModule, FontAwesomeModule],
+      imports: [HttpClientTestingModule, FontAwesomeModule],
     }).compileComponents();
   }));
 

@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SettingsService } from './../app-settings/settings.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
@@ -11,7 +12,7 @@ describe('WeatherService', () => {
   beforeEach(() => {
     settingsServiceMock = new SettingsServiceMock();
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientTestingModule],
       providers: [{ provide: SettingsService, useValue: settingsServiceMock }],
     });
   });
