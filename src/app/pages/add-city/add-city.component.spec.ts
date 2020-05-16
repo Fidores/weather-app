@@ -1,23 +1,18 @@
-import { Conflict } from './../../common/errors/conflict';
-import { City } from './../../models/City';
-import { of, throwError } from 'rxjs';
-import { CitiesService } from './../../services/cities/cities.service';
+import { AppError } from './../../common/errors/appError';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import {
-  async,
-  ComponentFixture,
-  TestBed,
-  inject,
-} from '@angular/core/testing';
-import { RouterModule, Router } from '@angular/router';
+import { Injector } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router, RouterModule } from '@angular/router';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
+import { BadRequest } from 'src/app/common/errors/badRequest';
 
+import { Conflict } from './../../common/errors/conflict';
+import { City } from './../../models/City';
+import { CitiesService } from './../../services/cities/cities.service';
 import { LoaderComponent } from './../../ui-components/loader/loader.component';
 import { AddCityComponent } from './add-city.component';
-import { Injector } from '@angular/core';
-import { catchError } from 'rxjs/operators';
-import { BadRequest } from 'src/app/common/errors/badRequest';
 
 describe('AddCityComponent', () => {
   let component: AddCityComponent;
@@ -45,6 +40,30 @@ describe('AddCityComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('onInputChange', () => {
+    let eventMock: any;
+
+    beforeEach(() => (eventMock = { target: { value: 'value' } } as any));
+
+    it('should set isLoading property to true', done => {
+      component.isLoading = false;
+
+      component['onInputChange'](eventMock);
+
+      expect(component.isLoading).toBeTruthy();
+      done();
+    });
+
+    it('should call searchForCity() method', done => {
+      const spy = spyOn(component, 'searchForCity');
+
+      component['onInputChange'](eventMock);
+
+      expect(spy).toHaveBeenCalled();
+      done();
+    });
   });
 
   describe('ngOnDestroy', () => {
@@ -107,44 +126,45 @@ describe('AddCityComponent', () => {
       expect(spy).toHaveBeenCalledWith(1);
       done();
     });
+  });
 
+  describe('onSuccessfulCityAdd', () => {
     it('should navigate to home page after successful operation', done => {
-      const cities: City[] = [{ name: 'london' }] as any;
-      const citiesService: CitiesService = injector.get(CitiesService);
       const router: Router = injector.get(Router);
       const spy = spyOn(router, 'navigate');
-      spyOn(citiesService, 'saveCity').and.returnValue(of(cities));
 
-      component.addCity(1);
-      citiesService.saveCity(1).subscribe(() => {
-        expect(spy).toHaveBeenCalledWith(['/']);
-        done();
-      });
+      component['onSuccessfulCityAdd']();
+
+      expect(spy).toHaveBeenCalledWith(['/']);
+      done();
     });
+  });
 
+  describe('onUnsuccessfulCityAdd', () => {
     it('should display notification if city was already saved', done => {
-      const citiesService: CitiesService = injector.get(CitiesService);
-      const toastrService: ToastrService = injector.get(ToastrService);
-      spyOn(citiesService, 'saveCity').and.returnValue(
-        throwError(new Conflict())
-      );
-      const spy = spyOn(toastrService, 'error');
+      const toastr: ToastrService = TestBed.get(ToastrService);
+      const spy = spyOn(toastr, 'error');
 
-      component.addCity(1);
+      component['onUnsuccessfulCityAdd'](new Conflict());
+
       expect(spy).toHaveBeenCalled();
       done();
     });
 
     it('should display notification if limit is used up', done => {
-      const citiesService: CitiesService = injector.get(CitiesService);
-      const toastrService: ToastrService = injector.get(ToastrService);
-      spyOn(citiesService, 'saveCity').and.returnValue(
-        throwError(new BadRequest())
-      );
-      const spy = spyOn(toastrService, 'error');
+      const toastr: ToastrService = TestBed.get(ToastrService);
+      const spy = spyOn(toastr, 'error');
 
-      component.addCity(1);
+      component['onUnsuccessfulCityAdd'](new BadRequest());
+
       expect(spy).toHaveBeenCalled();
+      done();
+    });
+
+    it('should rethrow an unexpected error', done => {
+      const error = new AppError();
+
+      expect(() => component['onUnsuccessfulCityAdd'](error)).toThrow(error);
       done();
     });
   });

@@ -12,14 +12,9 @@ describe('SelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectComponent ],
-      imports: [
-        FontAwesomeModule,
-        NgScrollbarModule,
-        BrowserAnimationsModule
-      ]
-    })
-    .compileComponents();
+      declarations: [SelectComponent],
+      imports: [FontAwesomeModule, NgScrollbarModule, BrowserAnimationsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -33,6 +28,14 @@ describe('SelectComponent', () => {
   });
 
   describe('custom made select bindings', () => {
+    it('should close menu when a click event is fired on outside of the select', done => {
+      const spy = spyOn(component, 'closeSelect');
+
+      document.dispatchEvent(new Event('click'));
+
+      expect(spy).toHaveBeenCalled();
+      done();
+    });
 
     it('should have an expanded modificator if it is expanded', done => {
       const de = fixture.debugElement.query(By.css('.select__option--current'));
@@ -46,7 +49,7 @@ describe('SelectComponent', () => {
     });
 
     it('should expand option list when clicked', done => {
-      component.options.push({value: 'a', name: 'a'});
+      component.options.push({ value: 'a', name: 'a' });
       fixture.detectChanges();
       const de = fixture.debugElement.query(By.css('.select__option--current'));
       const el: HTMLDivElement = de.nativeElement;
@@ -55,12 +58,12 @@ describe('SelectComponent', () => {
       el.dispatchEvent(new Event('click'));
       expect(spy).toHaveBeenCalled();
 
-      done()
+      done();
     });
 
     it('should display the name of the currently selected option', done => {
-      component.options.push({value: 'a', name: 'a'});
-      component.options.push({value: 'b', name: 'b'});
+      component.options.push({ value: 'a', name: 'a' });
+      component.options.push({ value: 'b', name: 'b' });
       fixture.detectChanges();
       const de = fixture.debugElement.query(By.css('.select__option--current'));
       const el: HTMLDivElement = de.nativeElement;
@@ -71,14 +74,16 @@ describe('SelectComponent', () => {
       component['_currentOptionIndex'] = 1;
       fixture.detectChanges();
       expect(el.innerText).toMatch('b');
-      
+
       done();
     });
 
     it('should display placeholder if no options are available', done => {
       component.options = [];
       fixture.detectChanges();
-      const de = fixture.debugElement.query(By.css('.select__option--placeholder'));
+      const de = fixture.debugElement.query(
+        By.css('.select__option--placeholder')
+      );
       const el: HTMLDivElement = de.nativeElement;
 
       expect(el).toBeTruthy();
@@ -102,19 +107,17 @@ describe('SelectComponent', () => {
       expect(de.nativeElement).toBeTruthy();
       done();
     });
-
   });
 
   describe('placeholder select bindings', () => {
-
     it('should change its value based on index of current option', done => {
       const de = fixture.debugElement.query(By.css('.select__placeholder'));
       const el: HTMLSelectElement = de.nativeElement;
 
       component.options = [
-        {name: 'a', value: 'a'},
-        {name: 'b', value: 'b'},
-        {name: 'c', value: 'c'}
+        { name: 'a', value: 'a' },
+        { name: 'b', value: 'b' },
+        { name: 'c', value: 'c' },
       ];
 
       (component['_currentOptionIndex'] as any) = 1;
@@ -133,7 +136,7 @@ describe('SelectComponent', () => {
       component.options = [
         { name: 'a', value: 'a' },
         { name: 'b', value: 'b' },
-        { name: 'c', value: 'c' }
+        { name: 'c', value: 'c' },
       ];
 
       fixture.detectChanges();
@@ -142,13 +145,11 @@ describe('SelectComponent', () => {
       el.dispatchEvent(new Event('input'));
 
       expect(spy).toHaveBeenCalledWith('c');
-      done()
+      done();
     });
-
   });
 
   describe('selectOption', () => {
-
     it('should set the index of the current option if it exists in array', done => {
       component.options.push({ value: 'a', name: 'a' });
       component.options.push({ value: 'b', name: 'b' });
@@ -170,11 +171,9 @@ describe('SelectComponent', () => {
       expect(spy).toHaveBeenCalled();
       done();
     });
-
   });
 
   describe('toggleSelect', () => {
-
     it('should toggle isExpanded property', done => {
       component['_isExpanded'] = false;
 
@@ -183,13 +182,11 @@ describe('SelectComponent', () => {
 
       component.toggleSelect();
       expect(component.isExpanded).toBeFalsy();
-      done()
+      done();
     });
-
   });
 
   describe('findIndexOf', () => {
-
     it('should return index of option if it exists', done => {
       component.options.push({ value: 'a', name: 'a' });
       component.options.push({ value: 'b', name: 'b' });
@@ -203,13 +200,11 @@ describe('SelectComponent', () => {
       expect(component.findIndexOf('a')).toBeLessThan(0);
       done();
     });
-
   });
 
   describe('broadcastChange', () => {
-
     it('should broadcast that an option has been changed', done => {
-      const spy = spyOn((component as any), 'onChange');
+      const spy = spyOn(component as any, 'onChange');
 
       component['broadcastChange']('a');
 
@@ -225,6 +220,5 @@ describe('SelectComponent', () => {
       expect(spy).toHaveBeenCalledWith('a');
       done();
     });
-
   });
 });

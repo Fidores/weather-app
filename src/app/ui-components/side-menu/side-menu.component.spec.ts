@@ -1,14 +1,13 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SideMenuService } from 'src/app/services/side-menu/side-menu.service';
-import { OverlayService } from './../../services/overlay/overlay.service';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SideMenuComponent } from './side-menu.component';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Router } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SideMenuService } from 'src/app/services/side-menu/side-menu.service';
+
+import { OverlayService } from './../../services/overlay/overlay.service';
+import { SideMenuComponent } from './side-menu.component';
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent;
@@ -208,6 +207,28 @@ describe('SideMenuComponent', () => {
 
       expect(spy).toHaveBeenCalled();
       done();
+    });
+
+    it('should subscribe to router events', done => {
+      const router: Router = TestBed.get(Router);
+      const spy = spyOn(router.events, 'subscribe');
+
+      component.ngOnInit();
+
+      expect(spy).toHaveBeenCalled();
+      done();
+    });
+
+    it('should call closeMenu() method after router event', done => {
+      const router: Router = TestBed.get(Router);
+      const spy = spyOn(component, 'closeMenu');
+
+      router.events.subscribe(() => {
+        expect(spy).toHaveBeenCalled();
+        done();
+      });
+
+      router.navigate(['/']);
     });
   });
 });

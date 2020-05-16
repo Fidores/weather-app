@@ -1,15 +1,15 @@
-import { RouterTestingModule } from '@angular/router/testing';
+import { AppError } from './../../common/errors/appError';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { of, throwError } from 'rxjs';
+
 import { Conflict } from './../../common/errors/conflict';
 import { User, UserPayload } from './../../models/User';
-import { of, Subject, throwError } from 'rxjs';
 import { AccountService } from './../../services/account/account.service';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { RouterModule, Router } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SignUpComponent } from './sign-up.component';
 
 describe('SignUpComponent', () => {
@@ -58,7 +58,9 @@ describe('SignUpComponent', () => {
       expect(spy).toHaveBeenCalledWith(user);
       done();
     });
+  });
 
+  describe('onSuccessfulSignUp', () => {
     it('should redirect user to page saved in session storage', done => {
       const accountService: AccountService = fixture.debugElement.injector.get(
         AccountService
@@ -76,7 +78,9 @@ describe('SignUpComponent', () => {
       expect(spy).toHaveBeenCalledWith(route);
       done();
     });
+  });
 
+  describe('onUnsuccessfulSignUp', () => {
     it('should display that email is already taken on Conflict error', done => {
       const toastr: ToastrService = fixture.debugElement.injector.get(
         ToastrService
@@ -92,6 +96,13 @@ describe('SignUpComponent', () => {
       component.signUp();
 
       expect(spy).toHaveBeenCalled();
+      done();
+    });
+
+    it('should rethrow an unexpected error', done => {
+      const error = new AppError();
+
+      expect(() => component['onUnsuccessfulSignUp'](error)).toThrow(error);
       done();
     });
   });

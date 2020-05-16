@@ -13,6 +13,7 @@ import {
 import { Subscription, fromEvent } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AppError } from 'src/app/common/errors/appError';
 
 @Component({
   templateUrl: './add-city.component.html',
@@ -37,10 +38,7 @@ export class AddCityComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       fromEvent(this.searchBox.nativeElement, 'input')
         .pipe(debounceTime(400))
-        .subscribe(($event: Event) => {
-          this.isLoading = true;
-          this.searchForCity($event.target['value']);
-        })
+        .subscribe(this.onInputChange.bind(this))
     );
   }
 
@@ -63,14 +61,25 @@ export class AddCityComponent implements OnInit, OnDestroy {
       .saveCity(id)
       .pipe(take(1))
       .subscribe(
-        () => this.router.navigate(['/']),
-        err => {
-          if (err instanceof Conflict)
-            this.notifications.error('Miasto zapisano już wcześniej.');
-          else if (err instanceof BadRequest)
-            this.notifications.error('Wykorzystano limit 20 zapisanych miast.');
-          else throw err;
-        }
+        this.onSuccessfulCityAdd.bind(this),
+        this.onUnsuccessfulCityAdd.bind(this)
       );
+  }
+
+  private onSuccessfulCityAdd() {
+    this.router.navigate(['/']);
+  }
+
+  private onUnsuccessfulCityAdd(error: AppError) {
+    if (error instanceof Conflict)
+      this.notifications.error('Miasto zapisano już wcześniej.');
+    else if (error instanceof BadRequest)
+      this.notifications.error('Wykorzystano limit 20 zapisanych miast.');
+    else throw error;
+  }
+
+  private onInputChange($event: Event) {
+    this.isLoading = true;
+    this.searchForCity($event.target['value']);
   }
 }

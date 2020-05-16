@@ -10,7 +10,6 @@ import { User } from './../../models/User';
 import { AccountService } from './account.service';
 
 describe('AccountService', () => {
-  12;
   let httpController: HttpTestingController;
   let service: AccountService;
   let dummyUser: any;

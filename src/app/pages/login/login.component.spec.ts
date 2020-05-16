@@ -1,3 +1,4 @@
+import { BadRequest } from './../../common/errors/badRequest';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { User } from './../../models/User';
@@ -9,7 +10,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { FormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule, ToastrService, Toast } from 'ngx-toastr';
+import { AppError } from 'src/app/common/errors/appError';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -116,7 +118,7 @@ describe('LoginComponent', () => {
     });
 
     it('should remove redirect url after navigation', done => {
-      const router: Router = fixture.debugElement.injector.get(Router);
+      const router: Router = TestBed.get(Router);
       spyOn(router, 'navigate').and.returnValue(Promise.resolve(true));
 
       sessionStorage.setItem('redirectTo', 'url');
@@ -127,6 +129,24 @@ describe('LoginComponent', () => {
         expect(redirectUrl).toBeFalsy();
         done();
       });
+    });
+  });
+
+  describe('onUnsuccessfulLogin', () => {
+    it('should display error notification', done => {
+      const toastrService: ToastrService = TestBed.get(ToastrService);
+      const spy = spyOn(toastrService, 'error');
+
+      component['onUnsuccessfulLogin'](new BadRequest());
+
+      expect(spy).toHaveBeenCalled();
+      done();
+    });
+
+    it('should rethrow unexpected error', done => {
+      const error = new AppError();
+      expect(() => component['onUnsuccessfulLogin'](error)).toThrow(error);
+      done();
     });
   });
 });

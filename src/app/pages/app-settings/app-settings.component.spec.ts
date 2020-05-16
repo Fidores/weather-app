@@ -1,16 +1,14 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { User } from './../../models/User';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+import { BehaviorSubject, of } from 'rxjs';
+import { SelectComponent } from 'src/app/ui-components/select/select.component';
+
 import { AppSettings } from './../../models/AppSettings';
 import { SettingsService } from './../../services/app-settings/settings.service';
-import { HttpClientModule } from '@angular/common/http';
-import { NgScrollbarModule } from 'ngx-scrollbar';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ReactiveFormsModule } from '@angular/forms';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AppSettingsComponent } from './app-settings.component';
-import { SelectComponent } from 'src/app/ui-components/select/select.component';
-import { of, BehaviorSubject } from 'rxjs';
 
 describe('AppSettingsComponent', () => {
   let component: AppSettingsComponent;
@@ -102,6 +100,20 @@ describe('AppSettingsComponent', () => {
         done();
       });
       settingsService.settings.next({} as any);
+    });
+
+    it('should call changeSettings() method after form value changes', done => {
+      const spy = spyOn(component, 'changeSettings');
+
+      component.settingsForm.valueChanges.subscribe(() => {
+        expect(spy).toHaveBeenCalled();
+        done();
+      });
+
+      component.settingsForm.patchValue(
+        { units: 'metric' },
+        { emitEvent: true }
+      );
     });
   });
 });

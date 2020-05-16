@@ -32,9 +32,7 @@ export class CitiesService {
   }
 
   getCitiesIds(): Observable<number[]> {
-    return this.http
-      .get<City[]>(`${environment.API.origin}users/me/saved-cities/`)
-      .pipe(map(cities => cities.map(city => city.id)));
+    return this.getCities().pipe(map(cities => cities.map(city => city.id)));
   }
 
   getCities(): Observable<City[]> {
