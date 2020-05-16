@@ -4,7 +4,6 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper/dist/lib/swiper.interf
 import { Subscription } from 'rxjs';
 import { slideInEntrance } from 'src/app/animations';
 
-import { formatIconName } from '../../helpers/formatIconName';
 import { Forecast } from '../../models/Forecast';
 import { formatIllustrationName } from './../../helpers/formatIllustationName';
 import { CurrentWeather } from './../../models/CurrentWeather';
@@ -30,7 +29,6 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription = new Subscription();
   forecast: Forecast;
   currentWeather: CurrentWeather;
-  formatIconName = formatIconName;
   formatIllustrationName = formatIllustrationName;
 
   ngOnInit() {

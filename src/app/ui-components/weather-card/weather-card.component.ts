@@ -1,4 +1,3 @@
-import { formatIconName } from '../../helpers/formatIconName';
 import { CurrentWeather } from '../../models/CurrentWeather';
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +16,6 @@ export class WeatherCardComponent implements OnInit {
 
   faSortUp = faSortUp;
   faSortDown = faSortDown;
-  formatIconName = formatIconName;
 
   ngOnInit() {}
 }

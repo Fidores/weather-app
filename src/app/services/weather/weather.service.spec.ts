@@ -1,4 +1,3 @@
-import { transformObjectToParams } from './../../helpers/objectToHttpParams';
 import {
   HttpClientTestingModule,
   HttpTestingController,
