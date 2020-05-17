@@ -47,4 +47,8 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
+
+  isNightTimeIcon(id: string): boolean {
+    return id.endsWith('n');
+  }
 }

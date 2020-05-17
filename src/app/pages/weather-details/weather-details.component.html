@@ -8,7 +8,10 @@
       [ngStyle]="{
         'background-image':
           'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(../assets/images/' +
-          formatIllustrationName(currentWeather.weather.id) +
+          formatIllustrationName(
+            currentWeather.weather.id,
+            isNightTimeIcon(currentWeather.weather.icon)
+          ) +
           ')'
       }"
     ></div>

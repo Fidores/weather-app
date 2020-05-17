@@ -130,4 +130,18 @@ describe('WeatherDetailsComponent', () => {
       done();
     });
   });
+
+  describe('isNightTimeIcon', () => {
+    it('should return true if icon name ends with n', () => {
+      const result = component.isNightTimeIcon('03n');
+
+      expect(result).toBeTruthy();
+    });
+
+    it('should return false if icon name doesn`t end with n', () => {
+      const result = component.isNightTimeIcon('03d');
+
+      expect(result).toBeFalsy();
+    });
+  });
 });
