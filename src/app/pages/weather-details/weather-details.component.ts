@@ -6,7 +6,7 @@ import { slideInEntrance } from 'src/app/animations';
 
 import { Forecast } from '../../models/Forecast';
 import { formatIllustrationName } from './../../helpers/formatIllustationName';
-import { CurrentWeather } from './../../models/CurrentWeather';
+import { CurrentWeather, Icon } from './../../models/CurrentWeather';
 import { WeatherService } from './../../services/weather/weather.service';
 
 @Component({
@@ -48,7 +48,7 @@ export class WeatherDetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  isNightTimeIcon(id: string): boolean {
+  isNightTimeIcon(id: Icon): boolean {
     return id.endsWith('n');
   }
 }

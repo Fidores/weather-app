@@ -1,12 +1,12 @@
 export interface City {
-    _id: string;
-    id: number;
-    name: string;
-    country: string;
-    coord: Coords;
+  _id: string;
+  id: number;
+  name: string;
+  country: string;
+  coords: Coords;
 }
 
-interface Coords {
-    lon: number;
-    lat: number;
+export interface Coords {
+  lon: number;
+  lat: number;
 }
