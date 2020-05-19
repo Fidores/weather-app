@@ -6,6 +6,8 @@ It's a simple web application to display weather in cities. It uses OpenWeatherM
 
 The design is based on the app from this [article](http://medium.com/@hamedbaatour/build-a-real-world-beautiful-web-app-with-angular-6-a-to-z-ultimate-guide-2018-part-i-e121dd1d55e)
 
+[Backend](https://github.com/Fidores/weather-app_backend)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
