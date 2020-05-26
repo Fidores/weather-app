@@ -1,19 +1,20 @@
 import { AppError } from './../../common/errors/appError';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterEvent } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { matchFields } from 'src/app/common/validators/matchFields';
 
 import { Conflict } from './../../common/errors/conflict';
 import { UserPayload, User } from './../../models/User';
 import { AccountService } from './../../services/account/account.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
   constructor(
     private readonly account: AccountService,
     private readonly router: Router,
@@ -29,6 +30,12 @@ export class SignUpComponent {
     },
     matchFields('password', 'confirmPassword')
   );
+
+  ngOnInit() {
+    this.router.events
+      .pipe(take(1))
+      .subscribe(this.removeRedirectRoute.bind(this));
+  }
 
   signUp() {
     const user: UserPayload = {
@@ -47,9 +54,7 @@ export class SignUpComponent {
 
   private onSuccessfulSignUp(user: User) {
     const redirectTo = sessionStorage.getItem('redirectTo');
-    this.router
-      .navigate(redirectTo ? [redirectTo] : ['/'])
-      .then(() => sessionStorage.removeItem('redirectTo'));
+    this.router.navigate(redirectTo ? [redirectTo] : ['/']);
   }
 
   private onUnsuccessfulSignUp(error: AppError) {
@@ -59,5 +64,11 @@ export class SignUpComponent {
         'Email w użyciu'
       );
     else throw error;
+  }
+
+  private removeRedirectRoute($event: RouterEvent) {
+    if ($event.url === '/login') return;
+
+    sessionStorage.removeItem('redirectTo');
   }
 }

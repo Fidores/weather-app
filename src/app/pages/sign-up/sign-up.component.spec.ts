@@ -106,4 +106,26 @@ describe('SignUpComponent', () => {
       done();
     });
   });
+
+  describe('removeRedirectRoute', () => {
+    it('should remove redirect route if the next route isn`t login route', done => {
+      sessionStorage.setItem('redirectTo', '/settings');
+
+      component['removeRedirectRoute']({ url: '/' } as any);
+
+      expect(sessionStorage.getItem('redirectRoute')).toBeFalsy();
+
+      done();
+    });
+
+    it('should leave redirectRoute if the next route is login route', done => {
+      sessionStorage.setItem('redirectTo', '/settings');
+
+      component['removeRedirectRoute']({ url: '/login' } as any);
+
+      expect(sessionStorage.getItem('redirectTo')).toBeTruthy();
+
+      done();
+    });
+  });
 });

@@ -116,20 +116,6 @@ describe('LoginComponent', () => {
       expect(spy).toHaveBeenCalledWith(redirectUrl);
       done();
     });
-
-    it('should remove redirect url after navigation', done => {
-      const router: Router = TestBed.get(Router);
-      spyOn(router, 'navigate').and.returnValue(Promise.resolve(true));
-
-      sessionStorage.setItem('redirectTo', 'url');
-      component['onSuccessfulLogin']({} as User);
-
-      router.navigate(['']).then(() => {
-        const redirectUrl = sessionStorage.getItem('redirectTo');
-        expect(redirectUrl).toBeFalsy();
-        done();
-      });
-    });
   });
 
   describe('onUnsuccessfulLogin', () => {
@@ -146,6 +132,28 @@ describe('LoginComponent', () => {
     it('should rethrow unexpected error', done => {
       const error = new AppError();
       expect(() => component['onUnsuccessfulLogin'](error)).toThrow(error);
+      done();
+    });
+  });
+
+  describe('removeRedirectRoute', () => {
+    it('should remove redirect route if the next route isn`t sign-up route', done => {
+      sessionStorage.setItem('redirectTo', '/settings');
+
+      component['removeRedirectRoute']({ url: '/' } as any);
+
+      expect(sessionStorage.getItem('redirectRoute')).toBeFalsy();
+
+      done();
+    });
+
+    it('should leave redirectRoute if the next route is sign-up route', done => {
+      sessionStorage.setItem('redirectTo', '/settings');
+
+      component['removeRedirectRoute']({ url: '/sign-up' } as any);
+
+      expect(sessionStorage.getItem('redirectTo')).toBeTruthy();
+
       done();
     });
   });

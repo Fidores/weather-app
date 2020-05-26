@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterEvent } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { AccountService } from 'src/app/services/account/account.service';
 
@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   constructor(
     private readonly account: AccountService,
     private readonly router: Router,
@@ -23,6 +23,12 @@ export class LoginComponent {
     email: 'john@gmail.com',
     password: 'mypassword',
   };
+
+  ngOnInit() {
+    this.router.events
+      .pipe(take(1))
+      .subscribe(this.removeRedirectRoute.bind(this));
+  }
 
   onSubmit() {
     this.account
@@ -38,9 +44,7 @@ export class LoginComponent {
     const redirectRoute = sessionStorage.getItem('redirectTo')
       ? [sessionStorage.getItem('redirectTo')]
       : ['/'];
-    this.router
-      .navigate(redirectRoute)
-      .then(() => sessionStorage.removeItem('redirectTo'));
+    this.router.navigate(redirectRoute);
   }
 
   private onUnsuccessfulLogin(err: AppError) {
@@ -50,5 +54,11 @@ export class LoginComponent {
         'Niepoprawne dane'
       );
     else throw err;
+  }
+
+  private removeRedirectRoute($event: RouterEvent): void {
+    if ($event.url === '/sign-up') return;
+
+    sessionStorage.removeItem('redirectTo');
   }
 }
