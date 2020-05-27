@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {
+      "label": "Run app",
+      "command": "serve.bat",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
