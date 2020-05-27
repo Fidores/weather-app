@@ -22,7 +22,7 @@ const settings: Routes = [
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'weather-details/:id', component: WeatherDetailsComponent },
-  { path: 'add-city', component: AddCityComponent },
+  { path: 'add-city', component: AddCityComponent, canActivate: [UnAuthGuard] },
   {
     path: 'user-settings',
     component: UserSettingsComponent,
