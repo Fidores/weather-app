@@ -1,62 +1,67 @@
 <div class="side-menu" [@sideMenuAnimation]="isOpened ? 'opened' : 'closed'">
+  <div class="side-menu__header">
+    <div class="side-menu__heading">
+      <button class="btn side-menu__close-menu" (click)="closeMenu()">
+        <fa-icon [icon]="faBars" size="2x"></fa-icon>
+      </button>
 
-    <div class="side-menu__header">
+      <a class="side-menu__logo" [routerLink]="['/']">
+        <img
+          src="../../../assets/logo.png"
+          alt="logo"
+          class="side-menu__logo-image"
+        />
 
-        <div class="side-menu__heading">
-
-            <button class="btn side-menu__close-menu" (click)="closeMenu()"><fa-icon [icon]="faBars" size="2x"></fa-icon></button>
-
-            <a class="side-menu__logo" [routerLink]="['/']">
-            
-                <img src="../../../assets/logo.png" alt="logo" class="side-menu__logo-image">
-    
-                <span class="side-menu__logo-text">Weather</span>
-    
-            </a>
-
-        </div>
-
-        <div class="side-menu__user" *ngIf="user$ | async as user">
-
-            <div class="side-menu__user-avatar">
-                <img src="../../../assets/images/user_avatar.svg" alt="avatar użytkownika">
-            </div>
-
-            <div class="side-menu__user-name">
-                {{ user.name }}
-            </div>
-
-            <div class="side-menu__user-email">
-                <span>{{ user.email }}</span>
-            </div>
-
-        </div>
-
+        <span class="side-menu__logo-text">Weather</span>
+      </a>
     </div>
 
-    <div class="side-menu__body">
+    <div class="side-menu__user" *ngIf="user$ | async as user">
+      <div class="side-menu__user-avatar">
+        <img
+          src="../../../assets/images/user_avatar.svg"
+          alt="avatar użytkownika"
+        />
+      </div>
 
-        <a class="side-menu__item" [routerLink]="['/']">
+      <div class="side-menu__user-name">
+        {{ user.name }}
+      </div>
 
-            <div class="side-menu__icon"><fa-icon [icon]="faHome" size="lg"></fa-icon></div>
-            <div class="side-menu__text">Strona główna</div>
-
-        </a>
-
-        <a class="side-menu__item" [routerLink]="['/add-city']">
-
-            <div class="side-menu__icon"><fa-icon [icon]="faPlusSquare" size="lg"></fa-icon></div>
-            <div class="side-menu__text">Dodaj miasto</div>
-
-        </a>
-
-        <a class="side-menu__item" [routerLink]="['/user-settings']">
-
-            <div class="side-menu__icon"><fa-icon [icon]="faCog" size="lg"></fa-icon></div>
-            <div class="side-menu__text">Ustawienia</div>
-
-        </a>
-
+      <div class="side-menu__user-email">
+        <span>{{ user.email }}</span>
+      </div>
     </div>
+  </div>
 
+  <div class="side-menu__body">
+    <a class="side-menu__item" [routerLink]="['/']">
+      <div class="side-menu__icon">
+        <fa-icon [icon]="faHome" size="lg"></fa-icon>
+      </div>
+      <div class="side-menu__text">Strona główna</div>
+    </a>
+
+    <a
+      class="side-menu__item"
+      [routerLink]="['/add-city']"
+      *ngIf="isLoggedIn()"
+    >
+      <div class="side-menu__icon">
+        <fa-icon [icon]="faPlusSquare" size="lg"></fa-icon>
+      </div>
+      <div class="side-menu__text">Dodaj miasto</div>
+    </a>
+
+    <a
+      class="side-menu__item"
+      [routerLink]="['/user-settings']"
+      *ngIf="isLoggedIn()"
+    >
+      <div class="side-menu__icon">
+        <fa-icon [icon]="faCog" size="lg"></fa-icon>
+      </div>
+      <div class="side-menu__text">Ustawienia</div>
+    </a>
+  </div>
 </div>
