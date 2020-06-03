@@ -10,7 +10,9 @@ import { UpdateUser, User, UserPayload } from './../../models/User';
   providedIn: 'root',
 })
 export class AccountService {
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {
+    if (this.isLoggedIn) this.loadUser();
+  }
 
   private readonly env = environment;
   private readonly _user: BehaviorSubject<User | null> = new BehaviorSubject(

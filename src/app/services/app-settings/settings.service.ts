@@ -19,6 +19,8 @@ export class SettingsService {
     this.account.user.subscribe(user => {
       if (account.isLoggedIn) this.init().subscribe();
     });
+
+    if (this.account.isLoggedIn) this.init();
   }
 
   private readonly _settings: BehaviorSubject<
