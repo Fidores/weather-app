@@ -42,7 +42,7 @@ describe('SettingsService', () => {
 
   describe('init', () => {
     it('should call server to get settings', done => {
-      service.init().subscribe(settings => {
+      service['init']().subscribe(settings => {
         expect(settings).toEqual(dummySettings);
         done();
       });
@@ -57,7 +57,7 @@ describe('SettingsService', () => {
     it('should broadcast new settings', done => {
       const spy = spyOn(service['_settings'], 'next');
 
-      service.init().subscribe(() => {
+      service['init']().subscribe(() => {
         expect(spy).toHaveBeenCalledWith(dummySettings);
         done();
       });

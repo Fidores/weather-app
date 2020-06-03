@@ -134,7 +134,7 @@ describe('AccountService', () => {
 
   describe('loadUser', () => {
     it('should call server to get user data', done => {
-      service.init().subscribe(user => {
+      service['init']().subscribe(user => {
         expect(user).toEqual(dummyUser);
         done();
       });
@@ -146,7 +146,7 @@ describe('AccountService', () => {
 
     it('should broadcast user data', done => {
       const spy = spyOn(service['_user'], 'next');
-      service.init().subscribe(user => {
+      service['init']().subscribe(user => {
         expect(spy).toHaveBeenCalledWith(user);
         done();
       });
