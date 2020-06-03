@@ -28,16 +28,6 @@ export class SettingsService {
   > = new BehaviorSubject({} as AppSettings);
 
   /**
-   * It's used to load settings locally.
-   */
-
-  init(): Observable<AppSettings> {
-    return this.http
-      .get<AppSettings>(`${environment.API.origin}users/me/settings`)
-      .pipe(tap(appSettings => this._settings.next(appSettings)));
-  }
-
-  /**
    * It's used to change user's settings.
    * @param newSettings new settings to save.
    */
@@ -57,5 +47,15 @@ export class SettingsService {
 
   get settings(): BehaviorSubject<AppSettings> {
     return this._settings;
+  }
+
+  /**
+   * It's used to load settings locally.
+   */
+
+  private init(): Observable<AppSettings> {
+    return this.http
+      .get<AppSettings>(`${environment.API.origin}users/me/settings`)
+      .pipe(tap(appSettings => this._settings.next(appSettings)));
   }
 }

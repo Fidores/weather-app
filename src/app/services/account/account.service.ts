@@ -11,7 +11,7 @@ import { UpdateUser, User, UserPayload } from './../../models/User';
 })
 export class AccountService {
   constructor(private readonly http: HttpClient) {
-    if (this.isLoggedIn) this.loadUser();
+    if (this.isLoggedIn) this.init();
   }
 
   private readonly env = environment;
@@ -50,18 +50,18 @@ export class AccountService {
       );
   }
 
+  getAuthToken(): string {
+    return localStorage.getItem(this.env.API.authTokenHeaderName);
+  }
+
   /**
    * Loads user data and informs the app about it. This is only for initialization of the app.
    */
 
-  loadUser(): Observable<User> {
+  private init(): Observable<User> {
     return this.http
       .get<User>(`${this.env.API.origin}users/me`)
       .pipe(tap(user => this._user.next(user)));
-  }
-
-  getAuthToken(): string {
-    return localStorage.getItem(this.env.API.authTokenHeaderName);
   }
 
   private performLogin(res: HttpResponse<User>): void {
