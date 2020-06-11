@@ -19,8 +19,6 @@ export class SettingsService {
     this.account.user.subscribe(user => {
       if (account.isLoggedIn) this.init().subscribe();
     });
-
-    if (this.account.isLoggedIn) this.init();
   }
 
   private readonly _settings: BehaviorSubject<
@@ -53,7 +51,7 @@ export class SettingsService {
    * It's used to load settings locally.
    */
 
-  private init(): Observable<AppSettings> {
+  init(): Observable<AppSettings> {
     return this.http
       .get<AppSettings>(`${environment.API.origin}users/me/settings`)
       .pipe(tap(appSettings => this._settings.next(appSettings)));

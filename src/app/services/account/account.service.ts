@@ -10,9 +10,7 @@ import { UpdateUser, User, UserPayload } from './../../models/User';
   providedIn: 'root',
 })
 export class AccountService {
-  constructor(private readonly http: HttpClient) {
-    if (this.isLoggedIn) this.init();
-  }
+  constructor(private readonly http: HttpClient) {}
 
   private readonly env = environment;
   private readonly _user: BehaviorSubject<User | null> = new BehaviorSubject(
@@ -58,10 +56,13 @@ export class AccountService {
    * Loads user data and informs the app about it. This is only for initialization of the app.
    */
 
-  private init(): Observable<User> {
-    return this.http
-      .get<User>(`${this.env.API.origin}users/me`)
-      .pipe(tap(user => this._user.next(user)));
+  init(): Observable<User> {
+    return this.http.get<User>(`${this.env.API.origin}users/me`).pipe(
+      tap(user => {
+        console.log(user);
+        return this._user.next(user);
+      })
+    );
   }
 
   private performLogin(res: HttpResponse<User>): void {
