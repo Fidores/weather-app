@@ -57,12 +57,9 @@ export class AccountService {
    */
 
   init(): Observable<User> {
-    return this.http.get<User>(`${this.env.API.origin}users/me`).pipe(
-      tap(user => {
-        console.log(user);
-        return this._user.next(user);
-      })
-    );
+    return this.http
+      .get<User>(`${this.env.API.origin}users/me`)
+      .pipe(tap(user => this._user.next(user)));
   }
 
   private performLogin(res: HttpResponse<User>): void {
