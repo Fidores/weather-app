@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper/dist/lib/swiper.interfaces';
+
 import { Subscription } from 'rxjs';
 import { slideInEntrance } from 'src/app/animations';
 
@@ -8,6 +8,7 @@ import { Forecast } from '../../models/Forecast';
 import { formatIllustrationName } from './../../helpers/formatIllustationName';
 import { CurrentWeather, Icon } from './../../models/CurrentWeather';
 import { WeatherService } from './../../services/weather/weather.service';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   templateUrl: './weather-details.component.html',

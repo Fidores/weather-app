@@ -9,6 +9,7 @@ import { Unauthorized } from './errors/unauthorized';
 import { NotFound } from './errors/notFound';
 import { AppError } from './errors/appError';
 
+@Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   constructor() {}
 

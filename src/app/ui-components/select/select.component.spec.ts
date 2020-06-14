@@ -110,24 +110,6 @@ describe('SelectComponent', () => {
   });
 
   describe('placeholder select bindings', () => {
-    it('should change its value based on index of current option', done => {
-      const de = fixture.debugElement.query(By.css('.select__placeholder'));
-      const el: HTMLSelectElement = de.nativeElement;
-
-      component.options = [
-        { name: 'a', value: 'a' },
-        { name: 'b', value: 'b' },
-        { name: 'c', value: 'c' },
-      ];
-
-      (component['_currentOptionIndex'] as any) = 1;
-
-      fixture.detectChanges();
-
-      expect(el.value).toBe('b');
-      done();
-    });
-
     it('should reflect changes on custom made select', done => {
       const de = fixture.debugElement.query(By.css('.select__placeholder'));
       const el: HTMLSelectElement = de.nativeElement;

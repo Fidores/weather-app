@@ -1,9 +1,9 @@
-import { ErrorHandler, Injectable } from '@angular/core';
+import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ErrorsHandler implements ErrorHandler {
-  constructor(private readonly notifications: ToastrService) {}
+  constructor(private readonly injector: Injector) {}
 
   handleError(error: any): void {
     this.notifications.error(
@@ -11,5 +11,9 @@ export class ErrorsHandler implements ErrorHandler {
       'Napotkano niespodziewany błąd !'
     );
     console.error(error);
+  }
+
+  get notifications(): ToastrService {
+    return this.injector.get(ToastrService);
   }
 }

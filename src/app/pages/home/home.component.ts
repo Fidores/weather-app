@@ -31,6 +31,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     spaceBetween: 30,
     slidesPerView: 'auto',
     mousewheel: true,
+    navigation: {
+      prevEl: document.createElement('button'),
+      nextEl: document.createElement('button'),
+    },
   };
   cities: CurrentWeather[];
 
