@@ -1,0 +1,15 @@
+<div class="button-toggle" *ngIf="options.length > 0">
+  <button
+    class="btn btn--accent button-toggle__option"
+    *ngFor="let option of options"
+    [value]="option.value"
+    (click)="onChange($event.target.value)"
+    (click)="selectOption($event.target.value)"
+    [disabled]="isDisabled"
+    [ngClass]="{
+      'button-toggle__option--selected': selectedOption.value === option.value
+    }"
+  >
+    {{ option.name }}
+  </button>
+</div>

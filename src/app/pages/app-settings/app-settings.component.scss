@@ -1,0 +1,7 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/functions';
+@import '../../../sass/utils/mixins';
+
+h2 {
+  margin-bottom: $spacing-small;
+}

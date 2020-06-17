@@ -1,33 +1,33 @@
 .btn {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: #FFF;
-    border-radius: $radius-small;
-    padding: 10px 20px;
-    font-size: 1.1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: $radius-small;
+  padding: 10px 20px;
+  font-size: 1.1rem;
 
-    &--accent {
-        @include btn-accent-theme($accent-color);
-    }
-    
-    &--danger {
-        @include btn-accent-theme($accent-color-danger);
-    }
+  &--accent {
+    @include btn-accent-theme($accent-color);
+  }
 
-    &--icon {
-        font-size: 1rem;
-        padding: 0px;
-        color: currentColor;
-    }
+  &--danger {
+    @include btn-accent-theme($accent-color-danger);
+  }
 
-    &--block {
-        display: block;
-        width: 100%;
-    }
+  &--icon {
+    font-size: 1rem;
+    padding: 0px;
+    color: currentColor;
+  }
 
-    &:disabled {
-        cursor: not-allowed;
-    }
+  &--block {
+    display: block;
+    width: 100%;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }

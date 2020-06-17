@@ -23,7 +23,6 @@ import { WeatherCardComponent } from './ui-components/weather-card/weather-card.
 import { LoaderComponent } from './ui-components/loader/loader.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { AppSettingsComponent } from './pages/app-settings/app-settings.component';
-import { SelectComponent } from './ui-components/select/select.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SavedCitiesComponent } from './pages/saved-cities/saved-cities.component';
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
@@ -31,6 +30,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ToastrModule } from 'ngx-toastr';
 import { IconComponent } from './ui-components/icon/icon.component';
+import { ButtonToggleComponent } from './ui-components/button-toggle/button-toggle.component';
 
 @NgModule({
   declarations: [
@@ -47,12 +47,12 @@ import { IconComponent } from './ui-components/icon/icon.component';
     LoaderComponent,
     UserSettingsComponent,
     AppSettingsComponent,
-    SelectComponent,
     SavedCitiesComponent,
     AccountSettingsComponent,
     LoginComponent,
     SignUpComponent,
     IconComponent,
+    ButtonToggleComponent,
   ],
   imports: [
     BrowserModule,

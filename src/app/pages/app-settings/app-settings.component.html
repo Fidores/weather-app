@@ -1,7 +1,9 @@
 <form class="app-settings" [formGroup]="settingsForm">
+  <h2>Jednostka temperatury</h2>
 
-    <h2>Jednostka temperatury</h2>
-
-    <app-select formControlName="units" [options]="units"></app-select>
-
+  <button-toggle
+    ngDefaultControl
+    formControlName="units"
+    [options]="units"
+  ></button-toggle>
 </form>

@@ -1,0 +1,14 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/functions';
+@import '../../../sass/utils/mixins';
+
+.button-toggle {
+  background-color: $accent-color;
+  width: fit-content;
+  border-radius: $radius-small;
+
+  &__option--selected {
+    background-color: darken($color: $accent-color, $amount: 15%);
+    font-weight: bolder;
+  }
+}
